@@ -12,6 +12,7 @@ ARG PHP_VERSION
 RUN apk update \
     && apk upgrade \
     && apk add \
+        tar \
         php7-curl=${PHP_VERSION} \
         php7-dom=${PHP_VERSION} \
         php7-exif=${PHP_VERSION} \
