@@ -22,17 +22,14 @@ RUN apk update \
         php7-iconv=${PHP_VERSION} \
         php7-json=${PHP_VERSION} \
         php7-mbstring=${PHP_VERSION} \
-        php7-mcrypt=${PHP_VERSION} \
         php7-mysqlnd=${PHP_VERSION} \
         php7-sodium=${PHP_VERSION} \
         php7-openssl=${PHP_VERSION} \
-        php7-pcre=${PHP_VERSION} \
         php7-simplexml=${PHP_VERSION} \
         php7-sockets=${PHP_VERSION} \
         php7-xml=${PHP_VERSION} \
         php7-xmlreader=${PHP_VERSION} \
         php7-zip=${PHP_VERSION} \
-        php7-zlib=${PHP_VERSION} \
     && rm -rf /var/cache/apk/*
 
 ENV WORDPRESS_LOCALE="en_GB"
