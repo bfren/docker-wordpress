@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv bash
+
+#======================================================================================================================
+# Download WordPress
+#======================================================================================================================
+
+cd /tmp
+
+URL="https://en-gb.wordpress.org/wordpress-${WORDPRESS_VERSION}-${WORDPRESS_LOCALE}.zip"
+echo " - downloading ${URL}..."
+curl -L -o wp.zip ${URL}
+tar -xzvf wp.zip && rm wp.zip
+echo " - done."
+
+echo " - moving WordPress files to /www..."
+rm -rf /www/*
+mv wordpress/* /www/ && rm -rf wordpress
+echo " - done."
