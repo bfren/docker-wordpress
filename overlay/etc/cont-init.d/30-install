@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/usr/bin/execlineb -P
 
 #======================================================================================================================
 # Check for wp-config.php
@@ -14,7 +14,8 @@ fi
 # Download WordPress
 #======================================================================================================================
 
-s6-envuidgid -u www
+with-contenv
+s6-envuidgid www
 
 cd /tmp
 
@@ -22,7 +23,18 @@ URL="https://en-gb.wordpress.org/wordpress-${WORDPRESS_VERSION}-${WORDPRESS_LOCA
 echo " - downloading ${URL}..."
 curl -sL -o wp.zip ${URL}
 tar -xzvf wp.zip && rm wp.zip
-echo " - done."
+
+if [ -d ./wordpress ] ; then
+    echo " - done."
+else
+    echo " - error."
+    exit 1
+fi
+
+
+#======================================================================================================================
+# Move WordPress files to /www
+#======================================================================================================================
 
 echo " - moving WordPress files to /www..."
 rm -rf /www/*
