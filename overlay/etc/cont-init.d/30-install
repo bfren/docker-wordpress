@@ -14,7 +14,7 @@ fi
 # Download WordPress
 #======================================================================================================================
 
-s6-envuidgid www {
+function wp () {
 
     cd /tmp
 
@@ -41,3 +41,5 @@ s6-envuidgid www {
     echo " - done."
 
 }
+
+s6-envuidgid www wp
