@@ -1,17 +1,29 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bash
 
 #======================================================================================================================
-# Check for wp-config.php
+# Download WordPress
 #======================================================================================================================
 
-if [ -f /www/wp-config.php ] ; then
-    echo " - WordPress already installed."
-    exit 0
+cd /tmp
+
+URL="https://en-gb.wordpress.org/wordpress-${WORDPRESS_VERSION}-${WORDPRESS_LOCALE}.zip"
+echo " - downloading ${URL}..."
+curl -sL -o wp.zip ${URL}
+tar -xzvf wp.zip && rm wp.zip
+
+if [ -d ./wordpress ] ; then
+    echo " - done."
+else
+    echo " - error."
+    exit 1
 fi
 
 
 #======================================================================================================================
-# Run installation program
+# Move WordPress files to /www
 #======================================================================================================================
 
-s6-envuidgid www /etc/wordpress/install
+echo " - moving WordPress files to /www..."
+rm -rf /www/*
+mv wordpress/* /www/ && rm -rf wordpress
+echo " - done."
