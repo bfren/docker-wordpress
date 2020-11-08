@@ -9,7 +9,7 @@ cd /tmp
 URL="https://en-gb.wordpress.org/wordpress-${WORDPRESS_VERSION}-${WORDPRESS_LOCALE}.zip"
 echo " - downloading ${URL}..."
 curl -sL -o wp.zip ${URL}
-tar -xzvf wp.zip && rm wp.zip
+unzip wp.zip && rm wp.zip
 
 if [ -d ./wordpress ] ; then
     echo " - done."
