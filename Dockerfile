@@ -1,4 +1,5 @@
-FROM bcgdesign/nginx-php:7.4.12
+ARG PHP_VERSION=7.4.12
+FROM bcgdesign/nginx-php:${PHP_VERSION}
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
@@ -38,8 +39,3 @@ ENV WORDPRESS_LOCALE="en_GB"
 
 COPY ./VERSION /tmp/VERSION
 RUN export WORDPRESS_VERSION=$(cat /tmp/VERSION)
-
-COPY ./install /tmp/install
-RUN chmod +x /tmp/install \
-    && /tmp/install \
-    && rm /tmp/install
