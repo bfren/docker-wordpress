@@ -18,7 +18,6 @@ RUN apk update \
         php7-fileinfo=${PHP_VERSION} \
         php7-ftp=${PHP_VERSION} \
         php7-gd=${PHP_VERSION} \
-        php7-hash=${PHP_VERSION} \
         php7-iconv=${PHP_VERSION} \
         php7-json=${PHP_VERSION} \
         php7-mbstring=${PHP_VERSION} \
