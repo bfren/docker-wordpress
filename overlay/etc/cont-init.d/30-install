@@ -1,4 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/usr/bin/with-contenv bash
 
 #======================================================================================================================
 # Check for wp-config.php
@@ -14,29 +14,30 @@ fi
 # Download WordPress
 #======================================================================================================================
 
-with-contenv
-s6-envuidgid www
+s6-envuidgid www {
 
-cd /tmp
+    cd /tmp
 
-URL="https://en-gb.wordpress.org/wordpress-${WORDPRESS_VERSION}-${WORDPRESS_LOCALE}.zip"
-echo " - downloading ${URL}..."
-curl -sL -o wp.zip ${URL}
-tar -xzvf wp.zip && rm wp.zip
+    URL="https://en-gb.wordpress.org/wordpress-${WORDPRESS_VERSION}-${WORDPRESS_LOCALE}.zip"
+    echo " - downloading ${URL}..."
+    curl -sL -o wp.zip ${URL}
+    tar -xzvf wp.zip && rm wp.zip
 
-if [ -d ./wordpress ] ; then
+    if [ -d ./wordpress ] ; then
+        echo " - done."
+    else
+        echo " - error."
+        exit 1
+    fi
+
+
+    #======================================================================================================================
+    # Move WordPress files to /www
+    #======================================================================================================================
+
+    echo " - moving WordPress files to /www..."
+    rm -rf /www/*
+    mv wordpress/* /www/ && rm -rf wordpress
     echo " - done."
-else
-    echo " - error."
-    exit 1
-fi
 
-
-#======================================================================================================================
-# Move WordPress files to /www
-#======================================================================================================================
-
-echo " - moving WordPress files to /www..."
-rm -rf /www/*
-mv wordpress/* /www/ && rm -rf wordpress
-echo " - done."
+}
