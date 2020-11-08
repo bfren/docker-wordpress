@@ -1,4 +1,4 @@
-ARG PHP_VERSION=7.4.12
+ARG PHP_VERSION=7.4.12-r0
 FROM bcgdesign/nginx-php:${PHP_VERSION}
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
@@ -32,6 +32,6 @@ RUN apk update \
     && rm -rf /var/cache/apk/*
 
 ENV WORDPRESS_LOCALE="en_GB"
+ENV WORDPRESS_VERSION="5.5.3"
 
-COPY ./VERSION /tmp/VERSION
-RUN export WORDPRESS_VERSION=$(cat /tmp/VERSION)
+COPY ./overlay /
