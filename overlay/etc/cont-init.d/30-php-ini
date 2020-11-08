@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bash
+
+#======================================================================================================================
+# Override configuration
+#======================================================================================================================
+
+echo " - overriding php.ini configuration values..."
+
+declare -A VALUES
+VALUES["cgi.fix_pathinfo"]="0"
+
+source "/etc/functions/replace.sh"
+replace VALUES "/etc/php7/php.ini"
+
+echo " - done."
