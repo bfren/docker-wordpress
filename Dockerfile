@@ -26,7 +26,7 @@ RUN apk update \
         php7-imap=${PHP_VERSION} \
         php7-json=${PHP_VERSION} \
         php7-mbstring=${PHP_VERSION} \
-        php7-mysqlnd=${PHP_VERSION} \
+        php7-mysqli=${PHP_VERSION} \
         php7-sodium=${PHP_VERSION} \
         php7-openssl=${PHP_VERSION} \
         php7-simplexml=${PHP_VERSION} \
