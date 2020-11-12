@@ -9,8 +9,7 @@ LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
 
 ARG PHP_VERSION
 
-RUN apk update \
-    && apk upgrade \
+RUN apk -U upgrade \
     && apk add \
         unzip \
         php7-cgi=${PHP_VERSION} \
