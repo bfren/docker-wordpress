@@ -8,7 +8,7 @@ cd /tmp
 
 URL="https://${WORDPRESS_LOCALE}.wordpress.org/latest-${WORDPRESS_LOCALE}.zip"
 echo " - downloading ${URL}..."
-curl -sL -o wp.zip ${URL}
+wget -O wp.zip ${URL}
 unzip -q wp.zip && rm wp.zip
 
 if [ -d ./wordpress ] ; then

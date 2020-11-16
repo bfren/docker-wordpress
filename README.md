@@ -6,6 +6,34 @@
 
 On first run this will download and install the latest version of WordPress according to the `WORDPRESS_LOCALE` environment variable - unless WordPress is detected in `/www`.
 
+The following PHP modules are installed, as required (or recommended) by WordPress:
+
+* `php7-cgi`
+* `php7-ctype`
+* `php7-curl`
+* `php7-dom`
+* `php7-exif`
+* `php7-fileinfo`
+* `php7-ftp`
+* `php7-gd`
+* `php7-gettext`
+* `php7-iconv`
+* `php7-imap`
+* `php7-json`
+* `php7-mbstring`
+* `php7-mysqli`
+* `php7-sodium`
+* `php7-openssl`
+* `php7-simplexml`
+* `php7-soap`
+* `php7-sockets`
+* `php7-xml`
+* `php7-xmlrpc`
+* `php7-xmlreader`
+* `php7-zip`
+
+Additionally, `unzip` is installed for us in the installation script.
+
 ## Ports
 
 * 80
