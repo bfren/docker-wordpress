@@ -14,4 +14,4 @@ fi
 # Run installation program
 #======================================================================================================================
 
-s6-setuidgid www /etc/wordpress/install
+s6-setuidgid www wp-install
