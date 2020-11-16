@@ -4,7 +4,7 @@
 
 [Docker Repository](https://hub.docker.com/r/bcgdesign/wordpress)
 
-This comes pre-installed with WordPress.
+On first run this will download and install the latest version of WordPress according to the `WORDPRESS_LOCALE` environment variable - unless WordPress is detected in `/www`.
 
 ## Ports
 
@@ -16,7 +16,6 @@ See the [Nginx + PHP](https://github.com/bencgreen/docker-nginx-php) image for d
 
 ```bash
 WORDPRESS_LOCALE="en_GB" # WordPress translation / locale
-WORDPRESS_VERSION="5.5.3" # WordPress version
 ```
 
 ## Volumes
