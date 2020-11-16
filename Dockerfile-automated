@@ -38,6 +38,5 @@ RUN apk -U upgrade \
     && rm -rf /var/cache/apk/*
 
 ENV WORDPRESS_LOCALE="en_GB"
-ENV WORDPRESS_VERSION="5.5.3"
 
 COPY ./overlay /
