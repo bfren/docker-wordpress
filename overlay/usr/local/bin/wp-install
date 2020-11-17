@@ -37,15 +37,25 @@ DIR_WWW=/var/www/localhost
 DIR_CONTENT=${DIR_WWW}/wp-content
 
 cd ${DIR_CONTENT}
-mv plugins/* ${DIR_WP}/plugins/ && rm -r plugins
-mv themes/* ${DIR_WP}/themes/ && rm -r themes
+mv plugins/* ${DIR_WP}/plugins/ && rm -rf plugins
+mv themes/* ${DIR_WP}/themes/ && rm -rf themes
 
 
 #======================================================================================================================
 # Create symlinks
 #======================================================================================================================
 
-ln -s ${DIR_WP}/wp-config.php ${DIR_WWW}/wp-config.php
-ln -s ${DIR_WP}/plugins ${DIR_CONTENT}/plugins
-ln -s ${DIR_WP}/themes ${DIR_CONTENT}/themes
-ln -s ${DIR_WP}/uploads ${DIR_CONTENT}/uploads
+touch ${DIR_WP}/wp-config.php \
+    && ln -s ${DIR_WP}/wp-config.php ${DIR_WWW}/wp-config.php
+
+create_link "plugins"
+create_link "themes"
+create_link "uploads"
+
+function create_link () {
+    if [ ! -d ${DIR_WP}/$1 ] ; then
+        mkdir ${DIR_WP}/$1
+    fi
+
+    ln -s ${DIR_WP}/$1 ${DIR_CONTENT}/$1
+}
