@@ -20,9 +20,33 @@ fi
 
 
 #======================================================================================================================
-# Move WordPress files to /www
+# Move WordPress files to /var/www/localhost
 #======================================================================================================================
 
 echo " - moving WordPress files to /var/www/localhost..."
 mv wordpress/* /var/www/localhost/ && rm -rf wordpress
 echo " - done."
+
+
+#======================================================================================================================
+# Move wp-content directories to /etc/wp
+#======================================================================================================================
+
+DIR_WP=/etc/wp
+DIR_WWW=/var/www/localhost
+DIR_CONTENT=${DIR_WWW}/wp-content
+
+cd ${DIR_CONTENT}
+mv plugins/* ${DIR_WP}/plugins/ && rm -r plugins
+mv themes/* ${DIR_WP}/themes/ && rm -r themes
+mv uploads/* ${DIR_WP}/uploads/ && rm -r uploads
+
+
+#======================================================================================================================
+# Create symlinks
+#======================================================================================================================
+
+ln ${DIR_WP}/wp-config.php ${DIR_WWW}/wp-config.php
+ln -s ${DIR_WP}/plugins ${DIR_CONTENT}/plugins
+ln -s ${DIR_WP}/themes ${DIR_CONTENT}/themes
+ln -s ${DIR_WP}/uploads ${DIR_CONTENT}/uploads

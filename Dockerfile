@@ -40,3 +40,6 @@ RUN apk -U upgrade \
 ENV WORDPRESS_LOCALE="en_GB"
 
 COPY ./overlay /
+
+RUN ln -s /wp /etc/wp
+VOLUME [ "/wp" ]
