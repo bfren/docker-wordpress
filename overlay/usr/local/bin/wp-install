@@ -37,19 +37,23 @@ WWW=/var/www/localhost
 WP_CONTENT=${WWW}/wp-content
 
 function move_and_link () {
+    # if dir does not exist in /etc/wp, create it
     if [ ! -d ${WP}/$1 ] ; then
         mkdir ${WP}/$1
     fi
 
-    mv ${WP_CONTENT}/$1/* ${WP}/$1/
-    rm -rf ${WP_CONTENT}/$1
+    # if dir exists in /var/www/localhost/wp-content, move contents and delete it
+    if [ -d ${WP_CONTENT}/$1 ] ; then
+        mv ${WP_CONTENT}/$1/* ${WP}/$1/
+        rm -rf ${WP_CONTENT}/$1
+    fi
 
+    # create link from /etc/wp to /var/www/localhost/wp-content
     ln -s ${WP}/$1 ${WP_CONTENT}/$1
 }
 
-echo " - creating wp-config.php and linking..."
-touch ${WP}/wp-config.php \
-    && ln -s ${WP}/wp-config.php ${WWW}/wp-config.php
+echo " - linking wp-config.php..."
+ln -s ${WP}/wp-config.php ${WWW}/wp-config.php
 echo " - done."
 
 echo " - moving wp-content directories and linking..."
