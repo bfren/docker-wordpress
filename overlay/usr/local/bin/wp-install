@@ -36,17 +36,6 @@ DIR_WP=/etc/wp
 DIR_WWW=/var/www/localhost
 DIR_CONTENT=${DIR_WWW}/wp-content
 
-echo " - creating wp-config.php and linking..."
-touch ${DIR_WP}/wp-config.php \
-    && ln -s ${DIR_WP}/wp-config.php ${DIR_WWW}/wp-config.php
-echo " - done."
-
-echo " - moving wp-content directories and linking..."
-move_and_link "plugins"
-move_and_link "themes"
-move_and_link "uploads"
-echo " - done."
-
 function move_and_link () {
     if [ ! -d ${DIR_WP}/$1 ] ; then
         mkdir ${DIR_WP}/$1
@@ -57,3 +46,14 @@ function move_and_link () {
 
     ln -s ${DIR_WP}/$1 ${DIR_CONTENT}/$1
 }
+
+echo " - creating wp-config.php and linking..."
+touch ${DIR_WP}/wp-config.php \
+    && ln -s ${DIR_WP}/wp-config.php ${DIR_WWW}/wp-config.php
+echo " - done."
+
+echo " - moving wp-content directories and linking..."
+move_and_link "plugins"
+move_and_link "themes"
+move_and_link "uploads"
+echo " - done."
