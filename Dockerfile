@@ -34,7 +34,16 @@ RUN apk -U upgrade \
         php7-xml=${PHP_VERSION} \
         php7-xmlrpc=${PHP_VERSION} \
         php7-xmlreader=${PHP_VERSION} \
-        php7-zip=${PHP_VERSION} \
+        php7-zip=${PHP_VERSION}
+
+ARG IMAGICK_VERSION=3.4.4
+RUN wget -O /tmp/docker-php-ext-enable https://raw.githubusercontent.com/docker-library/php/master/docker-php-ext-enable \
+    && chmod +x /tmp/docker-php-ext-enable \
+    && apk add --no-cache --virtual .phpize-deps imagemagick-dev libtool \
+    && pecl install imagick-${IMAGICK_VERSION} \
+    && /tmp/docker-php-ext-enable imagick \
+    && apk add --no-cache --virtual .imagick-runtime-deps imagemagick \
+    && apk del .phpize-deps \
     && rm -rf /var/cache/apk/* /www/* /tmp/*
 
 ENV WORDPRESS_LOCALE="en_GB" \
