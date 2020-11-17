@@ -24,6 +24,6 @@ fi
 #======================================================================================================================
 
 echo " - moving WordPress files to /www..."
-rm -rf /www/*
-mv wordpress/* /www/ && rm -rf wordpress
+rm -rf /var/www/localhost/*
+mv wordpress/* /var/www/localhost/ && rm -rf wordpress
 echo " - done."

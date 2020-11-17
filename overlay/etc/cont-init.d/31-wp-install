@@ -4,7 +4,7 @@
 # Check for wp-config.php
 #======================================================================================================================
 
-if [ -f /www/wp-config.php ] ; then
+if [ -f /var/www/localhost/wp-config.php ] ; then
     echo " - WordPress already installed."
     exit 0
 fi
