@@ -31,6 +31,7 @@ The following PHP modules are installed, as required (or recommended) by WordPre
 * `php7-xmlrpc`
 * `php7-xmlreader`
 * `php7-zip`
+* `php7-pecl-imagick`
 
 Additionally, `unzip` is installed for us in the installation script.
 
