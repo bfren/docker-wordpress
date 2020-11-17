@@ -1,1 +1,1 @@
-/etc/wp true www:www 0644 0755
+/wp true www:www 0644 0755
