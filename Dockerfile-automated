@@ -35,7 +35,7 @@ RUN apk -U upgrade \
         php7-xmlrpc=${PHP_VERSION} \
         php7-xmlreader=${PHP_VERSION} \
         php7-zip=${PHP_VERSION} \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* /var/www/localhost/*
 
 ENV WORDPRESS_LOCALE="en_GB"
 
