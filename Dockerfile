@@ -35,11 +35,11 @@ RUN apk -U upgrade \
         php7-xmlrpc=${PHP_VERSION} \
         php7-xmlreader=${PHP_VERSION} \
         php7-zip=${PHP_VERSION} \
-    && rm -rf /var/cache/apk/* /var/www/localhost/*
+    && rm -rf /var/cache/apk/* /www/* /tmp/*
 
-ENV WORDPRESS_LOCALE="en_GB"
+ENV WORDPRESS_LOCALE="en_GB" \
+    WORDPRESS_CLEAN_INSTALL=0
 
 COPY ./overlay /
 
-RUN ln -s /etc/wp /wp
 VOLUME [ "/wp" ]

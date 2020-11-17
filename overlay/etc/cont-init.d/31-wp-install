@@ -4,7 +4,7 @@
 # Check for wp-config.php
 #======================================================================================================================
 
-if [ -f /etc/wp/wp-config.php ] ; then
+if [ -f /etc/wp/wp-config.php && "${WORDPRESS_CLEAN_INSTALL}" = "0" ] ; then
     echo " - WordPress already installed."
     exit 0
 fi
