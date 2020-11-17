@@ -41,5 +41,5 @@ ENV WORDPRESS_LOCALE="en_GB"
 
 COPY ./overlay /
 
-RUN ln -s /wp /etc/wp
+RUN ln -s /etc/wp /wp
 VOLUME [ "/wp" ]
