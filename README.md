@@ -2,7 +2,7 @@
 
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/bcgdesign/wordpress?sort=semver) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bencgreen/docker-wordpress/build?label=github) ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/bcgdesign/wordpress?label=docker) ![Docker Pulls](https://img.shields.io/docker/pulls/bcgdesign/wordpress?label=pulls) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/bcgdesign/wordpress/latest?label=size)
 
-[Docker Repository](https://hub.docker.com/r/bcgdesign/wordpress)
+[Docker Repository](https://hub.docker.com/r/bcgdesign/wordpress) - [bcg|design ecosystem](https://github.com/bencgreen/docker)
 
 On first run this will download and install the latest version of WordPress according to the `WORDPRESS_LOCALE` environment variable - unless WordPress is detected in `/www`.
 
