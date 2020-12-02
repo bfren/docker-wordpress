@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bash
 
-echo " - executing WordPress cron..."
+_echo "executing WordPress cron..."
 wget -O - http://localhost/wp-cron.php
-echo " - done."
+_done

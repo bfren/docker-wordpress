@@ -1,4 +1,4 @@
-ARG PHP_VERSION=7.4.12-r1
+ARG PHP_VERSION=7.4.13-r0
 FROM bcgdesign/nginx-php:auto
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
@@ -39,7 +39,10 @@ RUN apk -U upgrade \
         php7-pecl-imagick=${IMAGICK_VERSION} \
     && rm -rf /var/cache/apk/* /www/* /tmp/*
 
-ENV WORDPRESS_LOCALE="en_GB" \
+ENV \
+    # set to a valid WordPress locale or the installation will fail
+    WORDPRESS_LOCALE="en_GB" \
+    # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
     WORDPRESS_CLEAN_INSTALL=0
 
 COPY ./overlay /

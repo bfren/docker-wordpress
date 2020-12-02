@@ -9,7 +9,7 @@ source /etc/wp/directories
 
 if [ -L ${WWW}/wp-config.php ] || [ -f ${WWW}/wp-config.php ] ; then
     if [ "${WORDPRESS_CLEAN_INSTALL}" = "0" ] ; then
-        echo " - WordPress already installed."
+        _ok "WordPress already installed."
         exit 0
     fi
 fi

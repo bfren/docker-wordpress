@@ -8,7 +8,7 @@ source /etc/wp/directories
 #======================================================================================================================
 
 if [ -L ${WWW}/wp-config.php ] ; then
-    echo " - WordPress already set up."
+    _ok "WordPress already set up."
     exit 0
 fi
 

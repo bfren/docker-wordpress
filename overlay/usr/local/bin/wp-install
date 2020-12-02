@@ -7,9 +7,9 @@ source /etc/wp/directories
 # Clean directories
 #======================================================================================================================
 
-echo " - deleting contents of ${WWW} and ${WP}..."
+_echo "deleting contents of ${WWW} and ${WP}..."
 rm -rf ${WWW}/* ${WP}/*
-echo " - done."
+_done
 
 
 #======================================================================================================================
@@ -19,15 +19,15 @@ echo " - done."
 cd /tmp
 
 URL="https://${WORDPRESS_LOCALE}.wordpress.org/latest-${WORDPRESS_LOCALE}.zip"
-echo " - downloading ${URL}..."
+_echo "downloading ${URL}..."
 wget -O wp.zip ${URL}
 unzip -q wp.zip
 rm wp.zip
 
 if [ -d ./wordpress ] ; then
-    echo " - done."
+    _done
 else
-    echo " - error."
+    _error "error."
     exit 1
 fi
 
@@ -36,7 +36,7 @@ fi
 # Move WordPress files to /www
 #======================================================================================================================
 
-echo " - moving WordPress files to ${WWW}..."
+_echo "moving WordPress files to ${WWW}..."
 mv wordpress/* ${WWW}
 rm -rf wordpress
-echo " - done."
+_done

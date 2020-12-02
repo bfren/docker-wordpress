@@ -11,9 +11,9 @@ if [ -f ${WWW}/wp-config.php ] ; then
     mv ${WWW}/wp-config.php ${WP}
 fi
 
-echo " - linking wp-config.php..."
+_echo "linking wp-config.php..."
 ln -s ${WP}/wp-config.php ${WWW}/wp-config.php
-echo " - done."
+_done
 
 echo "define('DISABLE_WP_CRON', true);" >> ${WP}/wp-config.php
 
@@ -46,8 +46,8 @@ function move_and_link () {
     ln -s ${WP_DIR} ${WP_CONTENT_DIR}
 }
 
-echo " - moving wp-content directories and linking..."
+_echo "moving wp-content directories and linking..."
 move_and_link "plugins"
 move_and_link "themes"
 move_and_link "uploads"
-echo " - done."
+_done
