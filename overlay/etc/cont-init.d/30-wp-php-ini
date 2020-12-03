@@ -4,7 +4,7 @@
 # Override configuration
 #======================================================================================================================
 
-_echo "overriding php.ini configuration values..."
+_echo "Overriding php.ini configuration values..."
 
 declare -A VALUES
 VALUES["cgi.fix_pathinfo"]="0"
