@@ -1,0 +1,19 @@
+#!/usr/bin/with-contenv bash
+
+set -euo pipefail
+source /etc/wp/directories.sh
+
+
+#======================================================================================================================
+# Set correct permissions on WordPress files
+#======================================================================================================================
+
+_echo "Setting correct permissions on ${WWW}..."
+find ${WWW} -type d -exec chmod 755 {} \;
+find ${WWW} -type f -exec chmod 644 {} \;
+_done
+
+_echo "Setting correct permissions on ${WP}..."
+find ${WP} -type d -exec chmod 755 {} \;
+find ${WP} -type f -exec chmod 644 {} \;
+_done
