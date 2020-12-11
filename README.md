@@ -33,7 +33,7 @@ The following PHP modules are installed, as required (or recommended) by WordPre
 * `php7-zip`
 * `php7-pecl-imagick`
 
-Additionally, `unzip` is installed for us in the installation script.
+Additionally, `unzip` is installed for use in the installation script.
 
 ## Ports
 
@@ -44,14 +44,16 @@ Additionally, `unzip` is installed for us in the installation script.
 See the [Nginx + PHP](https://github.com/bencgreen/docker-nginx-php) image for details of `www.conf` and `php.ini` overrides using environment variables.
 
 ```bash
-WORDPRESS_LOCALE="en_GB" # WordPress translation / locale
+WORDPRESS_LOCALE="en_GB"   # WordPress translation / locale
+WORDPRESS_CLEAN_INSTALL=0  # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
 ```
 
 ## Volumes
 
-* `/www` - this is where the WordPress files will be installed
+* `/wp` - map this to a volume to backup your configuration and `wp-content` directories
+* `/www` - this is where all the WordPress files will be installed
 
-See the [Nginx](https://github.com/bencgreen/docker-nginx) image for details of other volumes and custom configuration.
+See the [Nginx](https://github.com/bencgreen/docker-nginx) image for other configuration details.
 
 ## Authors
 
