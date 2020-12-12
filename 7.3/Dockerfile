@@ -13,6 +13,7 @@ ARG IMAGICK_VERSION=3.4.4-r3
 RUN apk -U upgrade \
     && apk add \
         curl \
+        imagemagick \
         unzip \
         php7-cgi=${PHP_VERSION} \
         php7-ctype=${PHP_VERSION} \
