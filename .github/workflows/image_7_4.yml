@@ -3,6 +3,10 @@ name: 7.4
 on:
   push:
     branches: main
+    files:
+      - ./.github/workflows/image_7_4.yml
+      - ./7.4/**
+      - ./overlay/**
 
 jobs:
   main:
