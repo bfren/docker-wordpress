@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - ".github/workflows/image_7_3.yml"
-      - "7.3/**""
+      - "7.3/**"
       - "overlay/**"
 
 jobs:
