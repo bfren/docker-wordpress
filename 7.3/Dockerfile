@@ -3,7 +3,7 @@ FROM bcgdesign/nginx-php:${PHP_VERSION}
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
-    org.label-schema.version="latest" \
+    org.label-schema.version="7.3" \
     org.label-schema.vendor="Ben Green" \
     org.label-schema.schema-version="1.0"
 
