@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 CODE=$(curl -s -o /dev/null -I -w "%{http_code}" http://localhost)
-if [[ ${CODE} -ge 200 -a ${CODE} -lt 400  ]] ; then
+if [[ ${CODE} -ge 200 && ${CODE} -lt 400  ]] ; then
     exit 0
 else
     exit 1
