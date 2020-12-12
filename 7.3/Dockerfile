@@ -36,7 +36,7 @@ RUN apk -U upgrade \
         php7-xmlrpc=${PHP_VERSION} \
         php7-xmlreader=${PHP_VERSION} \
         php7-zip=${PHP_VERSION} \
-        php7-pecl-imagick \
+        php7-pecl-imagick@edgecomm \
     && rm -rf /var/cache/apk/* /www/* /tmp/*
 
 ENV \
