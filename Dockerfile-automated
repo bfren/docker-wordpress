@@ -8,7 +8,6 @@ LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.schema-version="1.0"
 
 ARG PHP_VERSION
-ARG IMAGICK_VERSION=3.4.4-r6
 
 RUN apk -U upgrade \
     && apk add \
@@ -27,6 +26,7 @@ RUN apk -U upgrade \
         php7-imap@edgecomm=${PHP_VERSION} \
         php7-json@edgecomm=${PHP_VERSION} \
         php7-mbstring@edgecomm=${PHP_VERSION} \
+        php7-mysqlnd@edgecomm=${PHP_VERSION} \
         php7-mysqli@edgecomm=${PHP_VERSION} \
         php7-sodium@edgecomm=${PHP_VERSION} \
         php7-openssl@edgecomm=${PHP_VERSION} \
@@ -37,7 +37,7 @@ RUN apk -U upgrade \
         php7-xmlrpc@edgecomm=${PHP_VERSION} \
         php7-xmlreader@edgecomm=${PHP_VERSION} \
         php7-zip@edgecomm=${PHP_VERSION} \
-        php7-pecl-imagick@edgecomm=${IMAGICK_VERSION} \
+        php7-pecl-imagick@edgecomm \
     && rm -rf /var/cache/apk/* /www/* /tmp/*
 
 ENV \
