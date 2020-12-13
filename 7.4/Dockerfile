@@ -44,7 +44,10 @@ ENV \
     # set to a valid WordPress locale or the installation will fail
     WORDPRESS_LOCALE="en_GB" \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
-    WORDPRESS_CLEAN_INSTALL=0
+    WORDPRESS_CLEAN_INSTALL=0 \
+    # set to 1 to use system cron instead of WordPress cron (improves page performance)
+    # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference
+    USE_SYSTEM_CRON=0
 
 COPY ./overlay /
 

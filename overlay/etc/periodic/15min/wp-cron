@@ -1,5 +1,13 @@
 #!/usr/bin/with-contenv bash
 
-_echo "Executing WordPress cron..."
-wget -O - http://localhost/wp-cron.php
-_done
+set -euo pipefail
+
+#======================================================================================================================
+# Execute WordPress cron
+#======================================================================================================================
+
+if [ "${USE_SYSTEM_CRON}" = "1" ] ; then
+    _echo "Executing WordPress cron..."
+    wget -O - http://localhost/wp-cron.php
+    _done
+fi

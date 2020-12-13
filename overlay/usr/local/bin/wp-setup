@@ -16,8 +16,6 @@ _echo "Linking wp-config.php..."
 ln -s ${WP}/wp-config.php ${WWW}/wp-config.php
 _done
 
-echo "define('DISABLE_WP_CRON', true);" >> ${WP}/wp-config.php
-
 
 #======================================================================================================================
 # Move each wp-content directory to /wp and create a link

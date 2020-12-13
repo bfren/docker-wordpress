@@ -46,6 +46,8 @@ See the [Nginx + PHP](https://github.com/bencgreen/docker-nginx-php) image for d
 ```bash
 WORDPRESS_LOCALE="en_GB"   # WordPress translation / locale
 WORDPRESS_CLEAN_INSTALL=0  # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
+USE_SYSTEM_CRON=0          # set to 1 to use system cron instead of WordPress cron (improves page performance)
+                           # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference    
 ```
 
 ## Volumes
