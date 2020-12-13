@@ -8,14 +8,9 @@ source /etc/wp/directories.sh
 # Clean directories
 #======================================================================================================================
 
-_echo "Deleting contents of ${WWW} and ${WP}..."
-
+_echo "Deleting contents of ${WWW}..."
 [[ -z "${WWW}" ]] && _error "WWW not defined."
-rm -rf ${WWW}/* 
-
-[[ -z "${WP}" ]] && _error "WP not defined."
-rm -rf ${WP}/*
-
+rm -rf ${WWW}/*
 _done
 
 
