@@ -9,7 +9,13 @@ source /etc/wp/directories.sh
 #======================================================================================================================
 
 _echo "Deleting contents of ${WWW} and ${WP}..."
-rm -rf ${WWW}/* ${WP}/*
+
+[[ -z "${WWW}" ]] && _error "WWW not defined."
+rm -rf ${WWW}/* 
+
+[[ -z "${WP}" ]] && _error "WP not defined."
+rm -rf ${WP}/*
+
 _done
 
 
@@ -29,7 +35,6 @@ if [ -d ./wordpress ] ; then
     _done
 else
     _error "WordPress not downloaded."
-    exit 1
 fi
 
 
@@ -44,5 +49,4 @@ if [ -f ${WWW}/wp-load.php ] ; then
     _done
 else
     _error "WordPress not installed."
-    exit 1
 fi
