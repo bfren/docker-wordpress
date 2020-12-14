@@ -2,6 +2,7 @@
 
 set -euo pipefail
 
+
 #======================================================================================================================
 # Execute WordPress cron
 # See https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/

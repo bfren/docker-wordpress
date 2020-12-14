@@ -1,5 +1,13 @@
 #!/usr/bin/with-contenv bash
 
+set -euo pipefail
+
+
+#======================================================================================================================
+# Return true for a redirect as well as 200
+# WordPress will try and redirect to HTTPS, there is no way to disable this without a plugin
+#======================================================================================================================
+
 CODE=$(curl -s -o /dev/null -I -w "%{http_code}" http://localhost)
 if [[ ${CODE} -ge 200 && ${CODE} -lt 400  ]] ; then
     exit 0
