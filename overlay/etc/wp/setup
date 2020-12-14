@@ -38,7 +38,7 @@ function move_and_link () {
 
     # if dir exists in /www/wp-content, delete it
     if [ -d ${WP_CONTENT_DIR} ] ; then
-        _rmrf ${WP_CONTENT_DIR}
+        _rmrf "${WP_CONTENT_DIR}"
     fi
 
     # create link from /wp to /www/wp-content
