@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-source /etc/wp/directories.sh
+source /etc/wp/inc/directories.sh
 
 
 #======================================================================================================================
@@ -9,10 +9,20 @@ source /etc/wp/directories.sh
 #======================================================================================================================
 
 if [ -L ${WWW}/wp-config.php ] || [ -f ${WWW}/wp-config.php ] ; then
-    if [ "${WORDPRESS_CLEAN_INSTALL}" = "0" ] ; then
+
+    if [ "${WORDPRESS_CLEAN_INSTALL}" = "1" ] ; then
+    
+        _echo "Clean install detected, deleting contents of ${WWW}..."
+        _rmrf ${WWW}/*
+        _done
+
+    else
+
         _ok "WordPress already installed."
         exit 0
+
     fi
+
 fi
 
 
@@ -20,4 +30,4 @@ fi
 # Run installation program
 #======================================================================================================================
 
-s6-setuidgid www wp-install
+s6-setuidgid www /etc/wp/install

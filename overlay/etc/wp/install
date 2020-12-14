@@ -1,17 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-source /etc/wp/directories.sh
-
-
-#======================================================================================================================
-# Clean directories
-#======================================================================================================================
-
-_echo "Deleting contents of ${WWW}..."
-[[ -z "${WWW}" ]] && _error "WWW not defined."
-rm -rf ${WWW}/*
-_done
+source /etc/wp/inc/directories.sh
 
 
 #======================================================================================================================
@@ -22,9 +12,9 @@ cd /tmp
 
 URL="https://${WORDPRESS_LOCALE}.wordpress.org/latest-${WORDPRESS_LOCALE}.zip"
 _echo "Downloading ${URL}..."
-wget -O wp.zip ${URL}
-unzip -oq wp.zip
-rm wp.zip
+wget -O wp.zip ${URL} \
+    && unzip -oq wp.zip \
+    && rm wp.zip
 
 if [ -d ./wordpress ] ; then
     _done

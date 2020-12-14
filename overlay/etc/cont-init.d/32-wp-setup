@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-source /etc/wp/directories.sh
+source /etc/wp/inc/directories.sh
 
 
 #======================================================================================================================
@@ -18,4 +18,4 @@ fi
 # Run setup program
 #======================================================================================================================
 
-s6-setuidgid www wp-setup
+s6-setuidgid www /etc/wp/setup

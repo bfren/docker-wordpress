@@ -1,0 +1,13 @@
+#!/usr/bin/with-contenv bash
+
+set -euo pipefail
+
+
+#======================================================================================================================
+# Execute WordPress cron
+# See https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/
+#======================================================================================================================
+
+_echo "Executing WordPress cron..."
+wget -O - http://localhost/wp-cron.php
+_done

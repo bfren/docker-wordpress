@@ -1,0 +1,2 @@
+/etc/wp/install false www:www 0500 0500
+/etc/wp/setup false www:www 0500 0500
