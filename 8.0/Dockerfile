@@ -24,7 +24,7 @@ RUN apk -U upgrade \
         php8-gettext@edgecomm=${PHP_VERSION} \
         php8-iconv@edgecomm=${PHP_VERSION} \
         php8-imap@edgecomm=${PHP_VERSION} \
-        php8-json@edgecomm=${PHP_VERSION} \
+        #php8-json@edgecomm=${PHP_VERSION} \
         php8-mbstring@edgecomm=${PHP_VERSION} \
         php8-mysqlnd@edgecomm=${PHP_VERSION} \
         php8-mysqli@edgecomm=${PHP_VERSION} \
