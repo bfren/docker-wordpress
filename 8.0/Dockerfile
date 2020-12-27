@@ -34,7 +34,7 @@ RUN apk -U upgrade \
         php8-soap@edgecomm=${PHP_VERSION} \
         php8-sockets@edgecomm=${PHP_VERSION} \
         php8-xml@edgecomm=${PHP_VERSION} \
-        php8-xmlrpc@edgecomm=${PHP_VERSION} \
+        #php8-xmlrpc@edgecomm=${PHP_VERSION} \
         php8-xmlreader@edgecomm=${PHP_VERSION} \
         php8-zip@edgecomm=${PHP_VERSION} \
         php8-pecl-imagick@edgecomm \
