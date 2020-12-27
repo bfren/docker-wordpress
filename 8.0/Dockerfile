@@ -37,7 +37,7 @@ RUN apk -U upgrade \
         php8-xmlrpc@edgecomm=${PHP_VERSION} \
         php8-xmlreader@edgecomm=${PHP_VERSION} \
         php8-zip@edgecomm=${PHP_VERSION} \
-        php8-pecl-imagick \
+        php8-pecl-imagick@edgecomm \
     && rm -rf /var/cache/apk/* /www/* /tmp/*
 
 ENV \
