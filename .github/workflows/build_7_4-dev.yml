@@ -38,7 +38,8 @@ jobs:
           #platforms: linux/amd64,linux/arm/v7
           #platforms: linux/amd64,linux/arm64
           tags: |
-            bcgdesign/wordpress:dev-php-7.4
+            bcgdesign/wordpress:dev
+            bcgdesign/wordpress:php-7.4-dev
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
