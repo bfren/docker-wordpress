@@ -1,4 +1,4 @@
-ARG PHP_VERSION=8.0.0-r0
+ARG PHP_VERSION=8.0.1-r0
 FROM bcgdesign/nginx-php:${PHP_VERSION}
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
@@ -8,6 +8,7 @@ LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.schema-version="1.0"
 
 ARG PHP_VERSION
+ARG IMAGICK_VERSION=3.4.4-r0
 
 RUN apk -U upgrade \
     && apk add \
