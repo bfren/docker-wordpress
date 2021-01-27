@@ -67,5 +67,5 @@ See the [Nginx](https://github.com/bencgreen/docker-nginx) image for other confi
 
 ## Copyright
 
-> Copyright (c) 2020 Ben Green <https://bcgdesign.com>  
+> Copyright (c) 2021 Ben Green <https://bcgdesign.com>  
 > Unless otherwise stated
