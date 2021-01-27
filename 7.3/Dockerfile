@@ -1,5 +1,5 @@
 ARG PHP_VERSION=7.3.26-r0
-FROM bcgdesign/nginx-php:${PHP_VERSION}
+FROM bcgdesign/nginx-php:php-${PHP_VERSION}
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
