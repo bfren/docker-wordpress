@@ -1,5 +1,5 @@
 ARG PHP_VERSION=8.0.1-r0
-FROM bcgdesign/nginx-php:${PHP_VERSION}
+FROM bcgdesign/nginx-php:php-${PHP_VERSION}
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
@@ -38,7 +38,7 @@ RUN apk -U upgrade \
         #php8-xmlrpc@edgecomm=${PHP_VERSION} \
         php8-xmlreader@edgecomm=${PHP_VERSION} \
         php8-zip@edgecomm=${PHP_VERSION} \
-        php8-pecl-imagick@edgecomm \
+        php8-pecl-imagick@edgecomm=${IMAGICK_VERSION} \
     && rm -rf /var/cache/apk/* /www/* /tmp/*
 
 ENV \
