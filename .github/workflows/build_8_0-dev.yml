@@ -1,4 +1,4 @@
-name: 7.4-dev
+name: 8.0-dev
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
     tags-ignore:
       - '**'
     paths:
-      - '.github/workflows/build_7_4-dev.yml'
-      - '7.4/**'
+      - '.github/workflows/build_8_0-dev.yml'
+      - '8.0/**'
       - 'overlay/**'
 
 jobs:
@@ -36,14 +36,13 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./7.4/Dockerfile
+          file: ./8.0/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           #platforms: linux/amd64,linux/arm/v7
           #platforms: linux/amd64,linux/arm64
           tags: |
-            bcgdesign/wordpress:dev
-            bcgdesign/wordpress:dev-php-7.4
+            bcgdesign/wordpress:dev-php-8.0
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

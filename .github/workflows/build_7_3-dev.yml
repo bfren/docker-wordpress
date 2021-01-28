@@ -2,10 +2,14 @@ name: 7.3-dev
 
 on:
   push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
     paths:
-      - ".github/workflows/build_7_3-dev.yml"
-      - "7.3/**"
-      - "overlay/**"
+      - '.github/workflows/build_7_3-dev.yml'
+      - '7.3/**'
+      - 'overlay/**'
 
 jobs:
   main:
