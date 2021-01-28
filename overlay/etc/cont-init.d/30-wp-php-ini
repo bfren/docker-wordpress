@@ -13,6 +13,6 @@ declare -A VALUES
 VALUES["cgi.fix_pathinfo"]="0"
 
 source /etc/functions/replace.sh
-replace VALUES "/etc/php7/php.ini"
+replace VALUES "${PHP_DIR}/php.ini"
 
 _done
