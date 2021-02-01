@@ -19,7 +19,7 @@ else
     _echo "Generating new wp-config.php..."
 
     # get fresh authentication values
-    export AUTHENTICATION_VALUES=$(curl -s https://api.wordpress.org/secret-key/1.1/salt/)
+    export AUTH=$(curl -s https://api.wordpress.org/secret-key/1.1/salt/)
 
     # generate config from the template
     gomplate \
