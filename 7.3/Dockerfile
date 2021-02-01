@@ -8,11 +8,13 @@ LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.schema-version="1.0"
 
 ARG PHP_VERSION
+ARG GOMPLATE_VERSION=3.7.0-r0
 ARG IMAGICK_VERSION=3.4.4-r4
 
 RUN apk -U upgrade \
     && apk add \
         curl \
+        gomplate=${GOMPLATE_VERSION} \
         unzip \
         php7-cgi=${PHP_VERSION} \
         php7-ctype=${PHP_VERSION} \
@@ -45,6 +47,24 @@ ENV \
     WORDPRESS_LOCALE="en_GB" \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
     WORDPRESS_CLEAN_INSTALL=0 \
+    # database name
+    WPDB_NAME= \
+    # database user
+    WPDB_USER= \
+    # database password
+    WPDB_PASS= \
+    # database host
+    WPDB_HOST= \
+    # database character set
+    WPDB_CHARSET="utf8mb4" \
+    # database character set
+    WPDB_COLLATE= \
+    # database prefix
+    WPDB_PREFIX="wp_" \
+    # whether or not to enable debug mode
+    WP_DEBUG="false" \
+    # whether or not to enable HTTPS behind a proxy server
+    ENABLE_HTTPS_BEHIND_PROXY=true \
     # set to 1 to use system cron instead of WordPress cron (improves page performance)
     # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference
     USE_SYSTEM_CRON=0
