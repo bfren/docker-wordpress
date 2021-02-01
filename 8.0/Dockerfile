@@ -3,7 +3,7 @@ FROM bcgdesign/nginx-php:php-${PHP_VERSION}
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
-    org.label-schema.version="edge" \
+    org.label-schema.version="8.0" \
     org.label-schema.vendor="Ben Green" \
     org.label-schema.schema-version="1.0"
 
@@ -14,31 +14,29 @@ RUN apk -U upgrade \
     && apk add \
         curl \
         unzip \
-        php8-cgi@edgecomm=${PHP_VERSION} \
-        php8-ctype@edgecomm=${PHP_VERSION} \
-        php8-curl@edgecomm=${PHP_VERSION} \
-        php8-dom@edgecomm=${PHP_VERSION} \
-        php8-exif@edgecomm=${PHP_VERSION} \
-        php8-fileinfo@edgecomm=${PHP_VERSION} \
-        php8-ftp@edgecomm=${PHP_VERSION} \
-        php8-gd@edgecomm=${PHP_VERSION} \
-        php8-gettext@edgecomm=${PHP_VERSION} \
-        php8-iconv@edgecomm=${PHP_VERSION} \
-        php8-imap@edgecomm=${PHP_VERSION} \
-        #php8-json@edgecomm=${PHP_VERSION} \
-        php8-mbstring@edgecomm=${PHP_VERSION} \
-        php8-mysqlnd@edgecomm=${PHP_VERSION} \
-        php8-mysqli@edgecomm=${PHP_VERSION} \
-        php8-sodium@edgecomm=${PHP_VERSION} \
-        php8-openssl@edgecomm=${PHP_VERSION} \
-        php8-simplexml@edgecomm=${PHP_VERSION} \
-        php8-soap@edgecomm=${PHP_VERSION} \
-        php8-sockets@edgecomm=${PHP_VERSION} \
-        php8-xml@edgecomm=${PHP_VERSION} \
-        #php8-xmlrpc@edgecomm=${PHP_VERSION} \
-        php8-xmlreader@edgecomm=${PHP_VERSION} \
-        php8-zip@edgecomm=${PHP_VERSION} \
-        php8-pecl-imagick@edgecomm=${IMAGICK_VERSION} \
+        php8-cgi=${PHP_VERSION} \
+        php8-ctype=${PHP_VERSION} \
+        php8-curl=${PHP_VERSION} \
+        php8-dom=${PHP_VERSION} \
+        php8-exif=${PHP_VERSION} \
+        php8-fileinfo=${PHP_VERSION} \
+        php8-ftp=${PHP_VERSION} \
+        php8-gd=${PHP_VERSION} \
+        php8-gettext=${PHP_VERSION} \
+        php8-iconv=${PHP_VERSION} \
+        php8-imap=${PHP_VERSION} \
+        php8-mbstring=${PHP_VERSION} \
+        php8-mysqlnd=${PHP_VERSION} \
+        php8-mysqli=${PHP_VERSION} \
+        php8-sodium=${PHP_VERSION} \
+        php8-openssl=${PHP_VERSION} \
+        php8-simplexml=${PHP_VERSION} \
+        php8-soap=${PHP_VERSION} \
+        php8-sockets=${PHP_VERSION} \
+        php8-xml=${PHP_VERSION} \
+        php8-xmlreader=${PHP_VERSION} \
+        php8-zip=${PHP_VERSION} \
+        php8-pecl-imagick=${IMAGICK_VERSION} \
     && rm -rf /var/cache/apk/* /www/* /tmp/*
 
 ENV \

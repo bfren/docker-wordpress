@@ -3,7 +3,7 @@ FROM bcgdesign/nginx-php:php-${PHP_VERSION}
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
-    org.label-schema.version="latest" \
+    org.label-schema.version="7.4" \
     org.label-schema.vendor="Ben Green" \
     org.label-schema.schema-version="1.0"
 
@@ -14,31 +14,31 @@ RUN apk -U upgrade \
     && apk add \
         curl \
         unzip \
-        php7-cgi@edgecomm=${PHP_VERSION} \
-        php7-ctype@edgecomm=${PHP_VERSION} \
-        php7-curl@edgecomm=${PHP_VERSION} \
-        php7-dom@edgecomm=${PHP_VERSION} \
-        php7-exif@edgecomm=${PHP_VERSION} \
-        php7-fileinfo@edgecomm=${PHP_VERSION} \
-        php7-ftp@edgecomm=${PHP_VERSION} \
-        php7-gd@edgecomm=${PHP_VERSION} \
-        php7-gettext@edgecomm=${PHP_VERSION} \
-        php7-iconv@edgecomm=${PHP_VERSION} \
-        php7-imap@edgecomm=${PHP_VERSION} \
-        php7-json@edgecomm=${PHP_VERSION} \
-        php7-mbstring@edgecomm=${PHP_VERSION} \
-        php7-mysqlnd@edgecomm=${PHP_VERSION} \
-        php7-mysqli@edgecomm=${PHP_VERSION} \
-        php7-sodium@edgecomm=${PHP_VERSION} \
-        php7-openssl@edgecomm=${PHP_VERSION} \
-        php7-simplexml@edgecomm=${PHP_VERSION} \
-        php7-soap@edgecomm=${PHP_VERSION} \
-        php7-sockets@edgecomm=${PHP_VERSION} \
-        php7-xml@edgecomm=${PHP_VERSION} \
-        php7-xmlrpc@edgecomm=${PHP_VERSION} \
-        php7-xmlreader@edgecomm=${PHP_VERSION} \
-        php7-zip@edgecomm=${PHP_VERSION} \
-        php7-pecl-imagick@edgecomm=${IMAGICK_VERSION} \
+        php7-cgi=${PHP_VERSION} \
+        php7-ctype=${PHP_VERSION} \
+        php7-curl=${PHP_VERSION} \
+        php7-dom=${PHP_VERSION} \
+        php7-exif=${PHP_VERSION} \
+        php7-fileinfo=${PHP_VERSION} \
+        php7-ftp=${PHP_VERSION} \
+        php7-gd=${PHP_VERSION} \
+        php7-gettext=${PHP_VERSION} \
+        php7-iconv=${PHP_VERSION} \
+        php7-imap=${PHP_VERSION} \
+        php7-json=${PHP_VERSION} \
+        php7-mbstring=${PHP_VERSION} \
+        php7-mysqlnd=${PHP_VERSION} \
+        php7-mysqli=${PHP_VERSION} \
+        php7-sodium=${PHP_VERSION} \
+        php7-openssl=${PHP_VERSION} \
+        php7-simplexml=${PHP_VERSION} \
+        php7-soap=${PHP_VERSION} \
+        php7-sockets=${PHP_VERSION} \
+        php7-xml=${PHP_VERSION} \
+        php7-xmlrpc=${PHP_VERSION} \
+        php7-xmlreader=${PHP_VERSION} \
+        php7-zip=${PHP_VERSION} \
+        php7-pecl-imagick=${IMAGICK_VERSION} \
     && rm -rf /var/cache/apk/* /www/* /tmp/*
 
 ENV \
