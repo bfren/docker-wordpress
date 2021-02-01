@@ -44,9 +44,11 @@ RUN apk -U upgrade \
 
 ENV \
     # set to a valid WordPress locale or the installation will fail
-    WORDPRESS_LOCALE="en_GB" \
+    LOCALE="en_GB" \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
-    WORDPRESS_CLEAN_INSTALL=0 \
+    CLEAN_INSTALL=0 \
+    # set to 1 to generate wp-config.php based on environment variables
+    GENERATE_CONFIG=0 \
     # database name
     WPDB_NAME= \
     # database user
@@ -57,12 +59,12 @@ ENV \
     WPDB_HOST= \
     # database character set
     WPDB_CHARSET="utf8mb4" \
-    # database character set
+    # database collation
     WPDB_COLLATE= \
     # database prefix
     WPDB_PREFIX="wp_" \
     # whether or not to enable debug mode
-    WP_DEBUG="false" \
+    DEBUG="false" \
     # whether or not to enable HTTPS behind a proxy server
     ENABLE_HTTPS_BEHIND_PROXY=true \
     # set to 1 to use system cron instead of WordPress cron (improves page performance)

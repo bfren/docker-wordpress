@@ -8,9 +8,18 @@ source /etc/wp/inc/directories.sh
 # If wp-config.php is a symlink, the setup has already been run
 #======================================================================================================================
 
-if [ -L ${WWW}/wp-config.php ] ; then
+if [ "${GENERATE_CONFIG}" = "1" ] ; then
+
+    _echo "Generate config detected, removing wp-config.php files..."
+    _rmrf ${WWW}/wp-config.php
+    _rmrf ${WP}/wp-config.php
+    _done
+
+elif [ -L ${WWW}/wp-config.php ] ; then
+
     _ok "WordPress already set up."
     exit 0
+
 fi
 
 

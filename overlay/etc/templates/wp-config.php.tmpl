@@ -70,7 +70,7 @@ $table_prefix = '{{ getenv "WPDB_PREFIX" }}';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', {{ getenv "WP_DEBUG" }} );
+define( 'WP_DEBUG', {{ getenv "DEBUG" }} );
 
 {{ if eq (getenv "ENABLE_HTTPS_BEHIND_PROXY") "1" }}
 /**
