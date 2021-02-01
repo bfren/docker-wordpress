@@ -6,56 +6,54 @@
 
 On first run this will download and install the latest version of WordPress according to the `WORDPRESS_LOCALE` environment variable - unless WordPress is detected in `/www`.
 
-The following PHP modules are installed, as required (or recommended) by WordPress:
+The required and recommended PHP modules are all installed.
 
-* `php7-cgi`
-* `php7-ctype`
-* `php7-curl`
-* `php7-dom`
-* `php7-exif`
-* `php7-fileinfo`
-* `php7-ftp`
-* `php7-gd`
-* `php7-gettext`
-* `php7-iconv`
-* `php7-imap`
-* `php7-json`
-* `php7-mbstring`
-* `php7-mysqli`
-* `php7-sodium`
-* `php7-openssl`
-* `php7-simplexml`
-* `php7-soap`
-* `php7-sockets`
-* `php7-xml`
-* `php7-xmlrpc`
-* `php7-xmlreader`
-* `php7-zip`
-* `php7-pecl-imagick`
+## Contents
 
-Additionally, `unzip` is installed for use in the installation script.
+* [Ports](#ports)
+* [Volumes](#volumes)
+* [Environment Variables](#environment-variables)
+* [Helper Functions](#helper-functions)
+* [Authors / Licence / Copyright](#authors)
 
 ## Ports
 
 * 80
 
+## Volumes
+
+| Volume | Purpose                                                                                                                                          |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `/www` | This is where all the WordPress files will be installed (if you are taking over an existing WordPress installation, map this to that directory). |
+| `/wp`  | Map this to backup your configuration and `wp-content` directories.                                                                              |
+
+See the [Nginx](https://github.com/bencgreen/docker-nginx) image for other configuration details.
+
 ## Environment Variables
 
 See the [Nginx + PHP](https://github.com/bencgreen/docker-nginx-php) image for details of `www.conf` and `php.ini` overrides using environment variables.
 
-```bash
-WORDPRESS_LOCALE="en_GB"   # WordPress translation / locale
-WORDPRESS_CLEAN_INSTALL=0  # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
-USE_SYSTEM_CRON=0          # set to 1 to use system cron instead of WordPress cron (improves page performance)
-                           # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference    
-```
+| Variable                    | Values                 | Description                                                                            | Default                                     |
+| --------------------------- | ---------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------- |
+| `LOCALE`                    | Valid WordPress locale | The WordPress source files for this locale will be downloaded and installed.           | en_GB                                       |
+| `CLEAN_INSTALL`             | 0 or 1                 | Set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!). | 0                                           |
+| `GENERATE_CONFIG`           | 0 or 1                 | Set to 1 to generate `wp-config.php` every time the container starts.                  | 0                                           |
+| `WPDB_NAME`                 | string                 | Database name.                                                                         | *None* - required if `GENERATE_CONFIG` is 1 |
+| `WPDB_USER`                 | string                 | Database username.                                                                     | *None* - required if `GENERATE_CONFIG` is 1 |
+| `WPDB_PASS`                 | string                 | Database password.                                                                     | *None* - required if `GENERATE_CONFIG` is 1 |
+| `WPDB_HOST`                 | string                 | Database host.                                                                         | *None* - required if `GENERATE_CONFIG` is 1 |
+| `WPDB_CHARSET`              | string                 | Database character set (leave as default if not sure).                                 | utf8mb4                                     |
+| `WPDB_COLLATE`              | string                 | Database collation (leave blank if not sure).                                          | *None*                                      |
+| `WPDB_PREFIX`               | string                 | Database table prefix.                                                                 | wp_                                         |
+| `DEBUG`                     | true or false          | whether or not to enable debug mode                                                    | false                                       |
+| `ENABLE_HTTPS_BEHIND_PROXY` | true or false          | Whether or not to enable HTTPS behind a proxy server.                                  | true                                        |
+| `USE_SYSTEM_CRON`           | 0 or 1                 | Set to 1 to use system cron instead of WordPress cron (improves page performance).     | 0                                           |
 
-## Volumes
+## Helper Functions
 
-* `/wp` - map this to a volume to backup your configuration and `wp-content` directories
-* `/www` - this is where all the WordPress files will be installed
-
-See the [Nginx](https://github.com/bencgreen/docker-nginx) image for other configuration details.
+| Function  | Purpose                                                                         | Usage     |
+| --------- | ------------------------------------------------------------------------------- | --------- |
+| `wp-cron` | Runs the WordPress cron - if `USE_SYSTEM_CRON` is 1, will be run automatically. | `wp-cron` |
 
 ## Authors
 

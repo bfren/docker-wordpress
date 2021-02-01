@@ -5,12 +5,12 @@ source /etc/wp/inc/directories.sh
 
 
 #======================================================================================================================
-# Check for wp-config.php and WORDPRESS_CLEAN_INSTALL
+# Check for wp-config.php and CLEAN_INSTALL
 #======================================================================================================================
 
 if [ -L ${WWW}/wp-config.php ] || [ -f ${WWW}/wp-config.php ] ; then
 
-    if [ "${WORDPRESS_CLEAN_INSTALL}" = "1" ] ; then
+    if [ "${CLEAN_INSTALL}" = "1" ] ; then
     
         _echo "Clean install detected, deleting contents of ${WWW}..."
         _rmrf "${WWW}/*"

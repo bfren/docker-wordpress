@@ -10,7 +10,7 @@ source /etc/wp/inc/directories.sh
 
 cd /tmp
 
-URL="https://${WORDPRESS_LOCALE}.wordpress.org/latest-${WORDPRESS_LOCALE}.zip"
+URL="https://${LOCALE}.wordpress.org/latest-${LOCALE}.zip"
 _echo "Downloading ${URL}..."
 wget -O wp.zip ${URL} \
     && unzip -oq wp.zip \

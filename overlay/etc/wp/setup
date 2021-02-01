@@ -5,14 +5,31 @@ source /etc/wp/inc/directories.sh
 
 
 #======================================================================================================================
-# If wp-config.php is a file, move it to /wp - then create a link
+# If wp-config.php is a file, move it to /wp - otherwise generate it - and then create a link
 #======================================================================================================================
 
 if [ -f ${WWW}/wp-config.php ] ; then
+
+    _echo "Moving existing wp-config.php..."
     mv ${WWW}/wp-config.php ${WP}
+    _done
+
+else
+
+    _echo "Generating new wp-config.php..."
+
+    # get fresh authentication values
+    export AUTH=$(curl -s https://api.wordpress.org/secret-key/1.1/salt/)
+
+    # generate config from the template
+    gomplate \
+        -o ${WP}/wp-config.php \
+        -f /etc/templates/wp-config.php.tmpl
+    _done
+
 fi
 
-_echo "Linking wp-config.php..."
+_echo "Create wp-config.php link..."
 ln -s ${WP}/wp-config.php ${WWW}/wp-config.php
 _done
 
