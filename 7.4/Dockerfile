@@ -49,7 +49,7 @@ ENV \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
     CLEAN_INSTALL=0 \
     # set to 1 to generate wp-config.php based on environment variables
-    GENERATE_CONFIG=0 \
+    GENERATE_CONFIG=1 \
     # database name
     WPDB_NAME= \
     # database user
@@ -67,10 +67,10 @@ ENV \
     # whether or not to enable debug mode
     DEBUG="false" \
     # whether or not to enable HTTPS behind a proxy server
-    ENABLE_HTTPS_BEHIND_PROXY=true \
+    ENABLE_HTTPS_BEHIND_PROXY=1 \
     # set to 1 to use system cron instead of WordPress cron (improves page performance)
     # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference
-    USE_SYSTEM_CRON=0
+    USE_SYSTEM_CRON=1
 
 COPY ./overlay /
 

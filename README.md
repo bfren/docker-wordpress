@@ -45,8 +45,8 @@ See the [Nginx + PHP](https://github.com/bencgreen/docker-nginx-php) image for d
 | `WPDB_CHARSET`              | string                 | Database character set (leave as default if not sure).                                 | utf8mb4                                     |
 | `WPDB_COLLATE`              | string                 | Database collation (leave blank if not sure).                                          | *None*                                      |
 | `WPDB_PREFIX`               | string                 | Database table prefix.                                                                 | wp_                                         |
-| `DEBUG`                     | true or false          | whether or not to enable debug mode                                                    | false                                       |
-| `ENABLE_HTTPS_BEHIND_PROXY` | true or false          | Whether or not to enable HTTPS behind a proxy server.                                  | true                                        |
+| `DEBUG`                     | true or false          | Whether or not to enable debug mode.                                                   | false                                       |
+| `ENABLE_HTTPS_BEHIND_PROXY` | 0 or 1                 | Whether or not to enable HTTPS behind a proxy server.                                  | 0                                        |
 | `USE_SYSTEM_CRON`           | 0 or 1                 | Set to 1 to use system cron instead of WordPress cron (improves page performance).     | 0                                           |
 
 ## Helper Functions
