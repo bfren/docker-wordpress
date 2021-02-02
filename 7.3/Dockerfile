@@ -62,7 +62,7 @@ ENV \
     # database collation
     WPDB_COLLATE= \
     # database prefix
-    WPDB_PREFIX="wp_" \
+    WPDB_PREFIX="wp" \
     # whether or not to enable debug mode
     DEBUG="false" \
     # whether or not to enable HTTPS behind a proxy server
