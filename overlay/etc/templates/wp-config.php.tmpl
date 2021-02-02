@@ -56,7 +56,7 @@ define( 'DB_COLLATE', '{{ getenv "WPDB_COLLATE" }}' );
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = '{{ getenv "WPDB_PREFIX" }}';
+$table_prefix = '{{ getenv "WPDB_PREFIX" }}_';
 
 /**
  * For developers: WordPress debugging mode.
