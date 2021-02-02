@@ -17,9 +17,9 @@ function move_and_link () {
     WP_DIR=${WP}/${1}
     WWW_DIR=${WWW_WP_CONTENT}/${1}
 
-    # if dir does not exist in /wp, create it
+    # if dir does not exist in /wp, create it and set ownership
     if [ ! -d ${WP_DIR} ] ; then
-        mkdir -p ${WP_DIR}
+        mkdir -p ${WP_DIR} && chown www:www ${WP_DIR}
 
         # if dir exists in /www/wp-content move contents
         if [ -d ${WWW_DIR} ] ; then
