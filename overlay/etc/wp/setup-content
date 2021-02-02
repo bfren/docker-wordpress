@@ -15,32 +15,32 @@ function move_and_link () {
 
     # define directory variables
     WP_DIR=${WP}/${1}
-    WP_CONTENT_DIR=${WP_CONTENT}/${1}
+    WWW_DIR=${WWW_WP_CONTENT}/${1}
 
     # if dir does not exist in /wp, create it
     if [ ! -d ${WP_DIR} ] ; then
         mkdir -p ${WP_DIR}
 
         # if dir exists in /www/wp-content move contents
-        if [ -d ${WP_CONTENT_DIR} ] ; then
-            _echo "    moving contents from ${WP_CONTENT_DIR} to ${WP_DIR}"
-            mv ${WP_CONTENT_DIR}/* ${WP_DIR}
+        if [ -d ${WWW_DIR} ] ; then
+            _echo "    moving contents from ${WWW_DIR} to ${WP_DIR}"
+            mv ${WWW_DIR}/* ${WP_DIR}
         fi
 
     fi
 
-    # check link from wp-content directory
-    if [ ! -L ${WP_CONTENT_DIR} ] ; then
+    # check link from /www/wp-content/* directory to /wp/* directory
+    if [ ! -L ${WWW_DIR} ] ; then
 
         # if dir exists in /www/wp-content, delete it
-        if [ -d ${WP_CONTENT_DIR} ] ; then
-            _echo "    deleting directory ${WP_CONTENT_DIR}"
-            _rmrf "${WP_CONTENT_DIR}" > /dev/null 2>&1
+        if [ -d ${WWW_DIR} ] ; then
+            _echo "    deleting directory ${WWW_DIR}"
+            _rmrf "${WWW_DIR}" > /dev/null 2>&1
         fi
     
         # create link from /wp to /www/wp-content
-        _echo "    creating link from ${WP_DIR} to ${WP_CONTENT_DIR}"
-        ln -s ${WP_DIR} ${WP_CONTENT_DIR}
+        _echo "    creating link from ${WP_DIR} to ${WWW_DIR}"
+        ln -s ${WP_DIR} ${WWW_DIR}
 
     fi
 
