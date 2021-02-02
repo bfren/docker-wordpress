@@ -5,40 +5,14 @@ source /etc/wp/inc/directories.sh
 
 
 #======================================================================================================================
-# If wp-config.php is a file, move it to /wp - otherwise generate it - and then create a link
-#======================================================================================================================
-
-if [ -f ${WWW}/wp-config.php ] ; then
-
-    _echo "Moving existing wp-config.php..."
-    mv ${WWW}/wp-config.php ${WP}
-    _done
-
-else
-
-    _echo "Generating new wp-config.php..."
-
-    # get fresh authentication values
-    export AUTH=$(curl -s https://api.wordpress.org/secret-key/1.1/salt/)
-
-    # generate config from the template
-    gomplate \
-        -o ${WP}/wp-config.php \
-        -f /etc/templates/wp-config.php.tmpl
-    _done
-
-fi
-
-_echo "Create wp-config.php link..."
-ln -s ${WP}/wp-config.php ${WWW}/wp-config.php
-_done
-
-
-#======================================================================================================================
 # Move each wp-content directory to /wp and create a link
 #======================================================================================================================
 
 function move_and_link () {
+
+    # helpful output
+    _echo " .. ${1}"
+
     # define directory variables
     WP_DIR=${WP}/${1}
     WP_CONTENT_DIR=${WP_CONTENT}/${1}
@@ -49,17 +23,26 @@ function move_and_link () {
 
         # if dir exists in /www/wp-content move contents
         if [ -d ${WP_CONTENT_DIR} ] ; then
+            _echo " ... moving contents from ${WP_CONTENT_DIR} to ${WP_DIR}"
             mv ${WP_CONTENT_DIR}/* ${WP_DIR}
         fi
+
+        # set ownership
+        chown -R www:www ${WP_DIR}
     fi
 
     # if dir exists in /www/wp-content, delete it
     if [ -d ${WP_CONTENT_DIR} ] ; then
+        _echo " ... deleting directory ${WP_CONTENT_DIR}"
         _rmrf "${WP_CONTENT_DIR}"
     fi
 
-    # create link from /wp to /www/wp-content
-    ln -s ${WP_DIR} ${WP_CONTENT_DIR}
+    # create link from /wp to /www/wp-content if it isn't already one
+    if [ ! -L ${WP_CONTENT_DIR} ] ; then
+        _echo " ... creating link from ${WP_DIR} to ${WP_CONTENT_DIR}"
+        ln -s ${WP_DIR} ${WP_CONTENT_DIR}
+    fi
+
 }
 
 _echo "Moving wp-content directories and linking..."
