@@ -17,14 +17,14 @@ if [ "${GENERATE_CONFIG}" = "1" ] ; then
 
 elif [ -L ${WWW}/wp-config.php ] ; then
 
-    _ok "WordPress already set up."
+    _ok "WordPress already configured."
     exit 0
 
 fi
 
 
 #======================================================================================================================
-# Run setup program
+# Run setup config program
 #======================================================================================================================
 
-s6-setuidgid www /etc/wp/setup
+s6-setuidgid www /etc/wp/setup-config
