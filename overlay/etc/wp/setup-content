@@ -23,24 +23,25 @@ function move_and_link () {
 
         # if dir exists in /www/wp-content move contents
         if [ -d ${WP_CONTENT_DIR} ] ; then
-            _echo " ... moving contents from ${WP_CONTENT_DIR} to ${WP_DIR}"
+            _echo "    moving contents from ${WP_CONTENT_DIR} to ${WP_DIR}"
             mv ${WP_CONTENT_DIR}/* ${WP_DIR}
         fi
 
-        # set ownership
-        chown -R www:www ${WP_DIR}
     fi
 
-    # if dir exists in /www/wp-content, delete it
-    if [ -d ${WP_CONTENT_DIR} ] ; then
-        _echo " ... deleting directory ${WP_CONTENT_DIR}"
-        _rmrf "${WP_CONTENT_DIR}"
-    fi
-
-    # create link from /wp to /www/wp-content if it isn't already one
+    # check link from wp-content directory
     if [ ! -L ${WP_CONTENT_DIR} ] ; then
-        _echo " ... creating link from ${WP_DIR} to ${WP_CONTENT_DIR}"
+
+        # if dir exists in /www/wp-content, delete it
+        if [ -d ${WP_CONTENT_DIR} ] ; then
+            _echo "    deleting directory ${WP_CONTENT_DIR}"
+            _rmrf "${WP_CONTENT_DIR}" > /dev/null 2>&1
+        fi
+    
+        # create link from /wp to /www/wp-content
+        _echo "    creating link from ${WP_DIR} to ${WP_CONTENT_DIR}"
         ln -s ${WP_DIR} ${WP_CONTENT_DIR}
+
     fi
 
 }
