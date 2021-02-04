@@ -9,5 +9,9 @@ set -euo pipefail
 #======================================================================================================================
 
 _echo "Executing WordPress cron..."
-wget -O - http://localhost/wp-cron.php
-_done
+CODE=$(curl -s -o /dev/null -I -w "%{http_code}" http://localhost/wp-cron.php)
+if [ "${CODE}" = "200" ] ; then
+    _done
+else
+    _error
+fi
