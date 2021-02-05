@@ -64,7 +64,9 @@ jobs:
             bcgdesign/wordpress:latest
             bcgdesign/wordpress:${{ steps.version.outputs.content }}
             bcgdesign/wordpress:php-7
+            bcgdesign/wordpress:php-7-${{ steps.version.outputs.content }}
             bcgdesign/wordpress:php-7.4
+            bcgdesign/wordpress:php-7.4-${{ steps.version.outputs.content }}
             bcgdesign/wordpress:php-${{ steps.php_revision.outputs.content }}
             bcgdesign/wordpress:php-${{ steps.php_build.outputs.content }}
       -
