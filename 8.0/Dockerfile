@@ -1,4 +1,4 @@
-ARG PHP_VERSION=8.0.1-r0
+ARG PHP_VERSION=8.0.2-r0
 FROM bcgdesign/nginx-php:php-${PHP_VERSION}
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
