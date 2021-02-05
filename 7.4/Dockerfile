@@ -1,5 +1,4 @@
-ARG PHP_VERSION=7.4.14-r0
-FROM bcgdesign/nginx-php:php-${PHP_VERSION}
+FROM bcgdesign/nginx-php:php-7.4-1.2.2
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
@@ -7,7 +6,7 @@ LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.vendor="Ben Green" \
     org.label-schema.schema-version="1.0"
 
-ARG PHP_VERSION
+ARG PHP_VERSION=7.4.15-r0
 ARG GOMPLATE_VERSION=3.8.0-r0
 ARG IMAGICK_VERSION=3.4.4-r7
 
