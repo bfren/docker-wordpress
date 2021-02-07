@@ -1,4 +1,4 @@
-FROM bcgdesign/nginx-php:php-7.3-1.2.2
+FROM bcgdesign/nginx-php:php-7.3-1.3.0
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
@@ -6,7 +6,7 @@ LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.vendor="Ben Green" \
     org.label-schema.schema-version="1.0"
 
-ARG PHP_VERSION=7.3.26-r0
+ARG PHP_VERSION=7.3.27-r0
 ARG GOMPLATE_VERSION=3.7.0-r0
 ARG IMAGICK_VERSION=3.4.4-r4
 
