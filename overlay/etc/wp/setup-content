@@ -37,7 +37,7 @@ function move_and_link () {
             _echo "    deleting directory ${WWW_DIR}"
             _rmrf "${WWW_DIR}" > /dev/null 2>&1
         fi
-    
+
         # create link from /wp to /www/wp-content
         _echo "    creating link from ${WP_DIR} to ${WWW_DIR}"
         ln -s ${WP_DIR} ${WWW_DIR}
