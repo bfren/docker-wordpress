@@ -14,6 +14,7 @@ The required and recommended PHP modules are all installed.
 * [Volumes](#volumes)
 * [Environment Variables](#environment-variables)
 * [Helper Functions](#helper-functions)
+* [Nginx Configuration Helpers](#nginx-configuration-helpers)
 * [Authors / Licence / Copyright](#authors)
 
 ## Ports
@@ -54,6 +55,15 @@ See the [Nginx + PHP](https://github.com/bencgreen/docker-nginx-php) image for d
 | Function  | Purpose                                                                         | Usage     |
 | --------- | ------------------------------------------------------------------------------- | --------- |
 | `wp-cron` | Runs the WordPress cron - if `USE_SYSTEM_CRON` is 1, will be run automatically. | `wp-cron` |
+
+## Nginx Configuration Helpers
+
+The image contains a handful of useful Nginx configuration 'helper' files, which you can find in `/overlay/etc/nginx/helpers`.  They all begin with the prefix 'wp':
+
+| Helper               | Description                                                                                                           |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `-restrictions.conf` | Adds various security-based restrictions.                                                                             |
+| `-subdirectory.conf` | Enables WordPress to run in a `wordpress` subdirectory - copy and replace with the name your own subdirectory to use. |
 
 ## Authors
 
