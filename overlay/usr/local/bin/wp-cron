@@ -8,10 +8,10 @@ set -euo pipefail
 # See https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/
 #======================================================================================================================
 
-_echo "Executing WordPress cron..."
+bcg-echo "Executing WordPress cron..."
 CODE=$(curl -s -o /dev/null -I -w "%{http_code}" http://localhost/wp-cron.php)
 if [ "${CODE}" = "200" ] ; then
-    _done
+    bcg-done
 else
-    _error
+    bcg-error "Unable to execute cron."
 fi

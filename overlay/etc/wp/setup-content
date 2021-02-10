@@ -11,7 +11,7 @@ source /etc/wp/inc/directories.sh
 function move_and_link () {
 
     # helpful output
-    _echo " .. ${1}"
+    bcg-echo " .. ${1}"
 
     # define directory variables
     WP_DIR=${WP}/${1}
@@ -23,7 +23,7 @@ function move_and_link () {
 
         # if dir exists in /www/wp-content move contents
         if [ -d ${WWW_DIR} ] ; then
-            _echo "    moving contents from ${WWW_DIR} to ${WP_DIR}"
+            bcg-echo "    moving contents from ${WWW_DIR} to ${WP_DIR}"
             mv ${WWW_DIR}/* ${WP_DIR}
         fi
 
@@ -34,20 +34,20 @@ function move_and_link () {
 
         # if dir exists in /www/wp-content, delete it
         if [ -d ${WWW_DIR} ] ; then
-            _echo "    deleting directory ${WWW_DIR}"
-            _rmrf "${WWW_DIR}" > /dev/null 2>&1
+            bcg-echo "    deleting directory ${WWW_DIR}"
+            bcg-rmrf "${WWW_DIR}" > /dev/null 2>&1
         fi
 
         # create link from /wp to /www/wp-content
-        _echo "    creating link from ${WP_DIR} to ${WWW_DIR}"
+        bcg-echo "    creating link from ${WP_DIR} to ${WWW_DIR}"
         ln -s ${WP_DIR} ${WWW_DIR}
 
     fi
 
 }
 
-_echo "Moving wp-content directories and linking..."
+bcg-echo "Moving wp-content directories and linking..."
 move_and_link "plugins"
 move_and_link "themes"
 move_and_link "uploads"
-_done
+bcg-done

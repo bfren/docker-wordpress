@@ -10,14 +10,14 @@ source /etc/wp/inc/directories.sh
 
 if [ "${GENERATE_CONFIG}" = "1" ] ; then
 
-    _echo "Generate config detected, removing wp-config.php files..."
-    _rmrf ${WWW}/wp-config.php
-    _rmrf ${WP}/wp-config.php
-    _done
+    bcg-echo "Generate config detected, removing wp-config.php files..."
+    bcg-rmrf ${WWW}/wp-config.php
+    bcg-rmrf ${WP}/wp-config.php
+    bcg-done
 
 elif [ -L ${WWW}/wp-config.php ] ; then
 
-    _ok "WordPress already configured."
+    bcg-ok "WordPress already configured."
     exit 0
 
 fi

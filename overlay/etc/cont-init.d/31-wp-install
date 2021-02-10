@@ -12,13 +12,13 @@ if [ -L ${WWW}/wp-config.php ] || [ -f ${WWW}/wp-config.php ] ; then
 
     if [ "${CLEAN_INSTALL}" = "1" ] ; then
 
-        _echo "Clean install detected, deleting contents of ${WWW}..."
-        _rmrf "${WWW}/*"
-        _done
+        bcg-echo "Clean install detected, deleting contents of ${WWW}..."
+        bcg-rmrf "${WWW}/*"
+        bcg-done
 
     else
 
-        _ok "WordPress already installed."
+        bcg-ok "WordPress already installed."
         exit 0
 
     fi
