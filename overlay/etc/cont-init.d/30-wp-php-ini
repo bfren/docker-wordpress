@@ -7,7 +7,7 @@ set -euo pipefail
 # Override configuration
 #======================================================================================================================
 
-_echo "Overriding php.ini configuration values..."
+bcg-echo "Overriding php.ini configuration values..."
 
 declare -A VALUES
 VALUES["cgi.fix_pathinfo"]="0"
@@ -15,4 +15,4 @@ VALUES["cgi.fix_pathinfo"]="0"
 source /etc/functions/replace.sh
 replace VALUES "${PHP_DIR}/php.ini"
 
-_done
+bcg-done

@@ -1,4 +1,4 @@
-FROM bcgdesign/nginx-php:php-8.0-1.3.2
+FROM bcgdesign/nginx-php:php-8.0-1.4.0
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
@@ -7,13 +7,11 @@ LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.schema-version="1.0"
 
 ARG PHP_VERSION=8.0.2-r0
-ARG GOMPLATE_VERSION=3.8.0-r0
 ARG IMAGICK_VERSION=3.4.4-r0
 
 RUN apk -U upgrade \
     && apk add \
         curl \
-        gomplate=${GOMPLATE_VERSION} \
         unzip \
         php8-cgi=${PHP_VERSION} \
         php8-ctype=${PHP_VERSION} \

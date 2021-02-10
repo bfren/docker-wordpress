@@ -11,15 +11,15 @@ source /etc/wp/inc/directories.sh
 cd /tmp
 
 URL="https://${LOCALE}.wordpress.org/latest-${LOCALE}.zip"
-_echo "Downloading ${URL}..."
+bcg-echo "Downloading ${URL}..."
 wget -O wp.zip ${URL} \
     && unzip -oq wp.zip \
     && rm wp.zip
 
 if [ -d ./wordpress ] ; then
-    _done
+    bcg-done
 else
-    _error "WordPress not downloaded."
+    bcg-error "WordPress not downloaded."
 fi
 
 
@@ -27,11 +27,11 @@ fi
 # Move WordPress files to /www
 #======================================================================================================================
 
-_echo "Moving WordPress files to ${WWW}..."
+bcg-echo "Moving WordPress files to ${WWW}..."
 mv wordpress/* ${WWW} && rm -rf wordpress
 
 if [ -f ${WWW}/wp-load.php ] ; then
-    _done
+    bcg-done
 else
-    _error "WordPress not installed."
+    bcg-error "WordPress not installed."
 fi
