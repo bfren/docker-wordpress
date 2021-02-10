@@ -22,9 +22,8 @@ else
     export AUTH=$(curl -s https://api.wordpress.org/secret-key/1.1/salt/)
 
     # generate config from the template
-    gomplate \
-        -o ${WP}/wp-config.php \
-        -f /etc/templates/wp-config.php.tmpl
+    esh -o ${WP}/wp-config.php \
+        /etc/templates/wp-config.php.esh
     bcg-done
 
 fi
