@@ -14,8 +14,8 @@ function move_and_link () {
     bcg-echo " .. ${1}"
 
     # define directory variables
-    WP_DIR=${WP}/${1}
-    WWW_DIR=${WWW_WP_CONTENT}/${1}
+    WP_DIR="${WP}/${1}"
+    WWW_DIR="${WWW_WP_CONTENT}/${1}"
 
     # if dir does not exist in /wp, create it and set ownership
     if [ ! -d ${WP_DIR} ] ; then
