@@ -8,7 +8,7 @@ source /etc/wp/inc/directories.sh
 # If wp-config.php is a symlink, the setup has already been run
 #======================================================================================================================
 
-if [ "${GENERATE_CONFIG}" = "1" ] ; then
+if [ "${WP_GENERATE_CONFIG}" = "1" ] ; then
 
     bcg-echo "Generate config detected, removing wp-config.php files..."
     bcg-rmrf ${WWW}/wp-config.php

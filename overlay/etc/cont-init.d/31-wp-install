@@ -5,12 +5,12 @@ source /etc/wp/inc/directories.sh
 
 
 #======================================================================================================================
-# Check for wp-config.php and CLEAN_INSTALL
+# Check for wp-config.php and WP_CLEAN_INSTALL
 #======================================================================================================================
 
 if [ -L ${WWW}/wp-config.php ] || [ -f ${WWW}/wp-config.php ] ; then
 
-    if [ "${CLEAN_INSTALL}" = "1" ] ; then
+    if [ "${WP_CLEAN_INSTALL}" = "1" ] ; then
 
         bcg-echo "Clean install detected, deleting contents of ${WWW}..."
         bcg-rmrf "${WWW}/*"

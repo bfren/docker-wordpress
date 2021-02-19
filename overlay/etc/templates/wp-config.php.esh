@@ -20,22 +20,22 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', '<%= "${WPDB_NAME}" %>' );
+define( 'DB_NAME', '<%= "${WP_DB_NAME}" %>' );
 
 /** MySQL database username */
-define( 'DB_USER', '<%= "${WPDB_USER}" %>' );
+define( 'DB_USER', '<%= "${WP_DB_USER}" %>' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', '<%= "${WPDB_PASS}" %>' );
+define( 'DB_PASSWORD', '<%= "${WP_DB_PASS}" %>' );
 
 /** MySQL hostname */
-define( 'DB_HOST', '<%= "${WPDB_HOST}" %>' );
+define( 'DB_HOST', '<%= "${WP_DB_HOST}" %>' );
 
 /** Database Charset to use in creating database tables. */
-define( 'DB_CHARSET', '<%= "${WPDB_CHARSET}" %>' );
+define( 'DB_CHARSET', '<%= "${WP_DB_CHARSET}" %>' );
 
 /** The Database Collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', '<%= "${WPDB_COLLATE}" %>' );
+define( 'DB_COLLATE', '<%= "${WP_DB_COLLATE}" %>' );
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -56,7 +56,7 @@ define( 'DB_COLLATE', '<%= "${WPDB_COLLATE}" %>' );
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = '<%= "${WPDB_PREFIX}" %>_';
+$table_prefix = '<%= "${WP_DB_PREFIX}" %>_';
 
 /**
  * For developers: WordPress debugging mode.
@@ -70,9 +70,9 @@ $table_prefix = '<%= "${WPDB_PREFIX}" %>_';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', <%= "${DEBUG}" %> );
+define( 'WP_DEBUG', <%= "${WP_DEBUG}" %> );
 
-<% if [ "${ENABLE_HTTPS_BEHIND_PROXY}" = "1" ] ; then %>
+<% if [ "${WP_ENABLE_HTTPS_BEHIND_PROXY}" = "1" ] ; then %>
 /**
  * bcgdesign/wordpress
  *
@@ -86,7 +86,7 @@ if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
 }
 <% fi %>
 
-<% if [ "${USE_SYSTEM_CRON}" = "1" ] ; then %>
+<% if [ "${WP_USE_SYSTEM_CRON}" = "1" ] ; then %>
 /**
  * bcgdesign/wordpress
  *
