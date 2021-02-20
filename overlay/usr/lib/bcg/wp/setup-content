@@ -5,15 +5,8 @@ export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Move all wp-content content to /wp and create a link.
-#
-# Arguments
-#   1   Name of content file or directory
+# Move all files and directories in /www/wp-content to /wp/content.
 #======================================================================================================================
-
-function move-content () {
-
-}
 
 bcg-echo "Moving wp-content directories and linking..."
 for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
