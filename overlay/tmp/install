@@ -1,2 +1,44 @@
 #!/bin/sh
 
+set -euo pipefail
+export BCG_E=`basename ${0}`
+
+
+#======================================================================================================================
+# Get PHP version.
+#======================================================================================================================
+
+cd /tmp
+
+PHP_VERSION=$(cat PHP_VERSION)
+bcg-debug "PHP version ${PHP_VERSION}."
+
+IMAGICK_VERSION=$(cat IMAGICK_VERSION)
+bcg-debug "Imagick version ${IMAGICK_VERSION}."
+
+
+#======================================================================================================================
+# Install PHP dependencies and packages.
+#======================================================================================================================
+
+bcg-echo "Installing dependencies..."
+apk add --no-cache \
+    curl \
+    unzip
+bcg-done
+
+bcg-echo "Installing PHP v${PHP_VERSION}..."
+chmod +x ./install-php && ./install-php ${PHP_VERSION}
+bcg-done
+
+bcg-echo "Installing Imagick v${IMAGICK_VERSION}..."
+chmod +x ./install-php-imagick && ./install-php-imagick ${IMAGICK_VERSION}
+bcg-done
+
+
+#======================================================================================================================
+# Cleanup.
+#======================================================================================================================
+
+bcg-debug "Cleanup /www files..."
+rm -f /www/*

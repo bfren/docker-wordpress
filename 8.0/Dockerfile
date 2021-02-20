@@ -6,38 +6,6 @@ LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.vendor="Ben Green" \
     org.label-schema.schema-version="1.0"
 
-ARG PHP_VERSION=8.0.2-r0
-ARG IMAGICK_VERSION=3.4.4-r0
-
-RUN apk -U upgrade \
-    && apk add \
-        curl \
-        unzip \
-        php8-cgi=${PHP_VERSION} \
-        php8-ctype=${PHP_VERSION} \
-        php8-curl=${PHP_VERSION} \
-        php8-dom=${PHP_VERSION} \
-        php8-exif=${PHP_VERSION} \
-        php8-fileinfo=${PHP_VERSION} \
-        php8-ftp=${PHP_VERSION} \
-        php8-gd=${PHP_VERSION} \
-        php8-gettext=${PHP_VERSION} \
-        php8-iconv=${PHP_VERSION} \
-        php8-imap=${PHP_VERSION} \
-        php8-mbstring=${PHP_VERSION} \
-        php8-mysqlnd=${PHP_VERSION} \
-        php8-mysqli=${PHP_VERSION} \
-        php8-sodium=${PHP_VERSION} \
-        php8-openssl=${PHP_VERSION} \
-        php8-simplexml=${PHP_VERSION} \
-        php8-soap=${PHP_VERSION} \
-        php8-sockets=${PHP_VERSION} \
-        php8-xml=${PHP_VERSION} \
-        php8-xmlreader=${PHP_VERSION} \
-        php8-zip=${PHP_VERSION} \
-        php8-pecl-imagick=${IMAGICK_VERSION} \
-    && rm -rf /var/cache/apk/* /www/* /tmp/*
-
 ENV \
     # set to a valid WordPress locale or the installation will fail
     WP_LOCALE="en_GB" \
@@ -68,6 +36,7 @@ ENV \
     WP_USE_SYSTEM_CRON=1
 
 COPY ./overlay /
+COPY ./8.0/overlay /
 COPY ./8.0/PHP_BUILD /tmp/PHP_VERSION
 COPY ./8.0/IMAGICK_BUILD /tmp/IMAGICK_VERSION
 
