@@ -32,7 +32,7 @@ bcg-done
 
 
 #======================================================================================================================
-# Move /wp/* to /wp/content/.
+# Move any additional files in /wp/ to /wp/content/ (supports previous versions of the image).
 #======================================================================================================================
 
 bcg-echo "Moving any additional content into ${WP_CONTENT}..."
@@ -60,7 +60,7 @@ bcg-done
 
 
 #======================================================================================================================
-# Delete www/wp-content and link to wp/content.
+# Delete /www/wp-content and link to /wp/content.
 #======================================================================================================================
 
 bcg-echo "Removing /www/wp-content and linking to /wp/content..."
