@@ -8,7 +8,7 @@ export BCG_E=`basename ${0}`
 # Move all files and directories in /www/wp-content to /wp/content.
 #======================================================================================================================
 
-bcg-echo "Moving wp-content directories and linking..."
+bcg-echo "Moving ${NGINX_WWW_WP_CONTENT} files and directories..."
 for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
 
     # get file name
@@ -63,8 +63,9 @@ bcg-done
 # Delete /www/wp-content and link to /wp/content.
 #======================================================================================================================
 
-bcg-echo "Removing /www/wp-content and linking to /wp/content..."
+bcg-echo "Removing ${NGINX_WWW_WP_CONTENT}and linking to ${WP_CONTENT}..."
 bcg-rmrf "${NGINX_WWW_WP_CONTENT}"
+bcg-debug "Creating link to ${WP_CONTENT}."
 ln -s ${WP_CONTENT} ${NGINX_WWW_WP_CONTENT}
 bcg-done
 
