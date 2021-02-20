@@ -11,7 +11,7 @@ export BCG_E=`basename ${0}`
 #   1   Name of content file or directory
 #======================================================================================================================
 
-function move_and_link () {
+function move-content () {
 
     # helpful output
     bcg-echo " .. ${1}"
@@ -32,27 +32,17 @@ function move_and_link () {
 
     fi
 
-    # check link from /www/wp-content/* directory to /wp/* directory
-    if [ ! -L ${IN_WWW} ] ; then
-
-        # if content exists in /www/wp-content, delete it
-        if [ -e ${IN_WWW} ] ; then
-            bcg-debug "    deleting directory ${IN_WWW}"
-            bcg-rmrf "${IN_WWW}" > /dev/null 2>&1
-        fi
-
-        # create link from /wp to /www/wp-content
-        #bcg-debug "    creating link from ${IN_WP} to ${IN_WWW}"
-        #ln -s ${IN_WP} ${IN_WWW}
-
-    fi
-
 }
 
 bcg-echo "Moving wp-content directories and linking..."
 for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
+
+    # get file name
     NAME=$(basename -- "${CONTENT}")
-    move_and_link "${NAME}"
+
+    # move content
+    move-content "${NAME}"
+
 done
 bcg-done
 
@@ -61,19 +51,22 @@ bcg-done
 # Move /wp/* to /wp/content/.
 #======================================================================================================================
 
-bcg-echo "Moving additional content into ${WP_CONTENT}..."
+bcg-echo "Moving any additional content into ${WP_CONTENT}..."
 for CONTENT in ${WP_ROOT}/* ; do
 
-    case "${CONTENT}" in
+    # get file name
+    NAME=$(basename -- "${CONTENT}")
+
+    case "${NAME}" in
 
         content|wp-config.php)
-            bcg-debug "Leave content/ and wp-config.php."
+            bcg-debug " .. ignoring ${CONTENT}."
             continue;
             ;;
 
         *)
-            bcg-debug "Moving ${CONTENT}."
-            mv "${WP_ROOT}/${CONTENT}" ${WP_CONTENT}/
+            bcg-debug " .. ${CONTENT}"
+            mv "${CONTENT}" ${WP_CONTENT}/
             ;;
 
     esac

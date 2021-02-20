@@ -11,11 +11,9 @@ export BCG_E=`basename ${0}`
 bcg-env "LIB_WP" "${LIB}/wp"
 
 WP=/wp
-WP_CONFIG=wp-config.php
-
 bcg-env "WP_ROOT" "${WP}"
-bcg-env "WP_CONFIG" "${WP}/${WP_CONFIG}"
+bcg-env "WP_CONFIG" "${WP}/wp-config.php"
 bcg-env "WP_CONTENT" "${WP}/content"
 
-bcg-env "NGINX_WWW_WP_CONFIG" "${NGINX_WWW}/${WP_CONFIG}"
+bcg-env "NGINX_WWW_WP_CONFIG" "${NGINX_WWW}/wp-config.php"
 bcg-env "NGINX_WWW_WP_CONTENT" "${NGINX_WWW}/wp-content"
