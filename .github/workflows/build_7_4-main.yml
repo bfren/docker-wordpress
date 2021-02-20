@@ -9,7 +9,7 @@ on:
     paths:
       - '.github/workflows/build_7_4-main.yml'
       - '7.4/**'
-      - 'en_GB/**'
+      - 'locales/**'
       - 'overlay/**'
       - 'VERSION'
 
