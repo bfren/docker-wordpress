@@ -22,8 +22,8 @@ else
     export AUTH=$(curl -s https://api.wordpress.org/secret-key/1.1/salt/)
 
     # generate config from the template
-    esh -o ${CONFIG} \
-        ${TEMPLATS}/wp-config.php.esh
+    esh -o ${WP_CONFIG} \
+        ${TEMPLATES}/wp-config.php.esh
     bcg-done
 
 fi
