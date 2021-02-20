@@ -8,4 +8,4 @@ export BCG_E=`basename ${0}`
 # Run setup content program.
 #======================================================================================================================
 
-${LIB_WP}/setup-content
+s6-setuidgid www ${LIB_WP}/setup-content

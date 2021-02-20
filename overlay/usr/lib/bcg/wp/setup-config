@@ -24,6 +24,9 @@ else
     # generate config from the template
     esh -o ${WP_CONFIG} \
         ${TEMPLATES}/wp-config.php.esh
+
+    # set permissions
+    chmod 0644 ${WP_CONFIG}
     bcg-done
 
 fi

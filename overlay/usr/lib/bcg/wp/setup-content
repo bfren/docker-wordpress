@@ -13,12 +13,18 @@ export BCG_E=`basename ${0}`
 
 function move-content () {
 
-    # helpful output
-    bcg-echo " .. ${1}"
+}
+
+bcg-echo "Moving wp-content directories and linking..."
+for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
+
+    # get file name
+    NAME=$(basename -- "${CONTENT}")
+    bcg-echo " .. ${NAME}"
 
     # define content variables
-    IN_WP="${WP_CONTENT}/${1}"
-    IN_WWW="${NGINX_WWW_WP_CONTENT}/${1}"
+    IN_WP="${WP_CONTENT}/${NAME}"
+    IN_WWW="${NGINX_WWW_WP_CONTENT}/${NAME}"
 
     # if content does not exist in /wp, create it and set ownership
     if [ ! -e ${IN_WP} ] ; then
@@ -27,17 +33,6 @@ function move-content () {
     else
         bcg-debug "    ${IN_WP} already exists."
     fi
-
-}
-
-bcg-echo "Moving wp-content directories and linking..."
-for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
-
-    # get file name
-    NAME=$(basename -- "${CONTENT}")
-
-    # move content
-    move-content "${NAME}"
 
 done
 bcg-done
