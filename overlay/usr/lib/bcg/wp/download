@@ -1,0 +1,20 @@
+#!/usr/bin/with-contenv bash
+
+set -euo pipefail
+export BCG_E=`basename ${0}`
+
+
+#======================================================================================================================
+# Download WordPress.
+#======================================================================================================================
+
+cd /tmp
+
+URL="https://${WP_LOCALE}.wordpress.org/latest-${WP_LOCALE}.zip"
+bcg-echo "Downloading ${URL}..."
+wget -O wp.zip ${URL} \
+    && unzip -oq wp.zip \
+    && rm wp.zip
+
+[[ -d ./wordpress ]] && bcg-done \
+    || bcg-error "WordPress not downloaded."
