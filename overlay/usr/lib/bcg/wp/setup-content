@@ -31,7 +31,7 @@ for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
         bcg-debug "    moving ${IN_WWW} to ${IN_WP}"
 
         # use slightly different syntax to move files or directories
-        if [ -f ${IN_WWW} ] ;
+        if [ -f ${IN_WWW} ] ; then
             mv ${IN_WWW} ${IN_WP}/
         else
             mkdir -p ${IN_WP}
