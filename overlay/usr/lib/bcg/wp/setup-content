@@ -19,10 +19,18 @@ for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
     IN_WP="${WP_CONTENT}/${NAME}"
     IN_WWW="${NGINX_WWW_WP_CONTENT}/${NAME}"
 
-    # if content does not exist in /wp, create it and set ownership
+    # if content does not exist in /wp/content, move it from /www/wp-content
     if [ -e ${CONTENT} ] && [ ! -e ${IN_WP} ] ; then
         bcg-debug "    moving ${IN_WWW} to ${IN_WP}"
-        mv ${IN_WWW} ${WP_CONTENT}
+
+        # use slightly different syntax to move files or directories
+        if [ -f ${IN_WWW} ] ;
+            mv ${IN_WWW} ${WP_CONTENT}/
+        else
+            mkdir -p ${IN_WP}
+            mv ${IN_WWW}/* ${IN_WP}
+        fi
+
     else
         bcg-debug "    ${IN_WP} already exists."
     fi
