@@ -15,5 +15,6 @@ bcg-env "WP_ROOT" "${WP}"
 bcg-env "WP_CONFIG" "${WP}/wp-config.php"
 bcg-env "WP_CONTENT" "${WP}/content"
 
+bcg-env "NGINX_WWW_WP_LOAD" "${NGINX_WWW}/wp-load.php"
 bcg-env "NGINX_WWW_WP_CONFIG" "${NGINX_WWW}/wp-config.php"
 bcg-env "NGINX_WWW_WP_CONTENT" "${NGINX_WWW}/wp-content"

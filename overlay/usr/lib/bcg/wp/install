@@ -19,5 +19,5 @@ WP_SRC=/tmp/wordpress
 bcg-echo "Moving WordPress files to ${NGINX_WWW}..."
 mv ${WP_SRC}/* ${NGINX_WWW} && rm -rf ${WP_SRC}
 
-[[ -f ${NGINX_WWW}/wp-load.php ]] && bcg-done \
+[[ -f ${NGINX_WWW_WP_LOAD} ]] && bcg-done \
     || bcg-error "WordPress not installed."
