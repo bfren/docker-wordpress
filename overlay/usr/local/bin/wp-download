@@ -10,7 +10,7 @@ export BCG_E=`basename ${0}`
 
 cd /src
 
-[[ -n "${1-}" ]] && VERSION="wordpress-${1}"
+[[ -n "${1-}" ]] && VERSION="wordpress-${1}" \
     || VERSION="latest"
 
 [[ -n "${2-}" ]] && LOCALE="${2}" \
