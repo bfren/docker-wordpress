@@ -10,7 +10,7 @@ export BCG_E=`basename ${0}`
 #======================================================================================================================
 
 bcg-echo "Executing WordPress cron."
-CODE=$(curl -s -o /dev/null -I -w "%{http_code}" http://localhost/wp-cron.php)
+CODE=$(wget --spider -S "http://localhost/wp-cron.php" 2>&1 | grep "HTTP/" | awk '{print $2}')
 if [ "${CODE}" = "200" ] ; then
     bcg-debug "Success."
 else

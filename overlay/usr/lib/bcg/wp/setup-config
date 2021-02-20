@@ -19,7 +19,7 @@ else
     bcg-echo "Generating new wp-config.php..."
 
     # get fresh authentication values
-    export AUTH=$(curl -s https://api.wordpress.org/secret-key/1.1/salt/)
+    export AUTH=$(wget -O - -S https://api.wordpress.org/secret-key/1.1/salt/)
 
     # generate config from the template
     esh -o ${WP_CONFIG} \

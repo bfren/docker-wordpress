@@ -23,7 +23,6 @@ bcg-debug "Imagick version ${IMAGICK_VERSION}."
 
 bcg-echo "Installing dependencies..."
 apk add --no-cache \
-    curl \
     unzip
 bcg-done
 

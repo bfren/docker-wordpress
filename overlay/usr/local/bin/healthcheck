@@ -9,7 +9,7 @@ export BCG_E=`basename ${0}`
 # WordPress will try and redirect to HTTPS, there is no way to disable this without a plugin
 #======================================================================================================================
 
-CODE=$(curl -s -o /dev/null -I -w "%{http_code}" http://localhost)
+CODE=$(wget --spider -S "http://localhost" 2>&1 | grep "HTTP/" | awk '{print $2}')
 if [[ ${CODE} -ge 200 && ${CODE} -lt 400  ]] ; then
 else
     exit 1
