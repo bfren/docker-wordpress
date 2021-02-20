@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/bin/sh
 
 set -euo pipefail
 export BCG_E=`basename ${0}`
@@ -8,10 +8,13 @@ export BCG_E=`basename ${0}`
 # Download WordPress.
 #======================================================================================================================
 
-mkdir /src && cd /src
+cd /src
 
-[[ -n "${WP_VERSION-}" ]] && VERSION="${WP_VERSION}-"
-URL="https://${WP_LOCALE}.wordpress.org/latest-${VERSION-}${WP_LOCALE}.zip"
+[[ -n "${1-}" ]] && VERSION="${1}-"
+[[ -n "${2-}" ]] && LOCALE="${2}" \
+    || bcg-error "You must set the WordPress locale before downloading the source."
+
+URL="https://${LOCALE}.wordpress.org/latest-${VERSION-}${LOCALE}.zip"
 
 bcg-echo "Downloading ${URL}..."
 wget -O wp.zip ${URL} \
