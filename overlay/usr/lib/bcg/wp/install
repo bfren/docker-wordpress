@@ -8,7 +8,7 @@ export BCG_E=`basename ${0}`
 # Download WordPress if the source is not part of the image.
 #======================================================================================================================
 
-WP_SRC=/tmp/wordpress
+WP_SRC=/src/wordpress
 [[ ! -d ${WP_SRC} ]] && wp-download
 
 

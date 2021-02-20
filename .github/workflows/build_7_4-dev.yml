@@ -60,7 +60,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./en_GB/Dockerfile
+          file: ./locales/en_GB/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |

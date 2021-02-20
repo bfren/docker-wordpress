@@ -7,4 +7,7 @@ LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.schema-version="1.0"
 
 ARG WP_LOCALE="en_GB"
-RUN wp-download
+
+COPY ./locales/overlay /
+
+RUN bcg-install

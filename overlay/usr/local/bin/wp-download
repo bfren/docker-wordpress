@@ -8,7 +8,7 @@ export BCG_E=`basename ${0}`
 # Download WordPress.
 #======================================================================================================================
 
-cd /tmp
+mkdir /src && cd /src
 
 [[ -n "${WP_VERSION-}" ]] && VERSION="${WP_VERSION}-"
 URL="https://${WP_LOCALE}.wordpress.org/latest-${VERSION-}${WP_LOCALE}.zip"
