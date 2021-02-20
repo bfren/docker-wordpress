@@ -5,7 +5,10 @@ export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Move each wp-content directory to /wp and create a link.
+# Move all wp-content content to /wp and create a link.
+#
+# Arguments
+#   1   Name of content file or directory
 #======================================================================================================================
 
 function move_and_link () {
@@ -13,41 +16,77 @@ function move_and_link () {
     # helpful output
     bcg-echo " .. ${1}"
 
-    # define directory variables
-    WP_DIR="${WP_ROOT}/${1}"
-    WWW_DIR="${WWW_WP_CONTENT}/${1}"
+    # define content variables
+    IN_WP="${WP_CONTENT}/${1}"
+    IN_WWW="${WWW_WP_CONTENT}/${1}"
 
-    # if dir does not exist in /wp, create it and set ownership
-    if [ ! -d ${WP_DIR} ] ; then
-        mkdir -p ${WP_DIR} && chown www:www ${WP_DIR}
+    # if content does not exist in /wp, create it and set ownership
+    if [ ! -e ${IN_WP} ] ; then
+        mkdir -p ${IN_WP} && chown www:www ${IN_WP}
 
-        # if dir exists in /www/wp-content move contents
-        if [ -d ${WWW_DIR} ] ; then
-            bcg-echo "    moving contents from ${WWW_DIR} to ${WP_DIR}"
-            mv ${WWW_DIR}/* ${WP_DIR}
+        # if content exists in /www/wp-content move contents
+        if [ -e ${IN_WWW} ] ; then
+            bcg-debug "    moving contents from ${IN_WWW} to ${IN_WP}"
+            mv ${IN_WWW}/* ${IN_WP}
         fi
 
     fi
 
     # check link from /www/wp-content/* directory to /wp/* directory
-    if [ ! -L ${WWW_DIR} ] ; then
+    if [ ! -L ${IN_WWW} ] ; then
 
-        # if dir exists in /www/wp-content, delete it
-        if [ -d ${WWW_DIR} ] ; then
-            bcg-echo "    deleting directory ${WWW_DIR}"
-            bcg-rmrf "${WWW_DIR}" > /dev/null 2>&1
+        # if content exists in /www/wp-content, delete it
+        if [ -e ${IN_WWW} ] ; then
+            bcg-debug "    deleting directory ${IN_WWW}"
+            bcg-rmrf "${IN_WWW}" > /dev/null 2>&1
         fi
 
         # create link from /wp to /www/wp-content
-        bcg-echo "    creating link from ${WP_DIR} to ${WWW_DIR}"
-        ln -s ${WP_DIR} ${WWW_DIR}
+        bcg-debug "    creating link from ${IN_WP} to ${IN_WWW}"
+        ln -s ${IN_WP} ${IN_WWW}
 
     fi
 
 }
 
 bcg-echo "Moving wp-content directories and linking..."
-move_and_link "plugins"
-move_and_link "themes"
-move_and_link "uploads"
+for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
+    move_and_link "${CONTENT}"
+done
 bcg-done
+
+
+#======================================================================================================================
+# Move /wp/* to /wp/content/.
+#======================================================================================================================
+
+bcg-echo "Moving additional content into ${WP_CONTENT}..."
+for CONTENT in ${WP_ROOT}/* ; do
+
+    case "${CONTENT}" in
+
+        content|wp-config.php)
+            bcg-debug "Leave content/ and wp-config.php."
+            continue;
+            ;;
+
+        *)
+            bcg-debug "Moving ${CONTENT}."
+            mv "${WP_ROOT}/${CONTENT}" ${WP_CONTENT}/
+            ;;
+
+    esac
+
+done
+bcg-done
+
+
+#======================================================================================================================
+# Delete www/wp-content and link to wp/content.
+#======================================================================================================================
+
+#bcg-rmrf "${NGINX_WWW_WP_CONTENT}"
+
+#bcg-echo "Linking ${NGINX_WWW_WP_CONTENT} to ${WP_CONTENT}..."
+#ln -s ${NGINX_WWW_WP_CONTENT} ${WP_CONTENT}
+#bcg-done
