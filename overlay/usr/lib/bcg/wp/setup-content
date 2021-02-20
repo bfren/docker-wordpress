@@ -32,10 +32,10 @@ for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
 
         # use slightly different syntax to move files or directories
         if [ -f ${IN_WWW} ] ; then
-            mv ${IN_WWW} ${IN_WP}/
+            mv ${IN_WWW} ${IN_WP}
         else
             mkdir -p ${IN_WP}
-            mv ${IN_WWW}/* ${IN_WP}
+            mv ${IN_WWW}/* ${IN_WP}/
         fi
 
     else
