@@ -10,7 +10,9 @@ export BCG_E=`basename ${0}`
 
 cd /tmp
 
-URL="https://${WP_LOCALE}.wordpress.org/latest-${WP_LOCALE}.zip"
+[[ -n "${WP_VERSION-}" ]] && VERSION="${WP_VERSION}-"
+URL="https://${WP_LOCALE}.wordpress.org/latest-${VERSION-}${WP_LOCALE}.zip"
+
 bcg-echo "Downloading ${URL}..."
 wget -O wp.zip ${URL} \
     && unzip -oq wp.zip \
