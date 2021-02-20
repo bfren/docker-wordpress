@@ -7,7 +7,7 @@ on:
     tags-ignore:
       - '**'
     paths:
-      - '.github/workflows/build_8_0-main.yml'
+      - '.github/workflows/build_8_0-dev.yml'
       - '8.0/**'
       - 'overlay/**'
       - 'VERSION'
