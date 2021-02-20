@@ -8,4 +8,5 @@ export BCG_E=`basename ${0}`
 # Download WordPress.
 #======================================================================================================================
 
-chmod +x wp-download && wp-download
+DOWNLOAD=/usr/bin/local/wp-download
+chmod +x ${DOWNLOAD} && ${DOWNLOAD}
