@@ -20,6 +20,12 @@ jobs:
         name: Checkout code
         uses: actions/checkout@v2
       -
+        name: Read image version
+        uses: bencgreen/read-file-action@v1
+        with:
+          path: ./VERSION
+        id: version
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
@@ -43,6 +49,8 @@ jobs:
           tags: |
             bcgdesign/wordpress:dev-php-8
             bcgdesign/wordpress:dev-php-8.0
+            bcgdesign/wordpress:php-8-${{ steps.version.outputs.content }}
+            bcgdesign/wordpress:php-8.0-${{ steps.version.outputs.content }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

@@ -21,6 +21,12 @@ jobs:
         name: Checkout code
         uses: actions/checkout@v2
       -
+        name: Read image version
+        uses: bencgreen/read-file-action@v1
+        with:
+          path: ./VERSION
+        id: version
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
@@ -42,9 +48,12 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
+            bcgdesign/wordpress:${{ steps.version.outputs.content }}
             bcgdesign/wordpress:dev
             bcgdesign/wordpress:dev-php-7
             bcgdesign/wordpress:dev-php-7.4
+            bcgdesign/wordpress:php-7-${{ steps.version.outputs.content }}
+            bcgdesign/wordpress:php-7.4-${{ steps.version.outputs.content }}
       -
         name: Build and push (en_GB)
         id: docker_build_en_GB
