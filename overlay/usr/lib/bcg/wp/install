@@ -1,11 +1,11 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-source /etc/wp/inc/directories.sh
+export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Download WordPress
+# Download WordPress.
 #======================================================================================================================
 
 cd /tmp
@@ -16,22 +16,16 @@ wget -O wp.zip ${URL} \
     && unzip -oq wp.zip \
     && rm wp.zip
 
-if [ -d ./wordpress ] ; then
-    bcg-done
-else
-    bcg-error "WordPress not downloaded."
-fi
+[[ -d ./wordpress ]] && bcg-done \
+    || bcg-error "WordPress not downloaded."
 
 
 #======================================================================================================================
-# Move WordPress files to /www
+# Move WordPress files to /www.
 #======================================================================================================================
 
-bcg-echo "Moving WordPress files to ${WWW}..."
-mv wordpress/* ${WWW} && rm -rf wordpress
+bcg-echo "Moving WordPress files to ${NGINX_WWW}..."
+mv wordpress/* ${NGINX_WWW} && rm -rf wordpress
 
-if [ -f ${WWW}/wp-load.php ] ; then
-    bcg-done
-else
-    bcg-error "WordPress not installed."
-fi
+[[ -f ${NGINX_WWW}/wp-load.php ]] && bcg-done \
+    || bcg-error "WordPress not installed."

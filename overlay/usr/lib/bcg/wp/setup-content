@@ -1,11 +1,11 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-source /etc/wp/inc/directories.sh
+export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Move each wp-content directory to /wp and create a link
+# Move each wp-content directory to /wp and create a link.
 #======================================================================================================================
 
 function move_and_link () {
@@ -14,7 +14,7 @@ function move_and_link () {
     bcg-echo " .. ${1}"
 
     # define directory variables
-    WP_DIR="${WP}/${1}"
+    WP_DIR="${WP_ROOT}/${1}"
     WWW_DIR="${WWW_WP_CONTENT}/${1}"
 
     # if dir does not exist in /wp, create it and set ownership

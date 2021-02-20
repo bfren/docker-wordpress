@@ -1,17 +1,17 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-source /etc/wp/inc/directories.sh
+export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# If wp-config.php is a file, move it to /wp - otherwise generate it - and then create a link
+# If wp-config.php is a file, move it to /wp - otherwise generate it - and then create a link.
 #======================================================================================================================
 
-if [ -f ${WWW}/wp-config.php ] ; then
+if [ -f ${NGINX_WWW_WP_CONFIG} ] ; then
 
     bcg-echo "Moving existing wp-config.php..."
-    mv ${WWW}/wp-config.php ${WP}
+    mv ${NGINX_WWW_WP_CONFIG} ${WP_CONFIG}
     bcg-done
 
 else
@@ -22,12 +22,12 @@ else
     export AUTH=$(curl -s https://api.wordpress.org/secret-key/1.1/salt/)
 
     # generate config from the template
-    esh -o ${WP}/wp-config.php \
-        /etc/templates/wp-config.php.esh
+    esh -o ${CONFIG} \
+        ${TEMPLATS}/wp-config.php.esh
     bcg-done
 
 fi
 
 bcg-echo "Create wp-config.php link..."
-ln -s ${WP}/wp-config.php ${WWW}/wp-config.php
+ln -s ${WP_CONFIG} ${NGINX_WWW_WP_CONFIG}
 bcg-done
