@@ -25,7 +25,7 @@ function move-content () {
         bcg-debug "    moving ${IN_WWW} to ${IN_WP}"
         mv ${IN_WWW} ${WP_CONTENT}/
     else
-        bcg-debug "${IN_WP} already exists."
+        bcg-debug "    ${IN_WP} already exists."
     fi
 
 }
@@ -61,7 +61,7 @@ for CONTENT in ${WP_ROOT}/* ; do
             ;;
 
         *)
-            bcg-debug " .. ${CONTENT}"
+            bcg-debug " .. moving ${CONTENT}"
             mv "${CONTENT}" ${WP_CONTENT}/
             ;;
 
@@ -75,8 +75,7 @@ bcg-done
 # Delete www/wp-content and link to wp/content.
 #======================================================================================================================
 
-#bcg-rmrf "${NGINX_WWW_WP_CONTENT}"
-
-#bcg-echo "Linking ${NGINX_WWW_WP_CONTENT} to ${WP_CONTENT}..."
-#ln -s ${NGINX_WWW_WP_CONTENT} ${WP_CONTENT}
-#bcg-done
+bcg-echo "Removing /www/wp-content and linking to /wp/content..."
+bcg-rmrf "${NGINX_WWW_WP_CONTENT}"
+ln -s ${WP_CONTENT} ${NGINX_WWW_WP_CONTENT}
+bcg-done
