@@ -29,7 +29,7 @@ wget -O wp.zip ${URL} \
 # Set www permissions on source files.
 #======================================================================================================================
 
-bcg-echo "Setting permissions on /src..."
+bcg-echo "Setting permissions on /src..." # see /wp entry in fix-attrs.d/30-wp for correct permissions
 chown -R www:www /src
 find /src -type f -exec chmod 0644 {} +
 find /src -type d -exec chmod 0755 {} +
