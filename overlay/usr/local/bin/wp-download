@@ -23,3 +23,14 @@ wget -O wp.zip ${URL} \
 
 [[ -d ./wordpress ]] && bcg-done \
     || bcg-error "WordPress not downloaded."
+
+
+#======================================================================================================================
+# Set www permissions on source files.
+#======================================================================================================================
+
+bcg-echo "Setting permissions on /src..."
+chown -R www:www /src
+find /src -type f -exec chmod 0644 {} +
+find /src -type d -exec chmod 0755 {} +
+bcg-done
