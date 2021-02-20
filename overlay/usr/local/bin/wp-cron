@@ -9,10 +9,9 @@ export BCG_E=`basename ${0}`
 # See https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/
 #======================================================================================================================
 
-bcg-echo "Executing WordPress cron."
-CODE=$(http-status http://localhost/wp-cron.php)
+bcg-debug "Executing WordPress cron."
+CODE=$(${LIB_NGINX}/http-status http://localhost/wp-cron.php)
 if [ "${CODE}" = "200" ] ; then
-    bcg-debug "Success."
 else
     bcg-error "Error executing cron (HTTP status ${CODE})."
 fi
