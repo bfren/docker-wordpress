@@ -1,6 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
+export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
@@ -11,7 +12,7 @@ set -euo pipefail
 bcg-echo "Executing WordPress cron..."
 CODE=$(curl -s -o /dev/null -I -w "%{http_code}" http://localhost/wp-cron.php)
 if [ "${CODE}" = "200" ] ; then
-    bcg-done
+    bcg-debug "Executed successfully."
 else
     bcg-error "Unable to execute cron."
 fi
