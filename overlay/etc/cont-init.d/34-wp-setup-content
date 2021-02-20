@@ -11,6 +11,7 @@ export BCG_E=`basename ${0}`
 if [ -L ${NGINX_WWW_WP_CONTENT} ] ; then
 
     bcg-ok "WordPress content already moved."
+    wp-setup-complete
     exit 0
 
 fi
