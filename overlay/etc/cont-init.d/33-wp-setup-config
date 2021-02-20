@@ -10,10 +10,9 @@ export BCG_E=`basename ${0}`
 
 if [ "${WP_GENERATE_CONFIG}" = "1" ] ; then
 
-    bcg-echo "Generate config detected, removing wp-config.php files..."
+    bcg-echo "Generate config detected."
     bcg-rmrf ${NGINX_WWW_WP_CONFIG}
     bcg-rmrf ${WP_CONFIG}
-    bcg-done
 
 elif [ -L ${NGINX_WWW_WP_CONFIG} ] ; then
 

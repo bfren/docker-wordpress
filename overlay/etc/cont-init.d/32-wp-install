@@ -12,9 +12,8 @@ if [ -L ${NGINX_WWW_WP_CONFIG} ] || [ -f ${NGINX_WWW_WP_CONFIG} ] ; then
 
     if [ "${WP_CLEAN_INSTALL}" = "1" ] ; then
 
-        bcg-echo "Clean install detected, deleting contents of ${NGINX_WWW}..."
+        bcg-echo "Clean install detected."
         bcg-rmrf "${NGINX_WWW}/*"
-        bcg-done
 
     else
 
