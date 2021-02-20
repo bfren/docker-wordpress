@@ -1,33 +1,30 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-source /etc/wp/inc/directories.sh
+export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Check for wp-config.php and WP_CLEAN_INSTALL
+# If wp-config.php is a symlink, the setup has already been run.
 #======================================================================================================================
 
-if [ -L ${WWW}/wp-config.php ] || [ -f ${WWW}/wp-config.php ] ; then
+if [ "${WP_GENERATE_CONFIG}" = "1" ] ; then
 
-    if [ "${WP_CLEAN_INSTALL}" = "1" ] ; then
+    bcg-echo "Generate config detected, removing wp-config.php files..."
+    bcg-rmrf ${NGINX_WWW_WP_CONFIG}
+    bcg-rmrf ${WP_CONFIG}
+    bcg-done
 
-        bcg-echo "Clean install detected, deleting contents of ${WWW}..."
-        bcg-rmrf "${WWW}/*"
-        bcg-done
+elif [ -L ${NGINX_WWW_WP_CONFIG} ] ; then
 
-    else
-
-        bcg-ok "WordPress already installed."
-        exit 0
-
-    fi
+    bcg-ok "WordPress already configured."
+    exit 0
 
 fi
 
 
 #======================================================================================================================
-# Run installation program
+# Run setup config program.
 #======================================================================================================================
 
-s6-setuidgid www /etc/wp/install
+s6-setuidgid www ${LIB_WP}/setup-config

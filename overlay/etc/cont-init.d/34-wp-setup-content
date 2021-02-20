@@ -1,10 +1,11 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
+export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Run setup content program
+# Run setup content program.
 #======================================================================================================================
 
-/etc/wp/setup-content
+${LIB_WP}/setup-content
