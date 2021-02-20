@@ -2,14 +2,15 @@ name: 8.0-dev
 
 on:
   push:
-    branches:
-      - '**'
+    branches-ignore:
+      - 'main'
     tags-ignore:
       - '**'
     paths:
-      - '.github/workflows/build_8_0-dev.yml'
+      - '.github/workflows/build_8_0-main.yml'
       - '8.0/**'
       - 'overlay/**'
+      - 'VERSION'
 
 jobs:
   main:
