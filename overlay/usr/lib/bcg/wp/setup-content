@@ -20,7 +20,7 @@ for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
     IN_WWW="${NGINX_WWW_WP_CONTENT}/${NAME}"
 
     # if content does not exist in /wp, create it and set ownership
-    if [ ! -e ${IN_WP} ] ; then
+    if [ -e ${CONTENT} ] && [ ! -e ${IN_WP} ] ; then
         bcg-debug "    moving ${IN_WWW} to ${IN_WP}"
         mv ${IN_WWW} ${WP_CONTENT}/
     else
@@ -68,10 +68,3 @@ bcg-rmrf "${NGINX_WWW_WP_CONTENT}"
 bcg-debug "Creating link to ${WP_CONTENT}."
 ln -s ${WP_CONTENT} ${NGINX_WWW_WP_CONTENT}
 bcg-done
-
-
-#======================================================================================================================
-# Mark setup as complete.
-#======================================================================================================================
-
-wp-setup-complete
