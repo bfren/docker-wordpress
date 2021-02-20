@@ -28,6 +28,6 @@ else
 
 fi
 
-bcg-echo "Create wp-config.php link..."
+bcg-echo "Creating wp-config.php link..."
 ln -s ${WP_CONFIG} ${NGINX_WWW_WP_CONFIG}
 bcg-done

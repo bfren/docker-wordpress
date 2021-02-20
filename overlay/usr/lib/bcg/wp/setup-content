@@ -42,8 +42,8 @@ function move_and_link () {
         fi
 
         # create link from /wp to /www/wp-content
-        bcg-debug "    creating link from ${IN_WP} to ${IN_WWW}"
-        ln -s ${IN_WP} ${IN_WWW}
+        #bcg-debug "    creating link from ${IN_WP} to ${IN_WWW}"
+        #ln -s ${IN_WP} ${IN_WWW}
 
     fi
 
@@ -51,7 +51,8 @@ function move_and_link () {
 
 bcg-echo "Moving wp-content directories and linking..."
 for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
-    move_and_link "${CONTENT}"
+    NAME=$(basename -- "${CONTENT}")
+    move_and_link "${NAME}"
 done
 bcg-done
 
