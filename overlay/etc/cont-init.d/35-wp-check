@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv bash
+
+set -euo pipefail
+export BCG_E=`basename ${0}`
+
+
+#======================================================================================================================
+# If setup was not completed succesfully, terminate and close down the container.
+#======================================================================================================================
+
+if [ "${SETUP_COMPLETE-}" = "1" ] ; then
+    bcg-ok "WordPress setup complete."
+    exit 0
+fi
+
+bcg-notok "WordPress setup did not complete successfully, terminating container."
+bcg-svc-terminate

@@ -67,3 +67,10 @@ bcg-echo "Removing /www/wp-content and linking to /wp/content..."
 bcg-rmrf "${NGINX_WWW_WP_CONTENT}"
 ln -s ${WP_CONTENT} ${NGINX_WWW_WP_CONTENT}
 bcg-done
+
+
+#======================================================================================================================
+# Add setup complete environment variable.
+#======================================================================================================================
+
+bcg-env "SETUP_COMPLETE" "1"
