@@ -34,4 +34,4 @@ fi
 # Run setup config executable.
 #======================================================================================================================
 
-s6-setuidgid www ${LIB_WP}/setup-config
+s6-setuidgid www ${WP_LIB}/setup-config

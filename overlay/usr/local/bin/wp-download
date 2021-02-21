@@ -19,7 +19,8 @@ export BCG_E=`basename ${0}`
 # Download WordPress.
 #======================================================================================================================
 
-cd /src
+BCG_SRC=/etc/bcg/src
+cd ${BCG_SRC}
 
 URL="https://${LOCALE}.wordpress.org/${VERSION}-${LOCALE}.zip"
 
@@ -28,7 +29,7 @@ wget -O wp.zip ${URL} \
     && unzip -oq wp.zip \
     && rm wp.zip
 
-WP_SRC=/src/wordpress
+WP_SRC=${BCG_SRC}/wordpress
 [[ -d ${WP_SRC} ]] && bcg-done \
     || bcg-error "WordPress not downloaded."
 

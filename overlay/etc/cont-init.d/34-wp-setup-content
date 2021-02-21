@@ -28,5 +28,5 @@ fi
 # Run setup content executable.
 #======================================================================================================================
 
-s6-setuidgid www ${LIB_WP}/setup-content
+s6-setuidgid www ${WP_LIB}/setup-content
 wp-setup-complete

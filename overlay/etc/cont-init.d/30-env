@@ -8,7 +8,7 @@ export BCG_E=`basename ${0}`
 # Add environment variables.
 #======================================================================================================================
 
-bcg-env "LIB_WP" "${LIB}/wp"
+bcg-env "WP_LIB" "${BCG_LIB}/wp"
 
 WP=/wp
 bcg-env "WP_ROOT" "${WP}"
