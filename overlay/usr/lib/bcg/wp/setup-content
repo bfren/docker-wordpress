@@ -72,7 +72,7 @@ for CONTENT in ${WP_ROOT}/* ; do
 
         *)
             bcg-debug " .. moving ${CONTENT}."
-            (cd ${CONTENT} && tar c .) | (cd ${WP_CONTENT} && tar xf -)
+            (cd ${CONTENT} && tar c .) | (cd ${WP_CONTENT} && tar xf -) && rm -rf ${CONTENT}
             ;;
 
     esac
