@@ -25,7 +25,9 @@ else
     [[ -z "${WP_DB_HOST-}" ]] && bcg-error "WP_DB_HOST must be set."
 
     # get fresh authentication values
-    export AUTH=$(wget --quiet -O - https://api.wordpress.org/secret-key/1.1/salt/)
+    URL="https://api.wordpress.org/secret-key/1.1/salt/"
+    bcg-debug "Getting authentication secrets from ${URL}."
+    export AUTH=$(wget --quiet -O - ${URL})
 
     # generate config from the template
     esh -o ${WP_CONFIG} \
