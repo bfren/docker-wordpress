@@ -1,3 +1,4 @@
 /usr/local/bin/wp-* false root:root 0500 0500
 /usr/local/bin/wp-download false root:root 0555 0555
-/wp true www:www 0644 0755
+/wp/content true www:www 0644 0755
+/wp/wp-config.php false www:www 0400 0755

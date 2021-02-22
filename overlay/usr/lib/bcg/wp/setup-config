@@ -34,7 +34,7 @@ else
         ${BCG_TEMPLATES}/wp-config.php.esh
 
     # set permissions
-    chmod 0644 ${WP_CONFIG}
+    chmod 0400 ${WP_CONFIG}
     bcg-done
 
 fi
