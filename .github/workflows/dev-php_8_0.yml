@@ -1,4 +1,4 @@
-name: 7.4-dev
+name: dev-php_8_0
 
 on:
   push:
@@ -7,14 +7,19 @@ on:
     tags-ignore:
       - '**'
     paths:
-      - '.github/workflows/build_7_4-dev.yml'
-      - '7.4/**'
-      - 'locales/**'
+      - '.github/workflows/dev-php_8_0.yml'
+      - '8.0/**'
       - 'overlay/**'
       - 'VERSION'
 
 jobs:
-  main:
+  test-8_0:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout code
+        uses: actions/checkout@v2
+  build-8_0:
     runs-on: ubuntu-latest
     steps:
       -
@@ -44,28 +49,14 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./7.4/Dockerfile
+          file: ./8.0/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bcgdesign/wordpress:${{ steps.version.outputs.content }}
-            bcgdesign/wordpress:dev
-            bcgdesign/wordpress:dev-php-7
-            bcgdesign/wordpress:dev-php-7.4
-            bcgdesign/wordpress:php-7-${{ steps.version.outputs.content }}
-            bcgdesign/wordpress:php-7.4-${{ steps.version.outputs.content }}
-      -
-        name: Build and push (en_GB)
-        id: docker_build_en_GB
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./locales/en_GB/Dockerfile
-          push: true
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
-          tags: |
-            bcgdesign/wordpress:dev-en_GB
-            bcgdesign/wordpress:en_GB-${{ steps.version.outputs.content }}
+            bcgdesign/wordpress:php-8-dev
+            bcgdesign/wordpress:php-8-${{ steps.version.outputs.content }}-beta
+            bcgdesign/wordpress:php-8.0-dev
+            bcgdesign/wordpress:php-8.0-${{ steps.version.outputs.content }}-beta
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
