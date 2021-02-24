@@ -32,21 +32,22 @@ for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
     IN_WP="${WP_CONTENT}/${NAME}"
 
     # if content does not exist in /wp/content, move it from /www/wp-content
-    if [ -e ${CONTENT} ] && [ ! -e ${IN_WP} ] ; then
-        bcg-debug "    moving ${CONTENT} to ${IN_WP}"
+    if [ ! -e ${IN_WP} ] ; then
 
-        # use slightly different syntax to move files or directories
+        bcg-debug "    moving ${CONTENT} to ${IN_WP}."
+
+        # use slightly different syntax to move files and directories
         if [ -f ${CONTENT} ] ; then
             mv ${CONTENT} ${IN_WP}
-        else
+        elif [ -d ${CONTENT} ] ; then
             mkdir -p ${IN_WP}
-            if [ "$(ls -A ${CONTENT})" ] ; then
-                mv ${CONTENT}/* ${IN_WP}/
-            fi
+            [[ "$(ls -A ${CONTENT})" ]] && mv ${CONTENT}/* ${IN_WP}/
         fi
 
     else
+
         bcg-debug "    ${IN_WP} already exists."
+
     fi
 
 done
@@ -54,7 +55,8 @@ bcg-done
 
 
 #======================================================================================================================
-# Move any additional files in /wp/ to /wp/content/ (supports previous versions of the image).
+# Move any additional files in /wp/ to /wp/content/.
+#   (Required to support previous versions of the image.)
 #======================================================================================================================
 
 bcg-echo "Moving any additional content into ${WP_CONTENT}..."
@@ -62,7 +64,6 @@ for CONTENT in ${WP_ROOT}/* ; do
 
     # get file name
     NAME=$(basename -- "${CONTENT}")
-
     case "${NAME}" in
 
         content|wp-config.php)
@@ -71,12 +72,14 @@ for CONTENT in ${WP_ROOT}/* ; do
             ;;
 
         *)
-            bcg-debug " .. moving ${CONTENT}."
+            bcg-debug " .. copying ${NAME} to ${WP_CONTENT}."
             if [ -f ${CONTENT} ] ; then
                 mv ${CONTENT} ${WP_CONTENT}
             else
                 (cd ${CONTENT} && tar c .) | (cd ${WP_CONTENT} && tar xf -)
             fi
+
+            bcg-debug "    removing ${CONTENT}."
             rm -rf ${CONTENT}
             ;;
 
@@ -90,9 +93,12 @@ bcg-done
 # Delete /www/wp-content and link to /wp/content.
 #======================================================================================================================
 
-bcg-echo "Removing ${NGINX_WWW_WP_CONTENT} and linking to ${WP_CONTENT}..."
+bcg-echo "Linking ${NGINX_WWW_WP_CONTENT} to ${WP_CONTENT}..."
+
 bcg-rmrf "${NGINX_WWW_WP_CONTENT}"
+
 bcg-debug "Creating link to ${WP_CONTENT}."
-ln -s ${WP_CONTENT} ${NGINX_WWW_WP_CONTENT}
-chown www:www ${NGINX_WWW_WP_CONTENT}
+ln -s ${WP_CONTENT} ${NGINX_WWW_WP_CONTENT} \
+    && chown www:www ${NGINX_WWW_WP_CONTENT}
+
 bcg-done
