@@ -11,7 +11,5 @@ export BCG_E=`basename ${0}`
 
 bcg-debug "Executing WordPress cron."
 CODE=$(${NGINX_LIB}/http-status http://localhost/wp-cron.php)
-if [ "${CODE}" = "200" ] ; then
-else
-    bcg-error "Error executing cron (HTTP status ${CODE})."
-fi
+[[ "${CODE}" = "200" ]] && exit 0 \
+    || bcg-error "Error executing cron (HTTP status ${CODE})."
