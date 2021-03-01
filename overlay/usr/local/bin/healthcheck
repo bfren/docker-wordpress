@@ -1,7 +1,6 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
@@ -9,8 +8,9 @@ export BCG_E=`basename ${0}`
 # WordPress will try and redirect to HTTPS, there is no way to disable this without a plugin
 #======================================================================================================================
 
-CODE=$(${NGINX_LIB}/http-status http://localhost)
+CODE=${NGINX_LIB}/http-status "http://localhost"
 if [[ ${CODE} -ge 200 && ${CODE} -lt 400  ]] ; then
+    exit 0
 else
     exit 1
 fi
