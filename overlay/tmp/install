@@ -46,11 +46,11 @@ WP=wordpress
 WP_SRC=${SRC}/${WP}
 bcg-debug "WordPress source directory: ${WP_SRC}."
 
-WP_CONTENT=${WP_SRC}/wp-content
-bcg-debug "WordPress content directory: ${WP_CONTENT}."
+WP_CONTENT_SRC=${WP_SRC}/wp-content
+bcg-debug "WordPress source wp-content directory: ${WP_CONTENT_SRC}."
 
 WP_CONTENT_DEFAULT=${SRC}/wp-content-default
-bcg-debug "WordPress default content directory: ${WP_CONTENT_DEFAULT}."
+bcg-debug "WordPress default wp-content directory: ${WP_CONTENT_DEFAULT}."
 
 WP_VERSION=$(cat WP_VERSION)
 bcg-debug "WordPress version ${WP_VERSION}."
@@ -91,7 +91,7 @@ bcg-done
 # Create a copy of default wp-content directory.
 #======================================================================================================================
 
-cp -R ${WP_CONTENT} ${WP_CONTENT_DEFAULT}
+cp -R ${WP_CONTENT_SRC} ${WP_CONTENT_DEFAULT}
 
 
 #======================================================================================================================
