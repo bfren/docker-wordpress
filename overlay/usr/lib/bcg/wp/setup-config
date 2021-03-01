@@ -22,6 +22,7 @@ bcg-debug "Getting authentication secrets from ${URL}."
 export AUTH=$(wget --quiet -O - ${URL})
 
 # generate config from the template
+bcg-debug "Generating ${WP_CONFIG}."
 esh -o ${WP_CONFIG} \
     ${BCG_TEMPLATES}/wp-config.php.esh
 
