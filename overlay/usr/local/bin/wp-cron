@@ -10,6 +10,6 @@ export BCG_E=`basename ${0}`
 #======================================================================================================================
 
 bcg-debug "Executing WordPress cron."
-CODE=$(${NGINX_LIB}/http-status http://localhost/wp-cron.php)
+CODE=$(wget --server-response --spider "http://localhost/wp-cron.php" 2>&1 | grep "HTTP/" | awk '{print $2}')
 [[ "${CODE}" = "200" ]] && exit 0 \
     || bcg-error "Error executing cron (HTTP status ${CODE})."
