@@ -21,8 +21,8 @@ bcg-debug "Imagick version ${IMAGICK_VERSION}."
 # Install PHP and Imagick dependencies and packages.
 #======================================================================================================================
 
-bcg-echo "Installing dependencies..."
-apk add --no-cache \
+bcg-echo "Installing installation dependencies..."
+apk add --no-cache --virtual .install \
     unzip
 bcg-done
 
@@ -54,9 +54,9 @@ bcg-debug "WordPress version ${WP_VERSION}."
 #======================================================================================================================
 
 cd /tmp
-URL="https://${WP_LOCALE}.wordpress.org/${WP_VERSION}-${WP_LOCALE}.zip"
+URL="https://${WP_LOCALE}.wordpress.org/wordpress-${WP_VERSION}-${WP_LOCALE}.zip"
 
-bcg-echo "Downloading ${URL} to /tmp/${WP}..."
+bcg-echo "Downloading ${URL} to /tmp..."
 wget -O wp.zip ${URL} \
     && unzip -oq wp.zip \
     && rm wp.zip
@@ -81,16 +81,19 @@ bcg-done
 
 
 #======================================================================================================================
-# Cleanup.
-#======================================================================================================================
-
-bcg-debug "Cleanup /www files..."
-rm -f /www/*
-
-
-#======================================================================================================================
 # Create WordPress directory.
 #======================================================================================================================
 
 bcg-debug "Creating WordPress content directory."
 mkdir /wp-content
+
+
+#======================================================================================================================
+# Cleanup.
+#======================================================================================================================
+
+bcg-debug "Removing /www files."
+rm -f /www/*
+
+bcg-debug "Removing installation dependencies."
+apk del .install
