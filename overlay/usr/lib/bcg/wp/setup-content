@@ -45,6 +45,11 @@ else
     done
     bcg-done
 
+    bcg-echo "Setting permissions on ${WP_CONTENT}..." # see fix-attrs.d/30-wp for correct permissions
+    find ${WP_CONTENT} -type f -exec chmod 0644 {} +
+    find ${WP_CONTENT} -type d -exec chmod 0755 {} +
+    bcg-done
+
 fi
 
 

@@ -15,4 +15,4 @@ export BCG_E=`basename ${0}`
 # Run setup config executable.
 #======================================================================================================================
 
-s6-setuidgid www ${WP_LIB}/setup-config
+${WP_LIB}/setup-config
