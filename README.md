@@ -42,6 +42,7 @@ See the [Nginx + PHP](https://github.com/bencgreen/docker-nginx-php) image for d
 | `WP_DB_CHARSET`                | string        | Database character set (leave as default if not sure).                                      | utf8mb4                                        |
 | `WP_DB_COLLATE`                | string        | Database collation (leave blank if not sure).                                               | *None*                                         |
 | `WP_DB_PREFIX`                 | string        | Database table prefix - an underscore will be added automatically.                          | wp                                             |
+| `WP_CONFIG_HARDEN`             | 0 or 1        | Set to 1 to make `wp-config.php` read-only to the web server user.                          | 0                                              |
 | `WP_DEBUG`                     | true or false | Whether or not to enable debug mode.                                                        | false                                          |
 | `WP_ENABLE_HTTPS_BEHIND_PROXY` | 0 or 1        | Whether or not to enable HTTPS behind a proxy server.                                       | 1                                              |
 | `WP_DISABLE_UPDATES`           | 0 or 1        | Set to 0 to enable WordPress core system updates (otherwise they are handled by the image). | 1                                              |
