@@ -40,10 +40,17 @@ bcg-done
 #======================================================================================================================
 
 SRC=/etc/bcg/src
-bcg-debug "Source directory ${SRC}."
+bcg-debug "Source directory: ${SRC}."
 
 WP=wordpress
 WP_SRC=${SRC}/${WP}
+bcg-debug "WordPress source directory: ${WP_SRC}."
+
+WP_CONTENT=${WP_SRC}/wp-content
+bcg-debug "WordPress content directory: ${WP_CONTENT}."
+
+WP_CONTENT_DEFAULT=${SRC}/wp-content-default
+bcg-debug "WordPress default content directory: ${WP_CONTENT_DEFAULT}."
 
 WP_VERSION=$(cat WP_VERSION)
 bcg-debug "WordPress version ${WP_VERSION}."
@@ -78,6 +85,13 @@ chown -R www:www ${WP_SRC}
 find ${WP_SRC} -type f -exec chmod 0400 {} +
 find ${WP_SRC} -type d -exec chmod 0500 {} +
 bcg-done
+
+
+#======================================================================================================================
+# Create a copy of default wp-content directory.
+#======================================================================================================================
+
+cp -R ${WP_CONTENT} ${WP_CONTENT_DEFAULT}
 
 
 #======================================================================================================================
