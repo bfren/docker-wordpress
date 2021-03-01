@@ -27,10 +27,11 @@ esh -o ${WP_CONFIG} \
     ${BCG_TEMPLATES}/wp-config.php.esh
 
 # set permissions (write access is required by some plugins, e.g. caching / optimise plugins)
+bcg-ch -o www:www -m 0600 ${WP_CONFIG}
+
 if [ "${WP_CONFIG_HARDEN-}" = "1" ] ; then
-    bcg-ch -o www:www -m 0400 ${WP_CONFIG}
-else
-    bcg-ch -o www:www -m 0600 ${WP_CONFIG}
+    bcg-debug "Harden wp.config.php to read-only."
+    bcg-ch -m 0400 ${WP_CONFIG}
 fi
 
 bcg-done
