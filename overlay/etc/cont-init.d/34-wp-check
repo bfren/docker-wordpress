@@ -10,7 +10,6 @@ export BCG_E=`basename ${0}`
 
 if [ "${SETUP_COMPLETE-}" = "1" ] ; then
     bcg-clear
-    bcg-clear-src
     bcg-ok "WordPress setup complete."
     exit 0
 fi

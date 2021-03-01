@@ -1,12 +1,13 @@
-#!/bin/sh
+#!/usr/bin/with-contenv sh
 
 set -euo pipefail
 export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Download WordPress.
+# Add environment variables.
 #======================================================================================================================
 
-DOWNLOAD=/usr/local/bin/wp-download
-chmod +x ${DOWNLOAD} && ${DOWNLOAD} "${WP_VERSION-}" "${WP_LOCALE-}"
+WP_SRC=${BCG_SRC}/wordpress
+bcg-env "WP_SRC" "${WP_SRC}"
+bcg-env "NGINX_ROOT" "${WP_SRC}"

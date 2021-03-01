@@ -1,4 +1,4 @@
-FROM bcgdesign/nginx-php:php-8.0-2.0.2
+FROM bcgdesign/nginx-php:php-8.0-2.0.3
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
@@ -6,13 +6,15 @@ LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.vendor="Ben Green" \
     org.label-schema.schema-version="1.0"
 
-ENV \
+ARG \
     # set to a valid WordPress locale or the installation will fail
-    WP_LOCALE="en_GB" \
+    WP_LOCALE="en_GB"
+
+ENV \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
     WP_CLEAN_INSTALL=0 \
-    # set to 1 to generate wp-config.php based on environment variables
-    WP_GENERATE_CONFIG=1 \
+    # additional directives to be added to wp-config.php
+    WP_CONFIG_ADDITIONAL= \
     # database name
     WP_DB_NAME= \
     # database user
@@ -31,15 +33,19 @@ ENV \
     WP_DEBUG="false" \
     # whether or not to enable HTTPS behind a proxy server
     WP_ENABLE_HTTPS_BEHIND_PROXY=1 \
+    # set to 0 to re-enable WordPress core updates - otherwise they will be handled by the image
+    WP_DISABLE_UPDATES=1 \
     # set to 1 to use system cron instead of WordPress cron (improves page performance)
     # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference
     WP_USE_SYSTEM_CRON=1
 
 COPY ./overlay /
+COPY ./WP_VERSION /tmp/WP_VERSION
+
 COPY ./8.0/overlay /
 COPY ./8.0/PHP_BUILD /tmp/PHP_VERSION
 COPY ./8.0/IMAGICK_BUILD /tmp/IMAGICK_VERSION
 
 RUN bcg-install
 
-VOLUME [ "/wp" ]
+VOLUME [ "/wp-content" ]

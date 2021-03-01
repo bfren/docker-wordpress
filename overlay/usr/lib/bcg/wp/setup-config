@@ -8,37 +8,23 @@ export BCG_E=`basename ${0}`
 # If wp-config.php is a file, move it to /wp - otherwise generate it - and then create a link.
 #======================================================================================================================
 
-if [ -f ${NGINX_WWW_WP_CONFIG} ] ; then
+bcg-echo "Generating wp-config.php..."
 
-    bcg-echo "Moving existing wp-config.php..."
-    mv ${NGINX_WWW_WP_CONFIG} ${WP_CONFIG}
-    bcg-done
+# ensure all required environment variables are set
+[[ -z "${WP_DB_NAME-}" ]] && bcg-error "WP_DB_NAME must be set."
+[[ -z "${WP_DB_USER-}" ]] && bcg-error "WP_DB_USER must be set."
+[[ -z "${WP_DB_PASS-}" ]] && bcg-error "WP_DB_PASS must be set."
+[[ -z "${WP_DB_HOST-}" ]] && bcg-error "WP_DB_HOST must be set."
 
-else
+# get fresh authentication values
+URL="https://api.wordpress.org/secret-key/1.1/salt/"
+bcg-debug "Getting authentication secrets from ${URL}."
+export AUTH=$(wget --quiet -O - ${URL})
 
-    bcg-echo "Generating new wp-config.php..."
+# generate config from the template
+esh -o ${WP_CONFIG} \
+    ${BCG_TEMPLATES}/wp-config.php.esh
 
-    # ensure all required environment variables are set
-    [[ -z "${WP_DB_NAME-}" ]] && bcg-error "WP_DB_NAME must be set."
-    [[ -z "${WP_DB_USER-}" ]] && bcg-error "WP_DB_USER must be set."
-    [[ -z "${WP_DB_PASS-}" ]] && bcg-error "WP_DB_PASS must be set."
-    [[ -z "${WP_DB_HOST-}" ]] && bcg-error "WP_DB_HOST must be set."
-
-    # get fresh authentication values
-    URL="https://api.wordpress.org/secret-key/1.1/salt/"
-    bcg-debug "Getting authentication secrets from ${URL}."
-    export AUTH=$(wget --quiet -O - ${URL})
-
-    # generate config from the template
-    esh -o ${WP_CONFIG} \
-        ${BCG_TEMPLATES}/wp-config.php.esh
-
-    # set permissions
-    chmod 0400 ${WP_CONFIG}
-    bcg-done
-
-fi
-
-bcg-echo "Creating wp-config.php link..."
-ln -s ${WP_CONFIG} ${NGINX_WWW_WP_CONFIG}
+# set permissions
+chmod 0400 ${WP_CONFIG}
 bcg-done

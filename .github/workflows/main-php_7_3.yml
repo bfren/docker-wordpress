@@ -32,6 +32,12 @@ jobs:
           path: ./7.3/PHP_BUILD
         id: php_build
       -
+        name: Read WP version
+        uses: bencgreen/read-file-action@v1
+        with:
+          path: ./WP_VERSION
+        id: wp_version
+      -
         name: Read image version
         uses: bencgreen/read-file-action@v1
         with:
@@ -59,10 +65,12 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bcgdesign/wordpress:php-7.3
-            bcgdesign/wordpress:php-7.3-${{ steps.version.outputs.content }}
-            bcgdesign/wordpress:php-${{ steps.php_revision.outputs.content }}
-            bcgdesign/wordpress:php-${{ steps.php_build.outputs.content }}
+            bcgdesign/wordpress:php7.3
+            bcgdesign/wordpress:php7.3-${{ steps.version.outputs.content }}
+            bcgdesign/wordpress:php7.3-wp${{ steps.wp_version.outputs.content }}
+            bcgdesign/wordpress:php7.3-wp${{ steps.wp_version.outputs.content }}-${{ steps.version.outputs.content }}
+            bcgdesign/wordpress:php${{ steps.php_revision.outputs.content }}
+            bcgdesign/wordpress:php${{ steps.php_build.outputs.content }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

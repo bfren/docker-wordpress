@@ -5,19 +5,14 @@ export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Download WordPress if the source is not part of the image.
+# If WP_SRC doesn't exist, the source files have not been downloaded correctly.
 #======================================================================================================================
 
-WP_SRC=${BCG_SRC}/wordpress
-[[ ! -d ${WP_SRC} ]] && wp-download "${WP_VERSION-}" "${WP_LOCALE-}"
+[[ ! -d ${WP_SRC} ]] && bcg-error "WordPress source files cannot be found."
 
 
 #======================================================================================================================
-# Move WordPress files to /www.
+# Run setup config executable.
 #======================================================================================================================
 
-bcg-echo "Moving WordPress files to ${NGINX_WWW}..."
-mv ${WP_SRC}/* ${NGINX_WWW} && rm -rf ${WP_SRC}
-
-[[ -f ${NGINX_WWW_WP_LOAD} ]] && bcg-done \
-    || bcg-error "WordPress not installed."
+s6-setuidgid www ${WP_LIB}/setup-config

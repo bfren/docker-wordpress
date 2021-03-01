@@ -5,100 +5,54 @@ export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Ensure WP_CONTENT exists.
+# If /wp-content is not empty, delete source wp-content and create link to /wp-content...
 #======================================================================================================================
 
-[[ ! -d ${WP_CONTENT} ]] && mkdir ${WP_CONTENT}
+if [ "$(ls -A ${WP_CONTENT})" ] ; then
+
+    bcg-debug "${WP_CONTENT} is not empty."
+
+    bcg-echo "Deleting ${WP_CONTENT_SRC}."
+    rm -rf ${WP_CONTENT_SRC}
+    bcg-done
 
 
 #======================================================================================================================
-# Move all files and directories in /www/wp-content to /wp/content.
+# ...otherwise, move all files and directories in sourc wp-content to /wp-content.
 #======================================================================================================================
 
-bcg-echo "Moving ${NGINX_WWW_WP_CONTENT} files and directories..."
-for CONTENT in ${NGINX_WWW_WP_CONTENT}/* ; do
+else
 
-    # get file name
-    NAME=$(basename -- "${CONTENT}")
-    bcg-echo " .. ${NAME}"
+    bcg-echo "Moving ${WP_CONTENT_SRC} files and directories..."
+    for CONTENT in ${WP_CONTENT_SRC}/* ; do
 
-    # if it is already a link, move on
-    if [ -L ${CONTENT} ] ; then
-        bcg-debug "    already moved."
-        continue
-    fi
+        # get file name
+        NAME=$(basename -- "${CONTENT}")
+        bcg-echo " .. ${NAME}"
 
-    # define new content variable
-    IN_WP="${WP_CONTENT}/${NAME}"
-
-    # if content does not exist in /wp/content, move it from /www/wp-content
-    if [ ! -e ${IN_WP} ] ; then
-
+        # define new content variable
+        IN_WP="${WP_CONTENT}/${NAME}"
         bcg-debug "    moving ${CONTENT} to ${IN_WP}."
 
         # use slightly different syntax to move files and directories
         if [ -f ${CONTENT} ] ; then
-            mv ${CONTENT} ${IN_WP}
+            mv ${CONTENT} ${WP_CONTENT}
         elif [ -d ${CONTENT} ] ; then
             mkdir -p ${IN_WP}
             [[ "$(ls -A ${CONTENT})" ]] && mv ${CONTENT}/* ${IN_WP}/
         fi
 
-    else
+    done
+    bcg-done
 
-        bcg-debug "    ${IN_WP} already exists."
-
-    fi
-
-done
-bcg-done
+fi
 
 
 #======================================================================================================================
-# Move any additional files in /wp/ to /wp/content/.
-#   (Required to support previous versions of the image.)
+# Link source wp-content to /wp-content.
 #======================================================================================================================
 
-bcg-echo "Moving any additional content into ${WP_CONTENT}..."
-for CONTENT in ${WP_ROOT}/* ; do
-
-    # get file name
-    NAME=$(basename -- "${CONTENT}")
-    case "${NAME}" in
-
-        content|wp-config.php)
-            bcg-debug " .. ignoring ${CONTENT}."
-            continue;
-            ;;
-
-        *)
-            bcg-debug " .. copying ${NAME} to ${WP_CONTENT}."
-            if [ -f ${CONTENT} ] ; then
-                mv ${CONTENT} ${WP_CONTENT}
-            else
-                (cd ${CONTENT} && tar c .) | (cd ${WP_CONTENT} && tar xf -)
-            fi
-
-            bcg-debug "    removing ${CONTENT}."
-            rm -rf ${CONTENT}
-            ;;
-
-    esac
-
-done
-bcg-done
-
-
-#======================================================================================================================
-# Delete /www/wp-content and link to /wp/content.
-#======================================================================================================================
-
-bcg-echo "Linking ${NGINX_WWW_WP_CONTENT} to ${WP_CONTENT}..."
-
-bcg-rmrf "${NGINX_WWW_WP_CONTENT}"
-
-bcg-debug "Creating link to ${WP_CONTENT}."
-ln -s ${WP_CONTENT} ${NGINX_WWW_WP_CONTENT} \
-    && chown www:www ${NGINX_WWW_WP_CONTENT}
-
+bcg-echo "Linking ${WP_CONTENT_SRC} to ${WP_CONTENT}..."
+ln -s ${WP_CONTENT} ${WP_CONTENT_SRC} \
+    && chown www:www ${WP_CONTENT_SRC}
 bcg-done
