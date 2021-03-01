@@ -8,7 +8,6 @@ set -euo pipefail
 #======================================================================================================================
 
 bcg-echo "Setting permissions on ${WP_CONTENT}..." `basename ${0}`
-chown -R www:www ${WP_CONTENT}
-find ${WP_CONTENT} -type f -exec chmod 0644 {} +
-find ${WP_CONTENT} -type d -exec chmod 0755 {} +
+bcg-ch -o www:www -m 0755 -t d ${WP_CONTENT}
+bcg-ch -o www:www -m 0644 -t f ${WP_CONTENT}
 bcg-done `basename ${0}`

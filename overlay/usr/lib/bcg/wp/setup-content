@@ -68,7 +68,7 @@ if [ ! -L ${WP_CONTENT_SRC} ] ; then
 
     bcg-echo "Linking ${WP_CONTENT_SRC} to ${WP_CONTENT}..."
     ln -s ${WP_CONTENT} ${WP_CONTENT_SRC} \
-        && chown www:www ${WP_CONTENT_SRC}
+        && bcg-ch -o www:www ${WP_CONTENT_SRC}
     bcg-done
 
 fi

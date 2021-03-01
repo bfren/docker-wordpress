@@ -27,6 +27,6 @@ esh -o ${WP_CONFIG} \
     ${BCG_TEMPLATES}/wp-config.php.esh
 
 # set permissions
-chown www:www ${WP_CONFIG}
-chmod 0400 ${WP_CONFIG}
+bcg-ch -o www:www -m 0400 ${WP_CONFIG}
+
 bcg-done
