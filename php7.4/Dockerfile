@@ -48,4 +48,4 @@ COPY ./php7.4/IMAGICK_BUILD /tmp/IMAGICK_VERSION
 
 RUN bcg-install
 
-VOLUME [ "/wp" ]
+VOLUME [ "/wp-content" ]
