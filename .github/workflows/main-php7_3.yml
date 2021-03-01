@@ -8,7 +8,7 @@ on:
       - '**'
     paths:
       - '.github/workflows/main-php7_3.yml'
-      - '7.3/**'
+      - 'php7.3/**'
       - 'overlay/**'
       - 'VERSION'
 
@@ -23,13 +23,13 @@ jobs:
         name: Read PHP version - revision
         uses: bencgreen/read-file-action@v1
         with:
-          path: ./7.3/PHP_REVISION
+          path: ./php7.3/PHP_REVISION
         id: php_revision
       -
         name: Read PHP version - build
         uses: bencgreen/read-file-action@v1
         with:
-          path: ./7.3/PHP_BUILD
+          path: ./php7.3/PHP_BUILD
         id: php_build
       -
         name: Read WP version
@@ -61,7 +61,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./7.3/Dockerfile
+          file: ./php7.3/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |

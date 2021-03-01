@@ -8,7 +8,7 @@ on:
       - '**'
     paths:
       - '.github/workflows/dev-php7_3.yml'
-      - '7.3/**'
+      - 'php7.3/**'
       - 'overlay/**'
       - 'VERSION'
 
@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./7.3/Dockerfile
+          file: ./php7.3/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |

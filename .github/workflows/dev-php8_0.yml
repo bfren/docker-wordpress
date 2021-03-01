@@ -8,7 +8,7 @@ on:
       - '**'
     paths:
       - '.github/workflows/dev-php8_0.yml'
-      - '8.0/**'
+      - 'php8.0/**'
       - 'overlay/**'
       - 'VERSION'
 
@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./8.0/Dockerfile
+          file: ./php8.0/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
