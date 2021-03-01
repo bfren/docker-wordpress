@@ -18,3 +18,10 @@ export BCG_E=`basename ${0}`
 bcg-echo "Copying default wp-content to ${WP_CONTENT}..."
 cp -R ${WP_CONTENT_DEFAULT}/* ${WP_CONTENT}/
 bcg-done
+
+
+#======================================================================================================================
+# Set correct permissions.
+#======================================================================================================================
+
+wp-content-setperms

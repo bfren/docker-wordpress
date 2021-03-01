@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv bash
+
+set -euo pipefail
+
+
+#======================================================================================================================
+# Set correct permissions on /wp-content (see fix-attrs.d/30-wp).
+#======================================================================================================================
+
+bcg-echo "Setting permissions on ${WP_CONTENT}..." `basename ${0}`
+chown -R www:www ${WP_CONTENT}
+find ${WP_CONTENT} -type f -exec chmod 0644 {} +
+find ${WP_CONTENT} -type d -exec chmod 0755 {} +
+bcg-done `basename ${0}`

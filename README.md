@@ -4,7 +4,7 @@
 
 [Docker Repository](https://hub.docker.com/r/bcgdesign/wordpress) - [bcg|design ecosystem](https://github.com/bencgreen/docker)
 
-On first run this will download and install the latest version of WordPress according to the `WORDPRESS_WP_LOCALE` environment variable - unless WordPress is detected in `/www`.
+Comes with WordPress en_GB preinstalled - if you want a different locale, use the Dockerfiles and set the `WP_LOCALE` argument.
 
 The required and recommended PHP modules are all installed.
 
@@ -23,10 +23,9 @@ The required and recommended PHP modules are all installed.
 
 ## Volumes
 
-| Volume | Purpose                                                                                                                                          |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `/www` | This is where all the WordPress files will be installed (if you are taking over an existing WordPress installation, map this to that directory). |
-| `/wp`  | Map this to backup your configuration and `wp-content` directories.                                                                              |
+| Volume         | Purpose                   |
+| -------------- | ------------------------- |
+| `/wp-content`  | `wp-content` directories. |
 
 See the [Nginx](https://github.com/bencgreen/docker-nginx) image for other configuration details.
 
@@ -53,7 +52,8 @@ See the [Nginx + PHP](https://github.com/bencgreen/docker-nginx-php) image for d
 | Function              | Purpose                                                                                        | Usage                 |
 | --------------------- | ---------------------------------------------------------------------------------------------- | --------------------- |
 | `wp-cron`             | Runs the WordPress cron - if `WP_USE_SYSTEM_CRON` is 1, will be run automatically.             | `wp-cron`             |
-| `wp-recreate-content` | **Warning**: deletes everything in `/wp-content` volume and recreates using WordPress default. | `wp-recreate-content` |
+| `wp-content-recreate` | **Warning**: deletes everything in `/wp-content` volume and recreates using WordPress default. | `wp-content-recreate` |
+| `wp-content-setperms` | Sets the correct permissions on `/wp-content` volume.                                          | `wp-content-setperms` |
 
 ## Nginx Configuration Helpers
 
