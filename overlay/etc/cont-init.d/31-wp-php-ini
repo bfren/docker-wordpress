@@ -5,7 +5,15 @@ export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Call wp-cron executable
+# Override configuration.
 #======================================================================================================================
 
-[[ "${WP_USE_SYSTEM_CRON-}" = "1" ]] && wp-cron
+bcg-echo "Overriding php.ini configuration values..."
+
+declare -A VALUES
+VALUES["cgi.fix_pathinfo"]="0"
+
+source ${BCG_INC}/php-replace-ini.sh
+replace-ini VALUES ${PHP_DIR}/php.ini
+
+bcg-done

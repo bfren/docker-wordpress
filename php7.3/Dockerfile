@@ -1,8 +1,8 @@
-FROM bcgdesign/nginx-php:auto
+FROM bcgdesign/nginx-php:php7.3-2.0.4
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
-    org.label-schema.version="latest" \
+    org.label-schema.version="7.3" \
     org.label-schema.vendor="Ben Green" \
     org.label-schema.schema-version="1.0"
 
@@ -42,9 +42,9 @@ ENV \
 COPY ./overlay /
 COPY ./WP_VERSION /tmp/WP_VERSION
 
-COPY ./php7.4/overlay /
-COPY ./php7.4/PHP_BUILD /tmp/PHP_VERSION
-COPY ./php7.4/IMAGICK_BUILD /tmp/IMAGICK_VERSION
+COPY ./php7.3/overlay /
+COPY ./php7.3/PHP_BUILD /tmp/PHP_VERSION
+COPY ./php7.3/IMAGICK_BUILD /tmp/IMAGICK_VERSION
 
 RUN bcg-install
 

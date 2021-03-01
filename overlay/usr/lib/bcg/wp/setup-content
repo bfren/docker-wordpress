@@ -1,0 +1,74 @@
+#!/usr/bin/with-contenv bash
+
+set -euo pipefail
+export BCG_E=`basename ${0}`
+
+
+#======================================================================================================================
+# If /wp-content already has content in it, delete source wp-content and create link to /wp-content...
+#======================================================================================================================
+
+if [ "$(ls -A ${WP_CONTENT})" ] ; then
+
+    bcg-debug "${WP_CONTENT} is not empty."
+
+    # if source wp-content is not a link, delete it (it will be recreated as a symlink later)
+    if [ ! -L ${WP_CONTENT_SRC} ] ; then
+
+        bcg-echo "Deleting ${WP_CONTENT_SRC} so it can be turned into a symlink."
+        rm -rf ${WP_CONTENT_SRC}
+        bcg-done
+
+    fi
+
+
+#======================================================================================================================
+# ...otherwise, move all files and directories in sourc wp-content to /wp-content.
+#======================================================================================================================
+
+else
+
+    # /wp-content is empty - if source wp-content is already a link, recreate /wp-content using the default copy
+    if [ -L ${WP_CONTENT_SRC} ] ; then
+
+        wp-content-recreate
+
+    # /wp-content is empty - move source wp-content
+    else
+
+        bcg-echo "Moving ${WP_CONTENT_SRC} files and directories..."
+        for CONTENT in ${WP_CONTENT_SRC}/* ; do
+
+            # get file name
+            NAME=$(basename -- "${CONTENT}")
+            bcg-echo " .. ${NAME}"
+
+            # define new content variable
+            IN_WP="${WP_CONTENT}/${NAME}"
+            bcg-debug "    moving ${CONTENT} to ${IN_WP}."
+
+            # move content
+            mv ${CONTENT} ${WP_CONTENT}
+
+        done
+        bcg-done
+
+        wp-content-setperms
+
+    fi
+
+fi
+
+
+#======================================================================================================================
+# Link source wp-content to /wp-content.
+#======================================================================================================================
+
+if [ ! -L ${WP_CONTENT_SRC} ] ; then
+
+    bcg-echo "Linking ${WP_CONTENT_SRC} to ${WP_CONTENT}..."
+    ln -s ${WP_CONTENT} ${WP_CONTENT_SRC} \
+        && bcg-ch -o www:www ${WP_CONTENT_SRC}
+    bcg-done
+
+fi

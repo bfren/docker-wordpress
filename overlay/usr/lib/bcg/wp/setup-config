@@ -1,0 +1,32 @@
+#!/usr/bin/with-contenv bash
+
+set -euo pipefail
+export BCG_E=`basename ${0}`
+
+
+#======================================================================================================================
+# If wp-config.php is a file, move it to /wp - otherwise generate it - and then create a link.
+#======================================================================================================================
+
+bcg-echo "Generating wp-config.php..."
+
+# ensure all required environment variables are set
+[[ -z "${WP_DB_NAME-}" ]] && bcg-error "WP_DB_NAME must be set."
+[[ -z "${WP_DB_USER-}" ]] && bcg-error "WP_DB_USER must be set."
+[[ -z "${WP_DB_PASS-}" ]] && bcg-error "WP_DB_PASS must be set."
+[[ -z "${WP_DB_HOST-}" ]] && bcg-error "WP_DB_HOST must be set."
+
+# get fresh authentication values
+URL="https://api.wordpress.org/secret-key/1.1/salt/"
+bcg-debug "Getting authentication secrets from ${URL}."
+export AUTH=$(wget --quiet -O - ${URL})
+
+# generate config from the template
+bcg-debug "Generating ${WP_CONFIG}."
+esh -o ${WP_CONFIG} \
+    ${BCG_TEMPLATES}/wp-config.php.esh
+
+# set permissions
+bcg-ch -o www:www -m 0400 ${WP_CONFIG}
+
+bcg-done

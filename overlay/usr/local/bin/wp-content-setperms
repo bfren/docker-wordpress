@@ -1,11 +1,13 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Call wp-cron executable
+# Set correct permissions on /wp-content (see fix-attrs.d/30-wp).
 #======================================================================================================================
 
-[[ "${WP_USE_SYSTEM_CRON-}" = "1" ]] && wp-cron
+bcg-echo "Setting permissions on ${WP_CONTENT}..." `basename ${0}`
+bcg-ch -o www:www -m 0755 -t d ${WP_CONTENT}
+bcg-ch -o www:www -m 0644 -t f ${WP_CONTENT}
+bcg-done `basename ${0}`

@@ -1,11 +1,13 @@
-#!/usr/bin/with-contenv bash
+#!/usr/bin/with-contenv sh
 
 set -euo pipefail
 export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Call wp-cron executable
+# Add environment variables.
 #======================================================================================================================
 
-[[ "${WP_USE_SYSTEM_CRON-}" = "1" ]] && wp-cron
+WP_SRC=${BCG_SRC}/wordpress
+bcg-env "WP_SRC" "${WP_SRC}"
+bcg-env "NGINX_ROOT" "${WP_SRC}"

@@ -5,7 +5,14 @@ export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Call wp-cron executable
+# If setup was not completed succesfully, terminate and close down the container.
 #======================================================================================================================
 
-[[ "${WP_USE_SYSTEM_CRON-}" = "1" ]] && wp-cron
+if [ "${SETUP_COMPLETE-}" = "1" ] ; then
+    bcg-clear
+    bcg-ok "WordPress setup complete."
+    exit 0
+fi
+
+bcg-notok "WordPress setup did not complete successfully, terminating container."
+#bcg-svc-terminate

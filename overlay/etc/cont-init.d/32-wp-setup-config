@@ -1,30 +1,18 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-source /etc/wp/inc/directories.sh
+export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# If wp-config.php is a symlink, the setup has already been run
+# If WP_SRC doesn't exist, the source files have not been downloaded correctly.
 #======================================================================================================================
 
-if [ "${GENERATE_CONFIG}" = "1" ] ; then
-
-    bcg-echo "Generate config detected, removing wp-config.php files..."
-    bcg-rmrf ${WWW}/wp-config.php
-    bcg-rmrf ${WP}/wp-config.php
-    bcg-done
-
-elif [ -L ${WWW}/wp-config.php ] ; then
-
-    bcg-ok "WordPress already configured."
-    exit 0
-
-fi
+[[ ! -d ${WP_SRC} ]] && bcg-error "WordPress source files cannot be found."
 
 
 #======================================================================================================================
-# Run setup config program
+# Run setup config executable.
 #======================================================================================================================
 
-s6-setuidgid www /etc/wp/setup-config
+${WP_LIB}/setup-config

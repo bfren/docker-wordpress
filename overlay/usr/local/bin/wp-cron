@@ -1,6 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
+export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
@@ -8,10 +9,7 @@ set -euo pipefail
 # See https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/
 #======================================================================================================================
 
-bcg-echo "Executing WordPress cron..."
-CODE=$(curl -s -o /dev/null -I -w "%{http_code}" http://localhost/wp-cron.php)
-if [ "${CODE}" = "200" ] ; then
-    bcg-done
-else
-    bcg-error "Unable to execute cron."
-fi
+bcg-debug "Executing WordPress cron."
+CODE=$(${NGINX_LIB}/http-status http://localhost/wp-cron.php)
+[[ "${CODE}" = "200" ]] && exit 0 \
+    || bcg-error "Error executing cron (HTTP status ${CODE})."

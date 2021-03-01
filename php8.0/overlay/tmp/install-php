@@ -1,0 +1,32 @@
+#!/bin/sh
+
+set -euo pipefail
+
+
+#======================================================================================================================
+# Install PHP8 dependencies.
+#======================================================================================================================
+
+apk add --no-cache \
+    php8-cgi=${1} \
+    php8-ctype=${1} \
+    php8-curl=${1} \
+    php8-dom=${1} \
+    php8-exif=${1} \
+    php8-fileinfo=${1} \
+    php8-ftp=${1} \
+    php8-gd=${1} \
+    php8-gettext=${1} \
+    php8-iconv=${1} \
+    php8-imap=${1} \
+    php8-mbstring=${1} \
+    php8-mysqlnd=${1} \
+    php8-mysqli=${1} \
+    php8-sodium=${1} \
+    php8-openssl=${1} \
+    php8-simplexml=${1} \
+    php8-soap=${1} \
+    php8-sockets=${1} \
+    php8-xml=${1} \
+    php8-xmlreader=${1} \
+    php8-zip=${1}

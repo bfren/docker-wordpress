@@ -1,0 +1,124 @@
+<?php
+/**
+ * The base configuration for WordPress
+ *
+ * The wp-config.php creation script uses this file during the
+ * installation. You don't have to use the web site, you can
+ * copy this file to "wp-config.php" and fill in the values.
+ *
+ * This file contains the following configurations:
+ *
+ * * MySQL settings
+ * * Secret keys
+ * * Database table prefix
+ * * ABSPATH
+ *
+ * @link https://wordpress.org/support/article/editing-wp-config-php/
+ *
+ * @package WordPress
+ */
+
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define( 'DB_NAME', '<%= "${WP_DB_NAME}" %>' );
+
+/** MySQL database username */
+define( 'DB_USER', '<%= "${WP_DB_USER}" %>' );
+
+/** MySQL database password */
+define( 'DB_PASSWORD', '<%= "${WP_DB_PASS}" %>' );
+
+/** MySQL hostname */
+define( 'DB_HOST', '<%= "${WP_DB_HOST}" %>' );
+
+/** Database Charset to use in creating database tables. */
+define( 'DB_CHARSET', '<%= "${WP_DB_CHARSET}" %>' );
+
+/** The Database Collate type. Don't change this if in doubt. */
+define( 'DB_COLLATE', '<%= "${WP_DB_COLLATE}" %>' );
+
+/**#@+
+ * Authentication Unique Keys and Salts.
+ *
+ * Change these to different unique phrases!
+ * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
+ * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
+ *
+ * @since 2.6.0
+ */
+<%= "${AUTH}" %>
+
+/**#@-*/
+
+/**
+ * WordPress Database Table prefix.
+ *
+ * You can have multiple installations in one database if you give each
+ * a unique prefix. Only numbers, letters, and underscores please!
+ */
+$table_prefix = '<%= "${WP_DB_PREFIX}" %>_';
+
+/**
+ * For developers: WordPress debugging mode.
+ *
+ * Change this to true to enable the display of notices during development.
+ * It is strongly recommended that plugin and theme developers use WP_DEBUG
+ * in their development environments.
+ *
+ * For information on other constants that can be used for debugging,
+ * visit the documentation.
+ *
+ * @link https://wordpress.org/support/article/debugging-in-wordpress/
+ */
+define( 'WP_DEBUG', <%= "${WP_DEBUG}" %> );
+
+<% if [ "${WP_ENABLE_HTTPS_BEHIND_PROXY}" = "1" ] ; then -%>
+/**
+ * bcgdesign/wordpress
+ *
+ * Forces WordPress to generate HTTPS links - necessary if being served over HTTPS
+ * from behind a proxy server
+ */
+if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
+    if ( strpos( $_SERVER['HTTP_X_FORWARDED_PROTO'], 'https' ) !== false ) {
+        $_SERVER['HTTPS']='on';
+    }
+}
+<% fi -%>
+
+<% if [ "${WP_USE_SYSTEM_CRON}" = "1" ] ; then -%>
+/**
+ * bcgdesign/wordpress
+ *
+ * Disable WordPress in-build cron - will be handled by the system cron instead
+ */
+define( 'DISABLE_WP_CRON', true );
+<% fi -%>
+
+<% if [ "${WP_DISABLE_UPDATES-}" = "1" ] ; then -%>
+/**
+ * bcgdesign/wordpress
+ *
+ * Disable WordPress core updater - updates will be downloaded as part of the Docker image
+ */
+define( 'WP_AUTO_UPDATE_CORE', false );
+<% fi -%>
+
+<% if [ -n "${WP_CONFIG_ADDITIONAL}" ] ; then -%>
+/**
+ * bcgdesign/wordpress
+ *
+ * These additional configuration directives are defined by the WP_CONFIG_OVERRIDE environment variable.
+ */
+<%= ${WP_CONFIG_ADDITIONAL} %>
+<% fi -%>
+
+/* That's all, stop editing! Happy publishing. */
+
+/** Absolute path to the WordPress directory. */
+if ( ! defined( 'ABSPATH' ) ) {
+    define( 'ABSPATH', __DIR__ . '/' );
+}
+
+/** Sets up WordPress vars and included files. */
+require_once ABSPATH . 'wp-settings.php';

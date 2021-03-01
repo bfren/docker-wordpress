@@ -1,11 +1,11 @@
-#!/usr/bin/with-contenv bash
+#!/bin/sh
 
 set -euo pipefail
-export BCG_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Call wp-cron executable
+# Install imagick.
 #======================================================================================================================
 
-[[ "${WP_USE_SYSTEM_CRON-}" = "1" ]] && wp-cron
+apk add --no-cache \
+    php8-pecl-imagick=${1}

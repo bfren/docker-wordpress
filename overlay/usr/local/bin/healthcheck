@@ -8,7 +8,7 @@ set -euo pipefail
 # WordPress will try and redirect to HTTPS, there is no way to disable this without a plugin
 #======================================================================================================================
 
-CODE=$(curl -s -o /dev/null -I -w "%{http_code}" http://localhost)
+CODE=`${NGINX_LIB}/http-status "http://localhost"`
 if [[ ${CODE} -ge 200 && ${CODE} -lt 400  ]] ; then
     exit 0
 else

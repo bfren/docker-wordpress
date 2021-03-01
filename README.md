@@ -4,7 +4,7 @@
 
 [Docker Repository](https://hub.docker.com/r/bcgdesign/wordpress) - [bcg|design ecosystem](https://github.com/bencgreen/docker)
 
-On first run this will download and install the latest version of WordPress according to the `WORDPRESS_LOCALE` environment variable - unless WordPress is detected in `/www`.
+Comes with WordPress en_GB preinstalled - if you want a different locale, use the Dockerfiles and set the `WP_LOCALE` argument.
 
 The required and recommended PHP modules are all installed.
 
@@ -23,10 +23,9 @@ The required and recommended PHP modules are all installed.
 
 ## Volumes
 
-| Volume | Purpose                                                                                                                                          |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `/www` | This is where all the WordPress files will be installed (if you are taking over an existing WordPress installation, map this to that directory). |
-| `/wp`  | Map this to backup your configuration and `wp-content` directories.                                                                              |
+| Volume         | Purpose                   |
+| -------------- | ------------------------- |
+| `/wp-content`  | `wp-content` directories. |
 
 See the [Nginx](https://github.com/bencgreen/docker-nginx) image for other configuration details.
 
@@ -34,27 +33,27 @@ See the [Nginx](https://github.com/bencgreen/docker-nginx) image for other confi
 
 See the [Nginx + PHP](https://github.com/bencgreen/docker-nginx-php) image for details of `www.conf` and `php.ini` overrides using environment variables.
 
-| Variable                    | Values                 | Description                                                                                                       | Default                                     |
-| --------------------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| `LOCALE`                    | Valid WordPress locale | The WordPress source files for this locale will be downloaded and installed.                                      | en_GB                                       |
-| `CLEAN_INSTALL`             | 0 or 1                 | Set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!).                            | 0                                           |
-| `GENERATE_CONFIG`           | 0 or 1                 | Set to 0 to user your own `wp-config.php` - otherwise it will be generated fresh every time the container starts. | 1                                           |
-| `WPDB_NAME`                 | string                 | Database name.                                                                                                    | *None* - required if `GENERATE_CONFIG` is 1 |
-| `WPDB_USER`                 | string                 | Database username.                                                                                                | *None* - required if `GENERATE_CONFIG` is 1 |
-| `WPDB_PASS`                 | string                 | Database password.                                                                                                | *None* - required if `GENERATE_CONFIG` is 1 |
-| `WPDB_HOST`                 | string                 | Database host.                                                                                                    | *None* - required if `GENERATE_CONFIG` is 1 |
-| `WPDB_CHARSET`              | string                 | Database character set (leave as default if not sure).                                                            | utf8mb4                                     |
-| `WPDB_COLLATE`              | string                 | Database collation (leave blank if not sure).                                                                     | *None*                                      |
-| `WPDB_PREFIX`               | string                 | Database table prefix - an underscore will be added automatically.                                                | wp                                          |
-| `DEBUG`                     | true or false          | Whether or not to enable debug mode.                                                                              | false                                       |
-| `ENABLE_HTTPS_BEHIND_PROXY` | 0 or 1                 | Whether or not to enable HTTPS behind a proxy server.                                                             | 1                                        |
-| `USE_SYSTEM_CRON`           | 0 or 1                 | Set to 1 to use system cron instead of WordPress cron (improves page performance).                                | 1                                           |
+| Variable                       | Values        | Description                                                                                 | Default                                        |
+| ------------------------------ | ------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `WP_DB_NAME`                   | string        | Database name.                                                                              | *None* - required if `WP_GENERATE_CONFIG` is 1 |
+| `WP_DB_USER`                   | string        | Database username.                                                                          | *None* - required if `WP_GENERATE_CONFIG` is 1 |
+| `WP_DB_PASS`                   | string        | Database password.                                                                          | *None* - required if `WP_GENERATE_CONFIG` is 1 |
+| `WP_DB_HOST`                   | string        | Database host.                                                                              | *None* - required if `WP_GENERATE_CONFIG` is 1 |
+| `WP_DB_CHARSET`                | string        | Database character set (leave as default if not sure).                                      | utf8mb4                                        |
+| `WP_DB_COLLATE`                | string        | Database collation (leave blank if not sure).                                               | *None*                                         |
+| `WP_DB_PREFIX`                 | string        | Database table prefix - an underscore will be added automatically.                          | wp                                             |
+| `WP_DEBUG`                     | true or false | Whether or not to enable debug mode.                                                        | false                                          |
+| `WP_ENABLE_HTTPS_BEHIND_PROXY` | 0 or 1        | Whether or not to enable HTTPS behind a proxy server.                                       | 1                                              |
+| `WP_DISABLE_UPDATES`           | 0 or 1        | Set to 0 to enable WordPress core system updates (otherwise they are handled by the image). | 1                                              |
+| `WP_USE_SYSTEM_CRON`           | 0 or 1        | Set to 0 to use WordPress cron instead of system cron (reduces page performance).           | 1                                              |
 
 ## Helper Functions
 
-| Function  | Purpose                                                                         | Usage     |
-| --------- | ------------------------------------------------------------------------------- | --------- |
-| `wp-cron` | Runs the WordPress cron - if `USE_SYSTEM_CRON` is 1, will be run automatically. | `wp-cron` |
+| Function              | Purpose                                                                                        | Usage                 |
+| --------------------- | ---------------------------------------------------------------------------------------------- | --------------------- |
+| `wp-cron`             | Runs the WordPress cron - if `WP_USE_SYSTEM_CRON` is 1, will be run automatically.             | `wp-cron`             |
+| `wp-content-recreate` | **Warning**: deletes everything in `/wp-content` volume and recreates using WordPress default. | `wp-content-recreate` |
+| `wp-content-setperms` | Sets the correct permissions on `/wp-content` volume.                                          | `wp-content-setperms` |
 
 ## Nginx Configuration Helpers
 

@@ -1,8 +1,8 @@
-FROM bcgdesign/nginx-php:auto
+FROM bcgdesign/nginx-php:php7.4-2.0.4
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
-    org.label-schema.version="latest" \
+    org.label-schema.version="7.4" \
     org.label-schema.vendor="Ben Green" \
     org.label-schema.schema-version="1.0"
 
