@@ -72,7 +72,7 @@ $table_prefix = '<%= "${WP_DB_PREFIX}" %>_';
  */
 define( 'WP_DEBUG', <%= "${WP_DEBUG}" %> );
 
-<% if [ "${WP_ENABLE_HTTPS_BEHIND_PROXY}" = "1" ] ; then -%>
+<% if [ "${WP_ENABLE_HTTPS_BEHIND_PROXY}" = "1" ] ; then %>
 /**
  * bcgdesign/wordpress
  *
@@ -84,34 +84,34 @@ if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
         $_SERVER['HTTPS']='on';
     }
 }
-<% fi -%>
+<% fi %>
 
-<% if [ "${WP_USE_SYSTEM_CRON}" = "1" ] ; then -%>
+<% if [ "${WP_USE_SYSTEM_CRON}" = "1" ] ; then %>
 /**
  * bcgdesign/wordpress
  *
  * Disable WordPress in-build cron - will be handled by the system cron instead
  */
 define( 'DISABLE_WP_CRON', true );
-<% fi -%>
+<% fi %>
 
-<% if [ "${WP_DISABLE_UPDATES-}" = "1" ] ; then -%>
+<% if [ "${WP_DISABLE_UPDATES-}" = "1" ] ; then %>
 /**
  * bcgdesign/wordpress
  *
  * Disable WordPress core updater - updates will be downloaded as part of the Docker image
  */
 define( 'WP_AUTO_UPDATE_CORE', false );
-<% fi -%>
+<% fi %>
 
-<% if [ -n "${WP_CONFIG_ADDITIONAL}" ] ; then -%>
+<% if [ -n "${WP_CONFIG_ADDITIONAL}" ] ; then %>
 /**
  * bcgdesign/wordpress
  *
  * These additional configuration directives are defined by the WP_CONFIG_OVERRIDE environment variable.
  */
 <%= ${WP_CONFIG_ADDITIONAL} %>
-<% fi -%>
+<% fi %>
 
 /* That's all, stop editing! Happy publishing. */
 
