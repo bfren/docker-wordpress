@@ -1,4 +1,4 @@
-name: main-php_7_3
+name: main-php7_3
 
 on:
   push:
@@ -7,13 +7,13 @@ on:
     tags-ignore:
       - '**'
     paths:
-      - '.github/workflows/main-php_7_3.yml'
+      - '.github/workflows/main-php7_3.yml'
       - '7.3/**'
       - 'overlay/**'
       - 'VERSION'
 
 jobs:
-  publish-7_3:
+  publish-php7_3:
     runs-on: ubuntu-latest
     steps:
       -

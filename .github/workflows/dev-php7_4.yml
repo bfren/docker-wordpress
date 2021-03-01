@@ -1,4 +1,4 @@
-name: dev-php_8_0
+name: dev-php7_4
 
 on:
   push:
@@ -7,19 +7,19 @@ on:
     tags-ignore:
       - '**'
     paths:
-      - '.github/workflows/dev-php_8_0.yml'
-      - '8.0/**'
+      - '.github/workflows/dev-php7_4.yml'
+      - '7.4/**'
       - 'overlay/**'
       - 'VERSION'
 
 jobs:
-  test-8_0:
+  test-php7_4:
     runs-on: ubuntu-latest
     steps:
       -
         name: Checkout code
         uses: actions/checkout@v2
-  build-8_0:
+  build-php7_4:
     runs-on: ubuntu-latest
     steps:
       -
@@ -49,14 +49,16 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./8.0/Dockerfile
+          file: ./7.4/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bcgdesign/wordpress:php8-dev
-            bcgdesign/wordpress:php8-${{ steps.version.outputs.content }}-beta
-            bcgdesign/wordpress:php8.0-dev
-            bcgdesign/wordpress:php8.0-${{ steps.version.outputs.content }}-beta
+            bcgdesign/wordpress:${{ steps.version.outputs.content }}-beta
+            bcgdesign/wordpress:dev
+            bcgdesign/wordpress:php7-dev
+            bcgdesign/wordpress:php7-${{ steps.version.outputs.content }}-beta
+            bcgdesign/wordpress:php7.4-dev
+            bcgdesign/wordpress:php7.4-${{ steps.version.outputs.content }}-beta
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

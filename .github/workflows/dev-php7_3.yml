@@ -1,4 +1,4 @@
-name: dev-php_7_3
+name: dev-php7_3
 
 on:
   push:
@@ -7,19 +7,19 @@ on:
     tags-ignore:
       - '**'
     paths:
-      - '.github/workflows/dev-php_7_3.yml'
+      - '.github/workflows/dev-php7_3.yml'
       - '7.3/**'
       - 'overlay/**'
       - 'VERSION'
 
 jobs:
-  test-7_3:
+  test-php7_3:
     runs-on: ubuntu-latest
     steps:
       -
         name: Checkout code
         uses: actions/checkout@v2
-  build-7_3:
+  build-php7_3:
     runs-on: ubuntu-latest
     steps:
       -
