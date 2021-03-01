@@ -39,28 +39,34 @@ bcg-done
 # Get WordPress environment variables.
 #======================================================================================================================
 
-SRC=$(cat /var/run/s6/container_environment/BCG_SRC)
+SRC=/etc/bcg/src
 bcg-debug "Source directory ${SRC}."
+
+WP=wordpress
+WP_SRC=${SRC}/${WP}
 
 WP_VERSION=$(cat WP_VERSION)
 bcg-debug "WordPress version ${WP_VERSION}."
 
 
 #======================================================================================================================
-# Download WordPress.
+# Download and install WordPress.
 #======================================================================================================================
 
-cd ${SRC}
+cd /tmp
 URL="https://${WP_LOCALE}.wordpress.org/${WP_VERSION}-${WP_LOCALE}.zip"
 
-bcg-echo "Downloading ${URL}..."
+bcg-echo "Downloading ${URL} to /tmp/${WP}..."
 wget -O wp.zip ${URL} \
     && unzip -oq wp.zip \
     && rm wp.zip
-
-WP_SRC=${SRC}/wordpress
-[[ -d ${WP_SRC} ]] && bcg-done \
+[[ -d ${WP} ]] && bcg-done \
     || bcg-error "WordPress not downloaded."
+
+bcg-echo "Moving /tmp/${WP} to ${SRC}..."
+mv ${WP} ${SRC}
+[[ -d ${WP_SRC} ]] && bcg-done \
+    || bcg-error "WordPress not installed."
 
 
 #======================================================================================================================
