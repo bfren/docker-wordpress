@@ -28,12 +28,10 @@ if [ "$(ls -A ${WP_CONTENT})" ] ; then
 
 else
 
-    # /wp-content is empty - if source wp-content is already a link, use the default copy
+    # /wp-content is empty - if source wp-content is already a link, recreate /wp-content using the default copy
     if [ -L ${WP_CONTENT_SRC} ] ; then
 
-        bcg-echo "Copying default wp-content to ${WP_CONTENT}..."
-        cp -R ${WP_CONTENT_DEFAULT}/* ${WP_CONTENT}/
-        bcg-done
+        wp-recreate-content
 
     # /wp-content is empty - move source wp-content
     else
