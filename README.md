@@ -33,20 +33,20 @@ See the [Nginx](https://github.com/bencgreen/docker-nginx) image for other confi
 
 See the [Nginx + PHP](https://github.com/bencgreen/docker-nginx-php) image for details of `www.conf` and `php.ini` overrides using environment variables.
 
-| Variable                       | Values        | Description                                                                                 | Default                                        |
-| ------------------------------ | ------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| `WP_DB_NAME`                   | string        | Database name.                                                                              | *None* - required if `WP_GENERATE_CONFIG` is 1 |
-| `WP_DB_USER`                   | string        | Database username.                                                                          | *None* - required if `WP_GENERATE_CONFIG` is 1 |
-| `WP_DB_PASS`                   | string        | Database password.                                                                          | *None* - required if `WP_GENERATE_CONFIG` is 1 |
-| `WP_DB_HOST`                   | string        | Database host.                                                                              | *None* - required if `WP_GENERATE_CONFIG` is 1 |
-| `WP_DB_CHARSET`                | string        | Database character set (leave as default if not sure).                                      | utf8mb4                                        |
-| `WP_DB_COLLATE`                | string        | Database collation (leave blank if not sure).                                               | *None*                                         |
-| `WP_DB_PREFIX`                 | string        | Database table prefix - an underscore will be added automatically.                          | wp                                             |
-| `WP_CONFIG_HARDEN`             | 0 or 1        | Set to 1 to make `wp-config.php` read-only to the web server user.                          | 0                                              |
-| `WP_DEBUG`                     | true or false | Whether or not to enable debug mode.                                                        | false                                          |
-| `WP_ENABLE_HTTPS_BEHIND_PROXY` | 0 or 1        | Whether or not to enable HTTPS behind a proxy server.                                       | 1                                              |
-| `WP_DISABLE_UPDATES`           | 0 or 1        | Set to 0 to enable WordPress core system updates (otherwise they are handled by the image). | 1                                              |
-| `WP_USE_SYSTEM_CRON`           | 0 or 1        | Set to 0 to use WordPress cron instead of system cron (reduces page performance).           | 1                                              |
+| Variable                       | Values        | Description                                                                                       | Default                                        |
+| ------------------------------ | ------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `WP_DB_NAME`                   | string        | Database name.                                                                                    | *None* - required if `WP_GENERATE_CONFIG` is 1 |
+| `WP_DB_USER`                   | string        | Database username.                                                                                | *None* - required if `WP_GENERATE_CONFIG` is 1 |
+| `WP_DB_PASS`                   | string        | Database password.                                                                                | *None* - required if `WP_GENERATE_CONFIG` is 1 |
+| `WP_DB_HOST`                   | string        | Database host.                                                                                    | *None* - required if `WP_GENERATE_CONFIG` is 1 |
+| `WP_DB_CHARSET`                | string        | Database character set (leave as default if not sure).                                            | utf8mb4                                        |
+| `WP_DB_COLLATE`                | string        | Database collation (leave blank if not sure).                                                     | *None*                                         |
+| `WP_DB_PREFIX`                 | string        | Database table prefix - an underscore will be added automatically.                                | wp                                             |
+| `WP_CONFIG_HARDEN`             | 0 or 1        | Set to 1 to make `wp-config.php` read-only to the web server user.                                | 0                                              |
+| `WP_DEBUG`                     | true or false | Whether or not to enable debug mode.                                                              | false                                          |
+| `WP_ENABLE_HTTPS_BEHIND_PROXY` | 0 or 1        | Whether or not to enable HTTPS behind a proxy server.                                             | 1                                              |
+| `WP_DISABLE_MAJOR_UPDATES`     | 0 or 1        | Set to 0 to enable WordPress core major system updates (otherwise they are handled by the image). | 1                                              |
+| `WP_USE_SYSTEM_CRON`           | 0 or 1        | Set to 0 to use WordPress cron instead of system cron (reduces page performance).                 | 1                                              |
 
 ## Helper Functions
 

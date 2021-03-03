@@ -95,13 +95,13 @@ if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
 define( 'DISABLE_WP_CRON', true );
 <% fi %>
 
-<% if [ "${WP_DISABLE_UPDATES-}" = "1" ] ; then %>
+<% if [ "${WP_DISABLE_MAJOR_UPDATES-}" = "1" ] ; then %>
 /**
  * bcgdesign/wordpress
  *
- * Disable WordPress core updater - updates will be downloaded as part of the Docker image
+ * Disable WordPress core major update - they will be downloaded as part of the Docker image
  */
-define( 'WP_AUTO_UPDATE_CORE', false );
+define( 'WP_AUTO_UPDATE_CORE', 'minor' );
 <% fi %>
 
 <% if [ -n "${WP_CONFIG_ADDITIONAL}" ] ; then %>

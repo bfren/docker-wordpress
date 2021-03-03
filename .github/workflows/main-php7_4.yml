@@ -35,7 +35,7 @@ jobs:
         name: Read WP version
         uses: bencgreen/read-file-action@v1
         with:
-          path: ./WP_VERSION
+          path: ./WP_MINOR
         id: wp_version
       -
         name: Read image version
@@ -67,6 +67,8 @@ jobs:
           tags: |
             bcgdesign/wordpress:latest
             bcgdesign/wordpress:${{ steps.version.outputs.content }}
+            bcgdesign/wordpress:wp${{ steps.wp_version.outputs.content }}
+            bcgdesign/wordpress:wp${{ steps.wp_version.outputs.content }}-${{ steps.version.outputs.content }}
             bcgdesign/wordpress:php7
             bcgdesign/wordpress:php7-${{ steps.version.outputs.content }}
             bcgdesign/wordpress:php7.4
