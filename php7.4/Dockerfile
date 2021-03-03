@@ -34,7 +34,7 @@ ENV \
     # whether or not to enable HTTPS behind a proxy server
     WP_ENABLE_HTTPS_BEHIND_PROXY=1 \
     # set to 0 to re-enable WordPress core updates - otherwise they will be handled by the image
-    WP_DISABLE_UPDATES=1 \
+    WP_DISABLE_MAJOR_UPDATES=1 \
     # set to 1 to use system cron instead of WordPress cron (improves page performance)
     # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference
     WP_USE_SYSTEM_CRON=1
