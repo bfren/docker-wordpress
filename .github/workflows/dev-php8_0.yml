@@ -26,6 +26,12 @@ jobs:
         name: Checkout code
         uses: actions/checkout@v2
       -
+        name: Read WP version
+        uses: bencgreen/read-file-action@v1
+        with:
+          path: ./WP_MINOR
+        id: wp_version
+      -
         name: Read image version
         uses: bencgreen/read-file-action@v1
         with:
@@ -57,6 +63,7 @@ jobs:
             bcgdesign/wordpress:php8-${{ steps.version.outputs.content }}-beta
             bcgdesign/wordpress:php8.0-dev
             bcgdesign/wordpress:php8.0-${{ steps.version.outputs.content }}-beta
+            bcgdesign/wordpress:php8.0-wp${{ steps.wp_version.outputs.content }}-dev
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
