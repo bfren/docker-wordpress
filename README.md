@@ -71,7 +71,7 @@ The image contains a handful of useful Nginx configuration 'helper' files, which
 
 ## License
 
-> [MIT](https://bcg.mit-license.org/2020)
+> [MIT](https://mit.bcgdesign.com/2020)
 
 ## Copyright
 
