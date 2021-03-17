@@ -1,16 +1,8 @@
 name: main-php7_4
 
 on:
-  push:
-    branches:
-      - 'main'
-    tags-ignore:
-      - '**'
-    paths:
-      - '.github/workflows/main-php7_4.yml'
-      - 'php7.4/**'
-      - 'overlay/**'
-      - 'VERSION'
+  release:
+    types: [published]
 
 jobs:
   publish-php7_4:
