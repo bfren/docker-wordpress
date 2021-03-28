@@ -6,11 +6,6 @@ on:
       - 'main'
     tags-ignore:
       - '**'
-    paths:
-      - '.github/workflows/dev-php8_0.yml'
-      - 'php8.0/**'
-      - 'overlay/**'
-      - 'VERSION'
 
 jobs:
   test-php8_0:
