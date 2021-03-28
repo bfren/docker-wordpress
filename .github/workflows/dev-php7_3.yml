@@ -6,11 +6,6 @@ on:
       - 'main'
     tags-ignore:
       - '**'
-    paths:
-      - '.github/workflows/dev-php7_3.yml'
-      - 'php7.3/**'
-      - 'overlay/**'
-      - 'VERSION'
 
 jobs:
   test-php7_3:
