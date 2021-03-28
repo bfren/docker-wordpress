@@ -1,4 +1,4 @@
-name: main-php7_4
+name: publish-php7_4
 
 on:
   release:
