@@ -3,6 +3,7 @@ name: publish-php7_3
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   publish-php7_3:
