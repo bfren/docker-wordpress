@@ -1,4 +1,4 @@
-FROM bcgdesign/nginx-php:php8.0-2.1.1
+FROM bcgdesign/nginx-php:php8.0-2.1.2
 
 LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
     org.label-schema.name="WordPress" \
