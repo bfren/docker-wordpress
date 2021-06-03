@@ -46,8 +46,6 @@ WP=wordpress
 WP_SRC=${SRC}/${WP}
 bcg-debug "WordPress source directory: ${WP_SRC}."
 
-WP_USER_INI=${WP_SRC}/.user.ini
-
 WP_CONTENT_SRC=${WP_SRC}/wp-content
 bcg-debug "WordPress source wp-content directory: ${WP_CONTENT_SRC}."
 
@@ -77,8 +75,6 @@ mv ${WP} ${SRC}
 [[ -d ${WP_SRC} ]] && bcg-done \
     || bcg-error "WordPress not installed."
 
-touch ${WP_USER_INI}
-
 
 #======================================================================================================================
 # Set permissions on source files.
@@ -87,7 +83,6 @@ touch ${WP_USER_INI}
 bcg-echo "Setting permissions on ${WP_SRC}..."
 bcg-ch -o www:www -m 0500 -t d ${WP_SRC}
 bcg-ch -o www:www -m 0400 -t f ${WP_SRC}
-bcg-ch -o www:www -m 0600 -t f ${WP_USER_INI}
 bcg-done
 
 
