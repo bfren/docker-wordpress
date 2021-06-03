@@ -81,7 +81,6 @@ mv ${WP} ${SRC}
 #======================================================================================================================
 
 bcg-echo "Setting permissions on ${WP_SRC}..."
-#bcg-ch -o www:www ${WP_SRC}
 bcg-ch -o www:www -m 0500 -t d ${WP_SRC}
 bcg-ch -o www:www -m 0400 -t f ${WP_SRC}
 bcg-done
