@@ -39,7 +39,7 @@ bf-done
 # Get WordPress environment variables.
 #======================================================================================================================
 
-SRC=/etc/bcg/src
+SRC=/etc/bf/src
 bf-debug "Source directory: ${SRC}."
 
 WP=wordpress
