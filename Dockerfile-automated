@@ -1,4 +1,4 @@
-FROM bcgdesign/nginx-php:auto
+FROM bfren/nginx-php:auto
 
 ARG \
     # set to a valid WordPress locale or the installation will fail
