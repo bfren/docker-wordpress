@@ -8,7 +8,7 @@ export BCG_E=`basename ${0}`
 # If WP_CONFIG doesn't exist, the setup has gone wrong.
 #======================================================================================================================
 
-[[ ! -f ${WP_CONFIG} ]] && bcg-error "${WP_CONFIG} does not exist."
+[[ ! -f ${WP_CONFIG} ]] && bf-error "${WP_CONFIG} does not exist."
 
 
 #======================================================================================================================

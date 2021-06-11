@@ -8,4 +8,4 @@ export BCG_E=`basename ${0}`
 # Add setup complete environment variable.
 #======================================================================================================================
 
-bcg-env "SETUP_COMPLETE" "1"
+bf-env "SETUP_COMPLETE" "1"

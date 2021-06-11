@@ -9,7 +9,7 @@ export BCG_E=`basename ${0}`
 # See https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/
 #======================================================================================================================
 
-bcg-debug "Executing WordPress cron."
+bf-debug "Executing WordPress cron."
 CODE=$(wget --server-response --spider "http://localhost/wp-cron.php" 2>&1 | grep "HTTP/" | awk '{print $2}')
 [[ "${CODE}" = "200" ]] && exit 0 \
-    || bcg-error "Error executing cron (HTTP status ${CODE})."
+    || bf-error "Error executing cron (HTTP status ${CODE})."

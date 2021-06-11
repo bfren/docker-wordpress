@@ -7,7 +7,7 @@ set -euo pipefail
 # Set correct permissions on /wp-content (see fix-attrs.d/30-wp).
 #======================================================================================================================
 
-bcg-echo "Setting permissions on ${WP_CONTENT}..." `basename ${0}`
-bcg-ch -o www:www -m 0755 -t d ${WP_CONTENT}
-bcg-ch -o www:www -m 0644 -t f ${WP_CONTENT}
-bcg-done `basename ${0}`
+bf-echo "Setting permissions on ${WP_CONTENT}..." `basename ${0}`
+bf-ch -o www:www -m 0755 -t d ${WP_CONTENT}
+bf-ch -o www:www -m 0644 -t f ${WP_CONTENT}
+bf-done `basename ${0}`

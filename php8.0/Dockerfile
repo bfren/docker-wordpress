@@ -46,6 +46,6 @@ COPY ./php8.0/overlay /
 COPY ./php8.0/PHP_BUILD /tmp/PHP_VERSION
 COPY ./php8.0/IMAGICK_BUILD /tmp/IMAGICK_VERSION
 
-RUN bcg-install
+RUN bf-install
 
 VOLUME [ "/wp-content" ]
