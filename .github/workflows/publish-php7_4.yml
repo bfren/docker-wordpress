@@ -58,18 +58,18 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bcgdesign/wordpress:latest
-            bcgdesign/wordpress:${{ steps.version.outputs.content }}
-            bcgdesign/wordpress:wp${{ steps.wp_version.outputs.content }}
-            bcgdesign/wordpress:wp${{ steps.wp_version.outputs.content }}-${{ steps.version.outputs.content }}
-            bcgdesign/wordpress:php7
-            bcgdesign/wordpress:php7-${{ steps.version.outputs.content }}
-            bcgdesign/wordpress:php7.4
-            bcgdesign/wordpress:php7.4-${{ steps.version.outputs.content }}
-            bcgdesign/wordpress:php7.4-wp${{ steps.wp_version.outputs.content }}
-            bcgdesign/wordpress:php7.4-wp${{ steps.wp_version.outputs.content }}-${{ steps.version.outputs.content }}
-            bcgdesign/wordpress:php${{ steps.php_revision.outputs.content }}
-            bcgdesign/wordpress:php${{ steps.php_build.outputs.content }}
+            bfren/wordpress:latest
+            bfren/wordpress:${{ steps.version.outputs.content }}
+            bfren/wordpress:wp${{ steps.wp_version.outputs.content }}
+            bfren/wordpress:wp${{ steps.wp_version.outputs.content }}-${{ steps.version.outputs.content }}
+            bfren/wordpress:php7
+            bfren/wordpress:php7-${{ steps.version.outputs.content }}
+            bfren/wordpress:php7.4
+            bfren/wordpress:php7.4-${{ steps.version.outputs.content }}
+            bfren/wordpress:php7.4-wp${{ steps.wp_version.outputs.content }}
+            bfren/wordpress:php7.4-wp${{ steps.wp_version.outputs.content }}-${{ steps.version.outputs.content }}
+            bfren/wordpress:php${{ steps.php_revision.outputs.content }}
+            bfren/wordpress:php${{ steps.php_build.outputs.content }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

@@ -55,11 +55,11 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bcgdesign/wordpress:php8-dev
-            bcgdesign/wordpress:php8-${{ steps.version.outputs.content }}-beta
-            bcgdesign/wordpress:php8.0-dev
-            bcgdesign/wordpress:php8.0-${{ steps.version.outputs.content }}-beta
-            bcgdesign/wordpress:php8.0-wp${{ steps.wp_version.outputs.content }}-dev
+            bfren/wordpress:php8-dev
+            bfren/wordpress:php8-${{ steps.version.outputs.content }}-beta
+            bfren/wordpress:php8.0-dev
+            bfren/wordpress:php8.0-${{ steps.version.outputs.content }}-beta
+            bfren/wordpress:php8.0-wp${{ steps.wp_version.outputs.content }}-dev
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
