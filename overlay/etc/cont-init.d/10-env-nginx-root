@@ -1,13 +1,13 @@
 #!/usr/bin/with-contenv sh
 
 set -euo pipefail
-export BCG_E=`basename ${0}`
+export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
 # Add environment variables.
 #======================================================================================================================
 
-WP_SRC=${BCG_SRC}/wordpress
+WP_SRC=${BF_SRC}/wordpress
 bf-env "WP_SRC" "${WP_SRC}"
 bf-env "NGINX_ROOT" "${WP_SRC}"

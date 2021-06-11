@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-export BCG_E=`basename ${0}`
+export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
@@ -24,7 +24,7 @@ export AUTH=$(wget --quiet -O - ${URL})
 # generate config from the template
 bf-debug "Generating ${WP_CONFIG}."
 esh -o ${WP_CONFIG} \
-    ${BCG_TEMPLATES}/wp-config.php.esh
+    ${BF_TEMPLATES}/wp-config.php.esh
 
 # set permissions (write access is required by some plugins, e.g. caching / optimise plugins)
 bf-ch -o www:www -m 0600 ${WP_CONFIG}
