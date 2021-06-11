@@ -1,10 +1,4 @@
-FROM bcgdesign/nginx-php:php8.0-2.1.6
-
-LABEL maintainer="Ben Green <ben@bcgdesign.com>" \
-    org.label-schema.name="WordPress" \
-    org.label-schema.version="8.0" \
-    org.label-schema.vendor="Ben Green" \
-    org.label-schema.schema-version="1.0"
+FROM bfren/nginx-php:php8.0-2.2.0
 
 ARG \
     # set to a valid WordPress locale or the installation will fail
@@ -46,6 +40,6 @@ COPY ./php8.0/overlay /
 COPY ./php8.0/PHP_BUILD /tmp/PHP_VERSION
 COPY ./php8.0/IMAGICK_BUILD /tmp/IMAGICK_VERSION
 
-RUN bcg-install
+RUN bf-install
 
 VOLUME [ "/wp-content" ]

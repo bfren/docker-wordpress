@@ -1,37 +1,37 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-export BCG_E=`basename ${0}`
+export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
 # If wp-config.php is a file, move it to /wp - otherwise generate it - and then create a link.
 #======================================================================================================================
 
-bcg-echo "Generating wp-config.php..."
+bf-echo "Generating wp-config.php..."
 
 # ensure all required environment variables are set
-[[ -z "${WP_DB_NAME-}" ]] && bcg-error "WP_DB_NAME must be set."
-[[ -z "${WP_DB_USER-}" ]] && bcg-error "WP_DB_USER must be set."
-[[ -z "${WP_DB_PASS-}" ]] && bcg-error "WP_DB_PASS must be set."
-[[ -z "${WP_DB_HOST-}" ]] && bcg-error "WP_DB_HOST must be set."
+[[ -z "${WP_DB_NAME-}" ]] && bf-error "WP_DB_NAME must be set."
+[[ -z "${WP_DB_USER-}" ]] && bf-error "WP_DB_USER must be set."
+[[ -z "${WP_DB_PASS-}" ]] && bf-error "WP_DB_PASS must be set."
+[[ -z "${WP_DB_HOST-}" ]] && bf-error "WP_DB_HOST must be set."
 
 # get fresh authentication values
 URL="https://api.wordpress.org/secret-key/1.1/salt/"
-bcg-debug "Getting authentication secrets from ${URL}."
+bf-debug "Getting authentication secrets from ${URL}."
 export AUTH=$(wget --quiet -O - ${URL})
 
 # generate config from the template
-bcg-debug "Generating ${WP_CONFIG}."
+bf-debug "Generating ${WP_CONFIG}."
 esh -o ${WP_CONFIG} \
-    ${BCG_TEMPLATES}/wp-config.php.esh
+    ${BF_TEMPLATES}/wp-config.php.esh
 
 # set permissions (write access is required by some plugins, e.g. caching / optimise plugins)
-bcg-ch -o www:www -m 0600 ${WP_CONFIG}
+bf-ch -o www:www -m 0600 ${WP_CONFIG}
 
 if [ "${WP_CONFIG_HARDEN-}" = "1" ] ; then
-    bcg-debug "Harden wp.config.php to read-only."
-    bcg-ch -m 0400 ${WP_CONFIG}
+    bf-debug "Harden wp.config.php to read-only."
+    bf-ch -m 0400 ${WP_CONFIG}
 fi
 
-bcg-done
+bf-done

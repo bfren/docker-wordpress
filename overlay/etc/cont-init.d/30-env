@@ -1,16 +1,16 @@
 #!/usr/bin/with-contenv sh
 
 set -euo pipefail
-export BCG_E=`basename ${0}`
+export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
 # Add environment variables.
 #======================================================================================================================
 
-bcg-env "WP_LIB" "${BCG_LIB}/wp"
+bf-env "WP_LIB" "${BF_LIB}/wp"
 
-bcg-env "WP_CONFIG" "${WP_SRC}/wp-config.php"
-bcg-env "WP_CONTENT" "/wp-content"
-bcg-env "WP_CONTENT_SRC" "${WP_SRC}/wp-content"
-bcg-env "WP_CONTENT_DEFAULT" "${BCG_SRC}/wp-content-default"
+bf-env "WP_CONFIG" "${WP_SRC}/wp-config.php"
+bf-env "WP_CONTENT" "/wp-content"
+bf-env "WP_CONTENT_SRC" "${WP_SRC}/wp-content"
+bf-env "WP_CONTENT_DEFAULT" "${BF_SRC}/wp-content-default"

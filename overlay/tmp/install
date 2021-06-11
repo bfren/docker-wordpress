@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -euo pipefail
-export BCG_E=`basename ${0}`
+export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
@@ -11,49 +11,49 @@ export BCG_E=`basename ${0}`
 cd /tmp
 
 PHP_VERSION=$(cat PHP_VERSION)
-bcg-debug "PHP version ${PHP_VERSION}."
+bf-debug "PHP version ${PHP_VERSION}."
 
 IMAGICK_VERSION=$(cat IMAGICK_VERSION)
-bcg-debug "Imagick version ${IMAGICK_VERSION}."
+bf-debug "Imagick version ${IMAGICK_VERSION}."
 
 
 #======================================================================================================================
 # Install PHP and Imagick dependencies and packages.
 #======================================================================================================================
 
-bcg-echo "Installing installation dependencies..."
+bf-echo "Installing installation dependencies..."
 apk add --no-cache --virtual .install \
     unzip
-bcg-done
+bf-done
 
-bcg-echo "Installing PHP v${PHP_VERSION}..."
+bf-echo "Installing PHP v${PHP_VERSION}..."
 chmod +x ./install-php && ./install-php ${PHP_VERSION}
-bcg-done
+bf-done
 
-bcg-echo "Installing Imagick v${IMAGICK_VERSION}..."
+bf-echo "Installing Imagick v${IMAGICK_VERSION}..."
 chmod +x ./install-php-imagick && ./install-php-imagick ${IMAGICK_VERSION}
-bcg-done
+bf-done
 
 
 #======================================================================================================================
 # Get WordPress environment variables.
 #======================================================================================================================
 
-SRC=/etc/bcg/src
-bcg-debug "Source directory: ${SRC}."
+SRC=/etc/bf/src
+bf-debug "Source directory: ${SRC}."
 
 WP=wordpress
 WP_SRC=${SRC}/${WP}
-bcg-debug "WordPress source directory: ${WP_SRC}."
+bf-debug "WordPress source directory: ${WP_SRC}."
 
 WP_CONTENT_SRC=${WP_SRC}/wp-content
-bcg-debug "WordPress source wp-content directory: ${WP_CONTENT_SRC}."
+bf-debug "WordPress source wp-content directory: ${WP_CONTENT_SRC}."
 
 WP_CONTENT_DEFAULT=${SRC}/wp-content-default
-bcg-debug "WordPress default wp-content directory: ${WP_CONTENT_DEFAULT}."
+bf-debug "WordPress default wp-content directory: ${WP_CONTENT_DEFAULT}."
 
 WP_VERSION=$(cat WP_VERSION)
-bcg-debug "WordPress version ${WP_VERSION}."
+bf-debug "WordPress version ${WP_VERSION}."
 
 
 #======================================================================================================================
@@ -63,27 +63,27 @@ bcg-debug "WordPress version ${WP_VERSION}."
 cd /tmp
 URL="https://${WP_LOCALE}.wordpress.org/wordpress-${WP_VERSION}-${WP_LOCALE}.zip"
 
-bcg-echo "Downloading ${URL} to /tmp..."
+bf-echo "Downloading ${URL} to /tmp..."
 wget -O wp.zip ${URL} \
     && unzip -oq wp.zip \
     && rm wp.zip
-[[ -d ${WP} ]] && bcg-done \
-    || bcg-error "WordPress not downloaded."
+[[ -d ${WP} ]] && bf-done \
+    || bf-error "WordPress not downloaded."
 
-bcg-echo "Moving /tmp/${WP} to ${SRC}..."
+bf-echo "Moving /tmp/${WP} to ${SRC}..."
 mv ${WP} ${SRC}
-[[ -d ${WP_SRC} ]] && bcg-done \
-    || bcg-error "WordPress not installed."
+[[ -d ${WP_SRC} ]] && bf-done \
+    || bf-error "WordPress not installed."
 
 
 #======================================================================================================================
 # Set permissions on source files.
 #======================================================================================================================
 
-bcg-echo "Setting permissions on ${WP_SRC}..."
-bcg-ch -o www:www -m 0500 -t d ${WP_SRC}
-bcg-ch -o www:www -m 0400 -t f ${WP_SRC}
-bcg-done
+bf-echo "Setting permissions on ${WP_SRC}..."
+bf-ch -o www:www -m 0500 -t d ${WP_SRC}
+bf-ch -o www:www -m 0400 -t f ${WP_SRC}
+bf-done
 
 
 #======================================================================================================================
@@ -97,7 +97,7 @@ cp -R ${WP_CONTENT_SRC} ${WP_CONTENT_DEFAULT}
 # Create WordPress directory.
 #======================================================================================================================
 
-bcg-debug "Creating WordPress content directory."
+bf-debug "Creating WordPress content directory."
 mkdir /wp-content
 
 
@@ -105,8 +105,8 @@ mkdir /wp-content
 # Cleanup.
 #======================================================================================================================
 
-bcg-debug "Removing /www files."
+bf-debug "Removing /www files."
 rm -f /www/*
 
-bcg-debug "Removing installation dependencies."
+bf-debug "Removing installation dependencies."
 apk del .install

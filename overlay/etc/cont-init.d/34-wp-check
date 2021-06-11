@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 set -euo pipefail
-export BCG_E=`basename ${0}`
+export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
@@ -9,10 +9,10 @@ export BCG_E=`basename ${0}`
 #======================================================================================================================
 
 if [ "${SETUP_COMPLETE-}" = "1" ] ; then
-    bcg-clear
-    bcg-ok "WordPress setup complete."
+    bf-clear
+    bf-ok "WordPress setup complete."
     exit 0
 fi
 
-bcg-notok "WordPress setup did not complete successfully, terminating container."
-bcg-svc-terminate
+bf-notok "WordPress setup did not complete successfully, terminating container."
+bf-svc-terminate

@@ -1,9 +1,9 @@
 # Docker WordPress
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/bencgreen/docker-wordpress) ![Docker Pulls](https://img.shields.io/docker/pulls/bcgdesign/wordpress?label=pulls) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/bcgdesign/wordpress/latest?label=size)<br/>
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bencgreen/docker-wordpress/dev-php7_3?label=PHP+7.3) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bencgreen/docker-wordpress/dev-php7_4?label=PHP+7.4) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bencgreen/docker-wordpress/dev-php8_0?label=PHP+8.0)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-wordpress) ![Docker Pulls](https://img.shields.io/docker/pulls/bfren/wordpress?label=pulls) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/bfren/wordpress/latest?label=size)<br/>
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php7_3?label=PHP+7.3) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php7_4?label=PHP+7.4) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php8_0?label=PHP+8.0)
 
-[Docker Repository](https://hub.docker.com/r/bcgdesign/wordpress) - [bcg|design ecosystem](https://github.com/bencgreen/docker)
+[Docker Repository](https://hub.docker.com/r/bfren/wordpress) - [bfren ecosystem](https://github.com/bfren/docker)
 
 Comes with WordPress en_GB preinstalled - if you want a different locale, use the Dockerfiles and set the `WP_LOCALE` argument.
 
@@ -16,7 +16,7 @@ The required and recommended PHP modules are all installed.
 * [Environment Variables](#environment-variables)
 * [Helper Functions](#helper-functions)
 * [Nginx Configuration Helpers](#nginx-configuration-helpers)
-* [Authors / Licence / Copyright](#authors)
+* [Licence / Copyright](#licence)
 
 ## Ports
 
@@ -28,11 +28,11 @@ The required and recommended PHP modules are all installed.
 | -------------- | ------------------------- |
 | `/wp-content`  | `wp-content` directories. |
 
-See the [Nginx](https://github.com/bencgreen/docker-nginx) image for other configuration details.
+See the [Nginx](https://github.com/bfren/docker-nginx) image for other configuration details.
 
 ## Environment Variables
 
-See the [Nginx + PHP](https://github.com/bencgreen/docker-nginx-php) image for details of `www.conf` and `php.ini` overrides using environment variables.
+See the [Nginx + PHP](https://github.com/bfren/docker-nginx-php) image for details of `www.conf` and `php.ini` overrides using environment variables.
 
 | Variable                       | Values        | Description                                                                                       | Default                                        |
 | ------------------------------ | ------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
@@ -66,15 +66,11 @@ The image contains a handful of useful Nginx configuration 'helper' files, which
 | `-restrictions.conf` | Adds various security-based restrictions.                                                                             |
 | `-subdirectory.conf` | Enables WordPress to run in a `wordpress` subdirectory - copy and replace with the name your own subdirectory to use. |
 
-## Authors
+## Licence
 
-* [Ben Green](https://github.com/bencgreen)
-
-## License
-
-> [MIT](https://mit.bcgdesign.com/2020)
+> [MIT](https://mit.bfren.uk/2020)
 
 ## Copyright
 
-> Copyright (c) 2021 Ben Green <https://bcgdesign.com>
+> Copyright (c) 2021 bfren.uk
 > Unless otherwise stated

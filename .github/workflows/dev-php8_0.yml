@@ -23,13 +23,13 @@ jobs:
         uses: actions/checkout@v2
       -
         name: Read WP version
-        uses: bencgreen/read-file-action@v1
+        uses: bfren/read-file-action@v1
         with:
           path: ./WP_MINOR
         id: wp_version
       -
         name: Read image version
-        uses: bencgreen/read-file-action@v1
+        uses: bfren/read-file-action@v1
         with:
           path: ./VERSION
         id: version
@@ -55,11 +55,11 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bcgdesign/wordpress:php8-dev
-            bcgdesign/wordpress:php8-${{ steps.version.outputs.content }}-beta
-            bcgdesign/wordpress:php8.0-dev
-            bcgdesign/wordpress:php8.0-${{ steps.version.outputs.content }}-beta
-            bcgdesign/wordpress:php8.0-wp${{ steps.wp_version.outputs.content }}-dev
+            bfren/wordpress:php8-dev
+            bfren/wordpress:php8-${{ steps.version.outputs.content }}-beta
+            bfren/wordpress:php8.0-dev
+            bfren/wordpress:php8.0-${{ steps.version.outputs.content }}-beta
+            bfren/wordpress:php8.0-wp${{ steps.wp_version.outputs.content }}-dev
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
