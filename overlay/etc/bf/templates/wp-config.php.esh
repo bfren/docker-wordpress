@@ -74,7 +74,7 @@ define( 'WP_DEBUG', <%= "${WP_DEBUG}" %> );
 
 <% if [ "${WP_ENABLE_HTTPS_BEHIND_PROXY}" = "1" ] ; then %>
 /**
- * bcgdesign/wordpress
+ * bfren/wordpress
  *
  * Forces WordPress to generate HTTPS links - necessary if being served over HTTPS
  * from behind a proxy server
@@ -88,7 +88,7 @@ if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
 
 <% if [ "${WP_USE_SYSTEM_CRON}" = "1" ] ; then %>
 /**
- * bcgdesign/wordpress
+ * bfren/wordpress
  *
  * Disable WordPress in-build cron - will be handled by the system cron instead
  */
@@ -97,7 +97,7 @@ define( 'DISABLE_WP_CRON', true );
 
 <% if [ "${WP_DISABLE_MAJOR_UPDATES-}" = "1" ] ; then %>
 /**
- * bcgdesign/wordpress
+ * bfren/wordpress
  *
  * Disable WordPress core major update - they will be downloaded as part of the Docker image
  */
@@ -106,7 +106,7 @@ define( 'WP_AUTO_UPDATE_CORE', 'minor' );
 
 <% if [ -n "${WP_CONFIG_ADDITIONAL}" ] ; then %>
 /**
- * bcgdesign/wordpress
+ * bfren/wordpress
  *
  * These additional configuration directives are defined by the WP_CONFIG_OVERRIDE environment variable.
  */
