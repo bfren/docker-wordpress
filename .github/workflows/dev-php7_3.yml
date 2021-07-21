@@ -25,7 +25,7 @@ jobs:
         name: Read WP version
         uses: bfren/read-file-action@v1
         with:
-          path: ./WP_MINOR
+          path: ./WP_VERSION
         id: wp_version
       -
         name: Read image version
