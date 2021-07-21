@@ -25,10 +25,16 @@ jobs:
           path: ./php7.4/PHP_BUILD
         id: php_build
       -
-        name: Read WP version
+        name: Read WP minor version
         uses: bfren/read-file-action@v1
         with:
           path: ./WP_MINOR
+        id: wp_minor
+      -
+        name: Read WP version
+        uses: bfren/read-file-action@v1
+        with:
+          path: ./WP_VERSION
         id: wp_version
       -
         name: Read image version
@@ -60,12 +66,16 @@ jobs:
           tags: |
             bfren/wordpress:latest
             bfren/wordpress:${{ steps.version.outputs.content }}
+            bfren/wordpress:wp${{ steps.wp_minor.outputs.content }}
+            bfren/wordpress:wp${{ steps.wp_minor.outputs.content }}-${{ steps.version.outputs.content }}
             bfren/wordpress:wp${{ steps.wp_version.outputs.content }}
             bfren/wordpress:wp${{ steps.wp_version.outputs.content }}-${{ steps.version.outputs.content }}
             bfren/wordpress:php7
             bfren/wordpress:php7-${{ steps.version.outputs.content }}
             bfren/wordpress:php7.4
             bfren/wordpress:php7.4-${{ steps.version.outputs.content }}
+            bfren/wordpress:php7.4-wp${{ steps.wp_minor.outputs.content }}
+            bfren/wordpress:php7.4-wp${{ steps.wp_minor.outputs.content }}-${{ steps.version.outputs.content }}
             bfren/wordpress:php7.4-wp${{ steps.wp_version.outputs.content }}
             bfren/wordpress:php7.4-wp${{ steps.wp_version.outputs.content }}-${{ steps.version.outputs.content }}
             bfren/wordpress:php${{ steps.php_revision.outputs.content }}
