@@ -5,7 +5,7 @@
 
 [Docker Repository](https://hub.docker.com/r/bfren/wordpress) - [bfren ecosystem](https://github.com/bfren/docker)
 
-Comes with WordPress en_GB preinstalled - if you want a different locale, use the Dockerfiles and set the `WP_LOCALE` argument.
+Comes with [WordPress](https://en-gb.wordpress.org) en_GB preinstalled - if you want a different locale, use the Dockerfiles and set the `WP_LOCALE` argument.
 
 The required and recommended PHP modules are all installed.
 
