@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php7.3-2.2.8
+FROM bfren/nginx-php:php7.3-2.2.9
 
 ARG \
     # set to a valid WordPress locale or the installation will fail
