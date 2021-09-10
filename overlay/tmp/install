@@ -65,6 +65,7 @@ URL="https://${WP_LOCALE}.wordpress.org/wordpress-${WP_VERSION}-${WP_LOCALE}.zip
 
 bf-echo "Downloading ${URL} to /tmp..."
 wget -O wp.zip ${URL} \
+    && echo "${WP_LOCALE_SHA1}  wp.zip" | sha1sum -c - \
     && unzip -oq wp.zip \
     && rm wp.zip
 [[ -d ${WP} ]] && bf-done \
