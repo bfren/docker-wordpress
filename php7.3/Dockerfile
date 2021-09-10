@@ -2,7 +2,9 @@ FROM bfren/nginx-php:php7.3-2.2.11
 
 ARG \
     # set to a valid WordPress locale or the installation will fail
-    WP_LOCALE="en_GB"
+    WP_LOCALE="en_GB" \
+    # hashes for downloads are available at (e.g.) https://en-gb.wordpress.org/download/releases/
+    WP_LOCALE_SHA1="0d9cb1deda0272b0339f4aef5fde50a8aca24afc"
 
 ENV \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
