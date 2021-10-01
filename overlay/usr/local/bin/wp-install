@@ -34,16 +34,16 @@ bf-debug "WordPress default wp-content directory: ${WP_CONTENT_DEFAULT}."
 
 [[ -z "${WP_VERSION-}" ]] \
     && WP_VERSION=$(cat WP_VERSION)
-bf-debug "WordPress version ${WP_VERSION}."
 
 [[ -z "${WP_LOCALE-}" ]] \
     && WP_LOCALE=$(cat WP_LOCALE)
-bf-debug "WordPress locale ${WP_LOCALE}."
 
 
 #======================================================================================================================
 # Download and install WordPress.
 #======================================================================================================================
+
+bf-echo "Installing WordPress ${WP_VERSION} (${WP_LOCALE})."
 
 cd /tmp
 URL="https://${WP_LOCALE}.wordpress.org/wordpress-${WP_VERSION}-${WP_LOCALE}.zip"
