@@ -1,6 +1,9 @@
 FROM bfren/nginx-php:php7.3-2.2.16
 
 ARG \
+    # set to a valid WordPress version or the installation will fail
+    # if empty, will use value in text file WP_VERSION
+    WP_VERSION="" \
     # set to a valid WordPress locale or the installation will fail
     # if empty, will use value in text file WP_LOCALE
     WP_LOCALE="" \

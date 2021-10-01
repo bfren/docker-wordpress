@@ -52,13 +52,15 @@ bf-debug "WordPress source wp-content directory: ${WP_CONTENT_SRC}."
 WP_CONTENT_DEFAULT=${SRC}/wp-content-default
 bf-debug "WordPress default wp-content directory: ${WP_CONTENT_DEFAULT}."
 
-WP_VERSION=$(cat WP_VERSION)
+[[ -z "${WP_VERSION-}" ]] \
+    && WP_VERSION=$(cat WP_VERSION)
 bf-debug "WordPress version ${WP_VERSION}."
 
 [[ -z "${WP_LOCALE-}" ]] \
     && WP_LOCALE=$(cat WP_LOCALE)
 [[ -z "${WP_LOCALE_SHA1-}" ]] \
     && WP_LOCALE_SHA1=$(cat WP_LOCALE_SHA1)
+bf-debug "WordPress locale ${WP_LOCALE}."
 
 
 #======================================================================================================================
