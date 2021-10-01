@@ -58,8 +58,6 @@ bf-debug "WordPress version ${WP_VERSION}."
 
 [[ -z "${WP_LOCALE-}" ]] \
     && WP_LOCALE=$(cat WP_LOCALE)
-[[ -z "${WP_LOCALE_SHA1-}" ]] \
-    && WP_LOCALE_SHA1=$(cat WP_LOCALE_SHA1)
 bf-debug "WordPress locale ${WP_LOCALE}."
 
 
@@ -69,6 +67,9 @@ bf-debug "WordPress locale ${WP_LOCALE}."
 
 cd /tmp
 URL="https://${WP_LOCALE}.wordpress.org/wordpress-${WP_VERSION}-${WP_LOCALE}.zip"
+
+WP_LOCALE_SHA1=$(wget -O - "${URL}.sha1")
+bf-debug "SHA1 for WordPress ${WP_VERSION} (${WP_LOCALE}): ${WP_LOCALE_SHA1}."
 
 bf-echo "Downloading ${URL} to /tmp..."
 wget -O wp.zip ${URL} \

@@ -6,10 +6,7 @@ ARG \
     WP_VERSION="" \
     # set to a valid WordPress locale or the installation will fail
     # if empty, will use value in text file WP_LOCALE
-    WP_LOCALE="" \
-    # hashes for downloads are available at (e.g.) https://en-gb.wordpress.org/download/releases/
-    # if empty, will use value in text file WP_LOCALE_SHA1
-    WP_LOCALE_SHA1=""
+    WP_LOCALE=""
 
 ENV \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
@@ -43,7 +40,6 @@ ENV \
 COPY ./overlay /
 COPY ./WP_VERSION /tmp/WP_VERSION
 COPY ./WP_LOCALE /tmp/WP_LOCALE
-COPY ./WP_LOCALE_SHA1 /tmp/WP_LOCALE_SHA1
 
 COPY ./php7.4/overlay /
 COPY ./php7.4/PHP_BUILD /tmp/PHP_VERSION
