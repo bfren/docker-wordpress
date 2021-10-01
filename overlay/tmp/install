@@ -21,11 +21,6 @@ bf-debug "Imagick version ${IMAGICK_VERSION}."
 # Install PHP and Imagick dependencies and packages.
 #======================================================================================================================
 
-bf-echo "Installing installation dependencies..."
-apk add --no-cache --virtual .install \
-    unzip
-bf-done
-
 bf-echo "Installing PHP v${PHP_VERSION}..."
 chmod +x ./install-php && ./install-php ${PHP_VERSION}
 bf-done
@@ -36,62 +31,11 @@ bf-done
 
 
 #======================================================================================================================
-# Get WordPress environment variables.
+# Run WordPress installation.
 #======================================================================================================================
 
-SRC=/etc/bf/src
-bf-debug "Source directory: ${SRC}."
-
-WP=wordpress
-WP_SRC=${SRC}/${WP}
-bf-debug "WordPress source directory: ${WP_SRC}."
-
-WP_CONTENT_SRC=${WP_SRC}/wp-content
-bf-debug "WordPress source wp-content directory: ${WP_CONTENT_SRC}."
-
-WP_CONTENT_DEFAULT=${SRC}/wp-content-default
-bf-debug "WordPress default wp-content directory: ${WP_CONTENT_DEFAULT}."
-
-WP_VERSION=$(cat WP_VERSION)
-bf-debug "WordPress version ${WP_VERSION}."
-
-
-#======================================================================================================================
-# Download and install WordPress.
-#======================================================================================================================
-
-cd /tmp
-URL="https://${WP_LOCALE}.wordpress.org/wordpress-${WP_VERSION}-${WP_LOCALE}.zip"
-
-bf-echo "Downloading ${URL} to /tmp..."
-wget -O wp.zip ${URL} \
-    && echo "${WP_LOCALE_SHA1}  wp.zip" | sha1sum -c - \
-    && unzip -oq wp.zip \
-    && rm wp.zip
-[[ -d ${WP} ]] && bf-done \
-    || bf-error "WordPress not downloaded."
-
-bf-echo "Moving /tmp/${WP} to ${SRC}..."
-mv ${WP} ${SRC}
-[[ -d ${WP_SRC} ]] && bf-done \
-    || bf-error "WordPress not installed."
-
-
-#======================================================================================================================
-# Set permissions on source files.
-#======================================================================================================================
-
-bf-echo "Setting permissions on ${WP_SRC}..."
-bf-ch -o www:www -m 0500 -t d ${WP_SRC}
-bf-ch -o www:www -m 0400 -t f ${WP_SRC}
-bf-done
-
-
-#======================================================================================================================
-# Create a copy of default wp-content directory.
-#======================================================================================================================
-
-cp -R ${WP_CONTENT_SRC} ${WP_CONTENT_DEFAULT}
+chmod +x /usr/local/bin/wp-install
+wp-install
 
 
 #======================================================================================================================
@@ -108,6 +52,3 @@ mkdir /wp-content
 
 bf-debug "Removing /www files."
 rm -f /www/*
-
-bf-debug "Removing installation dependencies."
-apk del .install

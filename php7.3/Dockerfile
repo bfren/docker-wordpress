@@ -1,10 +1,12 @@
-FROM bfren/nginx-php:php7.3-2.2.16
+FROM bfren/nginx-php:php7.3-2.2.17
 
 ARG \
+    # set to a valid WordPress version or the installation will fail
+    # if empty, will use value in text file WP_VERSION
+    WP_VERSION="" \
     # set to a valid WordPress locale or the installation will fail
-    WP_LOCALE="en_GB" \
-    # hashes for downloads are available at (e.g.) https://en-gb.wordpress.org/download/releases/
-    WP_LOCALE_SHA1="0d9cb1deda0272b0339f4aef5fde50a8aca24afc"
+    # if empty, will use value in text file WP_LOCALE
+    WP_LOCALE=""
 
 ENV \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
@@ -37,6 +39,7 @@ ENV \
 
 COPY ./overlay /
 COPY ./WP_VERSION /tmp/WP_VERSION
+COPY ./WP_LOCALE /tmp/WP_LOCALE
 
 COPY ./php7.3/overlay /
 COPY ./php7.3/PHP_BUILD /tmp/PHP_VERSION
