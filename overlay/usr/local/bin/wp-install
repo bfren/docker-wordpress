@@ -13,8 +13,6 @@ apk add --no-cache --virtual .install \
     unzip
 bf-done
 
-bf-clear-src
-
 
 #======================================================================================================================
 # Get WordPress environment variables.
@@ -26,6 +24,7 @@ bf-debug "Source directory: ${SRC}."
 WP=wordpress
 WP_SRC=${SRC}/${WP}
 bf-debug "WordPress source directory: ${WP_SRC}."
+bf-rmrf "${WP_SRC}"
 
 WP_CONTENT_SRC=${WP_SRC}/wp-content
 bf-debug "WordPress source wp-content directory: ${WP_CONTENT_SRC}."
