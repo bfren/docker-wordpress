@@ -23,8 +23,7 @@ export AUTH=$(wget --quiet -O - ${URL})
 
 # generate config from the template
 bf-debug "Generating ${WP_CONFIG}."
-esh -o ${WP_CONFIG} \
-    ${BF_TEMPLATES}/wp-config.php.esh
+bf-esh ${BF_TEMPLATES}/wp-config.php.esh ${WP_CONFIG}
 
 # set permissions (write access is required by some plugins, e.g. caching / optimise plugins)
 bf-ch -o www:www -m 0600 ${WP_CONFIG}
