@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php8.0-2.2.21
+FROM bfren/nginx-php:php8.0-2.2.22
 
 ARG \
     # set to a valid WordPress version or the installation will fail
