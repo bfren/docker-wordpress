@@ -40,6 +40,18 @@ jobs:
         name: Read image version
         uses: bfren/read-file@v1
         with:
+          file: ./VERSION_MAJOR
+        id: version_major
+      -
+        name: Read image version
+        uses: bfren/read-file@v1
+        with:
+          file: ./VERSION_MINOR
+        id: version_minor
+      -
+        name: Read image version
+        uses: bfren/read-file@v1
+        with:
           file: ./VERSION
         id: version
       -
@@ -65,6 +77,8 @@ jobs:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
             bfren/wordpress:php7.3
+            bfren/wordpress:php7.3-${{ steps.version_major.outputs.contents }}
+            bfren/wordpress:php7.3-${{ steps.version_minor.outputs.contents }}
             bfren/wordpress:php7.3-${{ steps.version.outputs.contents }}
             bfren/wordpress:php7.3-wp${{ steps.wp_minor.outputs.contents }}
             bfren/wordpress:php7.3-wp${{ steps.wp_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
