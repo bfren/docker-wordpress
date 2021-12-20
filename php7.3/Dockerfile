@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php7.3-3.2.1
+FROM bfren/nginx-php:php7.3-3.2.3
 
 ARG BF_IMAGE
 ARG BF_VERSION
