@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php7.4-3.2.1
+FROM bfren/nginx-php:php<%= ${PHP_MINOR} %>-<%= ${BASE_REVISION} %>
 
 ARG BF_IMAGE
 ARG BF_VERSION
@@ -44,9 +44,9 @@ COPY ./overlay /
 COPY ./WP_VERSION /tmp/WP_VERSION
 COPY ./WP_LOCALE /tmp/WP_LOCALE
 
-COPY ./php7.4/overlay /
-COPY ./php7.4/PHP_BUILD /tmp/PHP_VERSION
-COPY ./php7.4/IMAGICK_BUILD /tmp/IMAGICK_VERSION
+COPY ./php<%= ${PHP_MINOR} %>/overlay /
+COPY ./php<%= ${PHP_MINOR} %>/PHP_BUILD /tmp/PHP_VERSION
+COPY ./php<%= ${PHP_MINOR} %>/IMAGICK_BUILD /tmp/IMAGICK_VERSION
 
 RUN bf-install
 
