@@ -4,7 +4,7 @@ set -euo pipefail
 
 docker pull bfren/alpine
 
-BASE_REVISION="3.2.1"
+BASE_REVISION="3.2.2"
 echo "Base: ${BASE_REVISION}"
 
 PHP_VERSIONS="7.3 7.4 8.0"
@@ -24,4 +24,5 @@ for V in ${PHP_VERSIONS} ; do
 
 done
 
+docker system prune -f
 echo "Done."
