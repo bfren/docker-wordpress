@@ -19,6 +19,7 @@ apk add --no-cache \
     php8-gettext=${1} \
     php8-iconv=${1} \
     php8-imap=${1} \
+    php8-intl=${1} \
     php8-mbstring=${1} \
     php8-mysqlnd=${1} \
     php8-mysqli=${1} \

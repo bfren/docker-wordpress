@@ -19,6 +19,7 @@ apk add --no-cache \
     php7-gettext=${1} \
     php7-iconv=${1} \
     php7-imap=${1} \
+    php7-imap=${1} \
     php7-json=${1} \
     php7-mbstring=${1} \
     php7-mysqlnd=${1} \
