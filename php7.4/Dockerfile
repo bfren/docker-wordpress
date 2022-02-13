@@ -41,12 +41,12 @@ ENV \
     WP_USE_SYSTEM_CRON=1
 
 COPY ./overlay /
-COPY ./WP_VERSION /tmp/WP_VERSION
-COPY ./WP_LOCALE /tmp/WP_LOCALE
+COPY ./WP_VERSION /tmp/
+COPY ./WP_LOCALE /tmp/
 
 COPY ./php7.4/overlay /
-COPY ./php7.4/PHP_BUILD /tmp/PHP_VERSION
-COPY ./php7.4/IMAGICK_BUILD /tmp/IMAGICK_VERSION
+COPY ./php7.4/PHP_BUILD /tmp/
+COPY ./php7.4/IMAGICK_BUILD /tmp/
 
 RUN bf-install
 
