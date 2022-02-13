@@ -34,7 +34,7 @@ bf-done
 # Run WordPress installation.
 #======================================================================================================================
 
-chmod +x /usr/local/bin/wp-install
+chmod +x /usr/bin/bf/wp-install
 wp-install
 
 

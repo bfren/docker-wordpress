@@ -4,10 +4,9 @@ set -euo pipefail
 
 
 #======================================================================================================================
-# Set correct permissions on /wp-content (see fix-attrs.d/30-wp).
+# Set correct permissions on /wp-content.
 #======================================================================================================================
 
 bf-echo "Setting permissions on ${WP_CONTENT}..." `basename ${0}`
-bf-ch -o www:www -m 0755 -t d ${WP_CONTENT}
-bf-ch -o www:www -m 0644 -t f ${WP_CONTENT}
+bf-ch-apply "${BF_CH_D}/30-wp"
 bf-done `basename ${0}`
