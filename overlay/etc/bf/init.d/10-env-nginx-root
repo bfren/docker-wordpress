@@ -1,19 +1,13 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv sh
 
 set -euo pipefail
 export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Override configuration.
+# Add environment variables.
 #======================================================================================================================
 
-bf-echo "Overriding php.ini configuration values..."
-
-declare -A VALUES
-VALUES["cgi.fix_pathinfo"]="0"
-
-source ${BF_INC}/php-replace-ini.sh
-replace-ini VALUES ${PHP_DIR}/php.ini
-
-bf-done
+WP_SRC=${BF_SRC}/wordpress
+bf-env "WP_SRC" "${WP_SRC}"
+bf-env "NGINX_ROOT" "${WP_SRC}"
