@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php8.0-4.0.1
+FROM bfren/nginx-php:php8.0-4.0.2
 
 ARG BF_IMAGE
 ARG BF_VERSION
@@ -38,7 +38,9 @@ ENV \
     WP_DISABLE_MAJOR_UPDATES=1 \
     # set to 1 to use system cron instead of WordPress cron (improves page performance)
     # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference
-    WP_USE_SYSTEM_CRON=1
+    WP_USE_SYSTEM_CRON=1 \
+    # disable S6 service timeout - handled by timeout-up
+    S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
 
 COPY ./overlay /
 COPY ./WP_VERSION /tmp/
