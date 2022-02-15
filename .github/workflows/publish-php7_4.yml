@@ -83,10 +83,6 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bfren/wordpress:php7
-            bfren/wordpress:php7-${{ steps.version_major.outputs.contents }}
-            bfren/wordpress:php7-${{ steps.version_minor.outputs.contents }}
-            bfren/wordpress:php7-${{ steps.version.outputs.contents }}
             bfren/wordpress:php7.4
             bfren/wordpress:php7.4-${{ steps.version_major.outputs.contents }}
             bfren/wordpress:php7.4-${{ steps.version_minor.outputs.contents }}

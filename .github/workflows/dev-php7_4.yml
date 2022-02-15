@@ -60,10 +60,6 @@ jobs:
           push: ${{ startsWith(github.ref, 'refs/heads/') }}
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bfren/wordpress:${{ steps.version.outputs.contents }}-beta
-            bfren/wordpress:dev
-            bfren/wordpress:php7-dev
-            bfren/wordpress:php7-${{ steps.version.outputs.contents }}-beta
             bfren/wordpress:php7.4-dev
             bfren/wordpress:php7.4-${{ steps.version.outputs.contents }}-beta
             bfren/wordpress:php7.4-wp${{ steps.wp_version.outputs.contents }}-dev

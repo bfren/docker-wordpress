@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php8.0-3.3.4
+FROM bfren/nginx-php:php8.0-4.0.3
 
 ARG BF_IMAGE
 ARG BF_VERSION
@@ -38,15 +38,17 @@ ENV \
     WP_DISABLE_MAJOR_UPDATES=1 \
     # set to 1 to use system cron instead of WordPress cron (improves page performance)
     # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference
-    WP_USE_SYSTEM_CRON=1
+    WP_USE_SYSTEM_CRON=1 \
+    # disable S6 service timeout - handled by timeout-up
+    S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
 
 COPY ./overlay /
-COPY ./WP_VERSION /tmp/WP_VERSION
-COPY ./WP_LOCALE /tmp/WP_LOCALE
+COPY ./WP_VERSION /tmp/
+COPY ./WP_LOCALE /tmp/
 
 COPY ./php8.0/overlay /
-COPY ./php8.0/PHP_BUILD /tmp/PHP_VERSION
-COPY ./php8.0/IMAGICK_BUILD /tmp/IMAGICK_VERSION
+COPY ./php8.0/PHP_BUILD /tmp/
+COPY ./php8.0/IMAGICK_BUILD /tmp/
 
 RUN bf-install
 

@@ -83,18 +83,10 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bfren/wordpress:latest
-            bfren/wordpress:${{ steps.version_major.outputs.contents }}
-            bfren/wordpress:${{ steps.version_minor.outputs.contents }}
-            bfren/wordpress:${{ steps.version.outputs.contents }}
             bfren/wordpress:wp${{ steps.wp_minor.outputs.contents }}
             bfren/wordpress:wp${{ steps.wp_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
             bfren/wordpress:wp${{ steps.wp_version.outputs.contents }}
             bfren/wordpress:wp${{ steps.wp_version.outputs.contents }}-${{ steps.version.outputs.contents }}
-            bfren/wordpress:php8
-            bfren/wordpress:php8-${{ steps.version_major.outputs.contents }}
-            bfren/wordpress:php8-${{ steps.version_minor.outputs.contents }}
-            bfren/wordpress:php8-${{ steps.version.outputs.contents }}
             bfren/wordpress:php8.0
             bfren/wordpress:php8.0-${{ steps.version_major.outputs.contents }}
             bfren/wordpress:php8.0-${{ steps.version_minor.outputs.contents }}

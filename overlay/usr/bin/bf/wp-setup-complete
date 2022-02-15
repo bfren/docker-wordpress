@@ -1,16 +1,11 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv bash
 
 set -euo pipefail
 export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Add environment variables.
+# Add setup complete environment variable.
 #======================================================================================================================
 
-bf-env "WP_LIB" "${BF_LIB}/wp"
-
-bf-env "WP_CONFIG" "${WP_SRC}/wp-config.php"
-bf-env "WP_CONTENT" "/wp-content"
-bf-env "WP_CONTENT_SRC" "${WP_SRC}/wp-content"
-bf-env "WP_CONTENT_DEFAULT" "${BF_SRC}/wp-content-default"
+bf-env "SETUP_COMPLETE" "1"

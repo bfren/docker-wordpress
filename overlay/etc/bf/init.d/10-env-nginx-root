@@ -1,11 +1,13 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv sh
 
 set -euo pipefail
 export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Add setup complete environment variable.
+# Add environment variables.
 #======================================================================================================================
 
-bf-env "SETUP_COMPLETE" "1"
+WP_SRC=${BF_SRC}/wordpress
+bf-env "WP_SRC" "${WP_SRC}"
+bf-env "NGINX_ROOT" "${WP_SRC}"

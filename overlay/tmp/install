@@ -10,11 +10,11 @@ export BF_E=`basename ${0}`
 
 cd /tmp
 
-PHP_VERSION=$(cat PHP_VERSION)
-bf-debug "PHP version ${PHP_VERSION}."
+PHP_VERSION=$(cat PHP_BUILD)
+bf-echo "PHP version ${PHP_VERSION}."
 
-IMAGICK_VERSION=$(cat IMAGICK_VERSION)
-bf-debug "Imagick version ${IMAGICK_VERSION}."
+IMAGICK_VERSION=$(cat IMAGICK_BUILD)
+bf-echo "Imagick version ${IMAGICK_VERSION}."
 
 
 #======================================================================================================================
@@ -34,7 +34,7 @@ bf-done
 # Run WordPress installation.
 #======================================================================================================================
 
-chmod +x /usr/local/bin/wp-install
+chmod +x /usr/bin/bf/wp-install
 wp-install
 
 
@@ -42,7 +42,7 @@ wp-install
 # Create WordPress directory.
 #======================================================================================================================
 
-bf-debug "Creating WordPress content directory."
+bf-echo "Creating WordPress content directory."
 mkdir /wp-content
 
 
@@ -50,5 +50,5 @@ mkdir /wp-content
 # Cleanup.
 #======================================================================================================================
 
-bf-debug "Removing /www files."
+bf-echo "Removing /www files."
 rm -f /www/*
