@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php8.0-4.1.1
+FROM bfren/nginx-php:php8.0-4.1.2
 
 ARG BF_IMAGE
 ARG BF_VERSION
@@ -45,8 +45,6 @@ COPY ./WP_VERSION /tmp/
 COPY ./WP_LOCALE /tmp/
 
 COPY ./php8.0/overlay /
-COPY ./php8.0/PHP_BUILD /tmp/
-COPY ./php8.0/IMAGICK_BUILD /tmp/
 
 RUN bf-install
 

@@ -45,8 +45,6 @@ COPY ./WP_VERSION /tmp/
 COPY ./WP_LOCALE /tmp/
 
 COPY ./php<%= ${PHP_MINOR} %>/overlay /
-COPY ./php<%= ${PHP_MINOR} %>/PHP_BUILD /tmp/
-COPY ./php<%= ${PHP_MINOR} %>/IMAGICK_BUILD /tmp/
 
 RUN bf-install
 
