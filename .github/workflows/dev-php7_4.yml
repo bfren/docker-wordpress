@@ -48,6 +48,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      -
         name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
@@ -63,6 +70,9 @@ jobs:
             bfren/wordpress:php7.4-dev
             bfren/wordpress:php7.4-${{ steps.version.outputs.contents }}-beta
             bfren/wordpress:php7.4-wp${{ steps.wp_version.outputs.contents }}-dev
+            ghcr.io/bfren/wordpress:php7.4-dev
+            ghcr.io/bfren/wordpress:php7.4-${{ steps.version.outputs.contents }}-beta
+            ghcr.io/bfren/wordpress:php7.4-wp${{ steps.wp_version.outputs.contents }}-dev
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
