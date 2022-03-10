@@ -32,7 +32,7 @@ define( 'DB_PASSWORD', '<%= "${WP_DB_PASS}" %>' );
 define( 'DB_HOST', '<%= "${WP_DB_HOST}" %>' );
 
 /** Database Charset to use in creating database tables. */
-define( 'DB_CHARSET', '<%= "${WP_DB_CHARSET}" %>' );
+define( 'DB_CHARSET', '<%= "${WP_DB_CHARSET-}" %>' );
 
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '<%= "${WP_DB_COLLATE}" %>' );
@@ -104,7 +104,7 @@ define( 'DISABLE_WP_CRON', true );
 define( 'WP_AUTO_UPDATE_CORE', 'minor' );
 <% fi %>
 
-<% if [ -n "${WP_CONFIG_ADDITIONAL}" ] ; then %>
+<% if [ -n "${WP_CONFIG_ADDITIONAL-}" ] ; then %>
 /**
  * bfren/wordpress
  *
