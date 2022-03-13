@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php8.0-4.2.0
+FROM bfren/nginx-php:php8.0-4.2.1
 
 ARG BF_IMAGE
 ARG BF_VERSION
@@ -15,19 +15,19 @@ ENV \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
     WP_CLEAN_INSTALL=0 \
     # additional directives to be added to wp-config.php
-    WP_CONFIG_ADDITIONAL= \
+    WP_CONFIG_ADDITIONAL="" \
     # database name
-    WP_DB_NAME= \
+    WP_DB_NAME="" \
     # database user
-    WP_DB_USER= \
+    WP_DB_USER="" \
     # database password
-    WP_DB_PASS= \
+    WP_DB_PASS="" \
     # database host
-    WP_DB_HOST= \
+    WP_DB_HOST="" \
     # database character set
     WP_DB_CHARSET="utf8mb4" \
     # database collation
-    WP_DB_COLLATE= \
+    WP_DB_COLLATE="" \
     # database prefix
     WP_DB_PREFIX="wp" \
     # whether or not to enable debug mode
@@ -41,9 +41,6 @@ ENV \
     WP_USE_SYSTEM_CRON=1
 
 COPY ./overlay /
-COPY ./WP_VERSION /tmp/
-COPY ./WP_LOCALE /tmp/
-
 COPY ./php8.0/overlay /
 
 RUN bf-install

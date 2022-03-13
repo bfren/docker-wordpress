@@ -1,7 +1,6 @@
-#!/command/with-contenv bash
+#!/bin/bash
 
 set -euo pipefail
-export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
@@ -10,14 +9,14 @@ export BF_E=`basename ${0}`
 
 if [ "$(ls -A ${WP_CONTENT})" ] ; then
 
-    bf-debug "${WP_CONTENT} is not empty."
+    bf-debug "${WP_CONTENT} is not empty." "wp/setup-content"
 
     # if source wp-content is not a link, delete it (it will be recreated as a symlink later)
     if [ ! -L ${WP_CONTENT_SRC} ] ; then
 
-        bf-echo "Deleting ${WP_CONTENT_SRC} so it can be turned into a symlink."
+        bf-echo "Deleting ${WP_CONTENT_SRC} so it can be turned into a symlink." "wp/setup-content"
         rm -rf ${WP_CONTENT_SRC}
-        bf-done
+        bf-done "wp/setup-content"
 
     fi
 
@@ -36,22 +35,22 @@ else
     # /wp-content is empty - move source wp-content
     else
 
-        bf-echo "Moving ${WP_CONTENT_SRC} files and directories..."
+        bf-echo "Moving ${WP_CONTENT_SRC} files and directories..." "wp/setup-content"
         for CONTENT in ${WP_CONTENT_SRC}/* ; do
 
             # get file name
             NAME=$(basename -- "${CONTENT}")
-            bf-echo " .. ${NAME}"
+            bf-echo " .. ${NAME}" "wp/setup-content"
 
             # define new content variable
             IN_WP="${WP_CONTENT}/${NAME}"
-            bf-debug "    moving ${CONTENT} to ${IN_WP}."
+            bf-debug "    moving ${CONTENT} to ${IN_WP}." "wp/setup-content"
 
             # move content
             mv ${CONTENT} ${WP_CONTENT}
 
         done
-        bf-done
+        bf-done "wp/setup-content"
 
         wp-content-setperms
 
@@ -66,9 +65,9 @@ fi
 
 if [ ! -L ${WP_CONTENT_SRC} ] ; then
 
-    bf-echo "Linking ${WP_CONTENT_SRC} to ${WP_CONTENT}..."
+    bf-echo "Linking ${WP_CONTENT_SRC} to ${WP_CONTENT}..." "wp/setup-content"
     ln -s ${WP_CONTENT} ${WP_CONTENT_SRC} \
         && bf-ch -o www:www ${WP_CONTENT_SRC}
-    bf-done
+    bf-done "wp/setup-content"
 
 fi

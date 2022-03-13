@@ -27,7 +27,7 @@ jobs:
         name: Read WP version
         uses: bfren/read-file@v1
         with:
-          file: ./WP_VERSION
+          file: ./overlay/tmp/WP_VERSION
         id: wp_version
       -
         name: Read image version
