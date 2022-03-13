@@ -20,19 +20,19 @@ jobs:
         name: Read PHP version - revision
         uses: bfren/read-file@v1
         with:
-          file: ./php8.0/PHP_REVISION
+          file: ./php8.0/overlay/tmp/PHP_REVISION
         id: php_revision
       -
         name: Read WP minor version
         uses: bfren/read-file@v1
         with:
-          file: ./WP_MINOR
+          file: ./overlay/tmp/WP_MINOR
         id: wp_minor
       -
         name: Read WP version
         uses: bfren/read-file@v1
         with:
-          file: ./WP_VERSION
+          file: ./overlay/tmp/WP_VERSION
         id: wp_version
       -
         name: Read image version
