@@ -41,9 +41,6 @@ ENV \
     WP_USE_SYSTEM_CRON=1
 
 COPY ./overlay /
-COPY ./WP_VERSION /tmp/
-COPY ./WP_LOCALE /tmp/
-
 COPY ./php<%= ${PHP_MINOR} %>/overlay /
 
 RUN bf-install
