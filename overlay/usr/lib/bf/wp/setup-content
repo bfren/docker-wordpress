@@ -18,6 +18,8 @@ if [ "$(ls -A ${WP_CONTENT})" ] ; then
         rm -rf ${WP_CONTENT_SRC}
         bf-done "wp/setup-content"
 
+        wp-content-setperms
+
     fi
 
 
@@ -71,10 +73,3 @@ if [ ! -L ${WP_CONTENT_SRC} ] ; then
     bf-done "wp/setup-content"
 
 fi
-
-
-#======================================================================================================================
-# Apply permissions.
-#======================================================================================================================
-
-bf-ch-apply ${BF_CH_D}/30-wp
