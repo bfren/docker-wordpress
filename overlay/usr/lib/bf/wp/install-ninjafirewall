@@ -1,0 +1,34 @@
+#!/command/with-contenv sh
+
+set -euo pipefail
+
+
+#======================================================================================================================
+# Check for existing installation of NinjaFirewall.
+#======================================================================================================================
+
+if [ -d "${WP_CONTENT_SRC}/plugins/ninjafirewall" ] ; then
+    bf-debug "NinjaFirewall is installed." "wp/install-ninjafirewall"
+    exit 0
+fi
+
+
+#======================================================================================================================
+# Install NinjaFirewall plugin.
+#======================================================================================================================
+
+NINJAFIREWALL="ninjafirewall"
+NINJAFIREWALL_VERSION=`cat NINJAFIREWALL_VERSION`
+NINJAFIREWALL_URL="https://downloads.wordpress.org/plugin/ninjafirewall.${NINJAFIREWALL_VERSION}.zip"
+
+bf-echo "Downloading ${NINJAFIREWALL_URL} to /tmp..." "wp/install-ninjafirewall"
+wget -O ${NINJAFIREWALL}.zip ${NINJAFIREWALL_URL} \
+    && unzip -oq ${NINJAFIREWALL}.zip \
+    && rm ${NINJAFIREWALL}.zip
+[[ -d ${NINJAFIREWALL} ]] && bf-done "wp/install-ninjafirewall" \
+    || bf-error "NinjaFirewall not downloaded." "wp/install-ninjafirewall"
+
+bf-echo "Moving /tmp/${NINJAFIREWALL} to ${SRC}/wp-content..." "wp/install-ninjafirewall"
+mv /tmp/${NINJAFIREWALL} ${WP_CONTENT_SRC}/plugins
+[[ -d ${WP_CONTENT_SRC}/plugins/${NINJAFIREWALL} ]] && bf-done "wp/install-ninjafirewall" \
+    || bf-error "NinjaFirewall not installed." "wp/install-ninjafirewall"
