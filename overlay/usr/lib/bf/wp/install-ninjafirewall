@@ -18,7 +18,7 @@ fi
 #======================================================================================================================
 
 NINJAFIREWALL="ninjafirewall"
-NINJAFIREWALL_VERSION=`cat NINJAFIREWALL_VERSION`
+NINJAFIREWALL_VERSION=`cat /NINJAFIREWALL_VERSION`
 NINJAFIREWALL_URL="https://downloads.wordpress.org/plugin/ninjafirewall.${NINJAFIREWALL_VERSION}.zip"
 
 bf-echo "Downloading ${NINJAFIREWALL_URL} to /tmp..." "wp/install-ninjafirewall"
