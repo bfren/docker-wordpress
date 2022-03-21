@@ -28,7 +28,7 @@ wget -O ${NINJAFIREWALL}.zip ${NINJAFIREWALL_URL} \
 [[ -d ${NINJAFIREWALL} ]] && bf-done "wp/install-ninjafirewall" \
     || bf-error "NinjaFirewall not downloaded." "wp/install-ninjafirewall"
 
-bf-echo "Moving /tmp/${NINJAFIREWALL} to ${SRC}/wp-content..." "wp/install-ninjafirewall"
+bf-echo "Moving /tmp/${NINJAFIREWALL} to ${WP_CONTENT_SRC}/plugins..." "wp/install-ninjafirewall"
 mv /tmp/${NINJAFIREWALL} ${WP_CONTENT_SRC}/plugins
 [[ -d ${WP_CONTENT_SRC}/plugins/${NINJAFIREWALL} ]] && bf-done "wp/install-ninjafirewall" \
     || bf-error "NinjaFirewall not installed." "wp/install-ninjafirewall"
