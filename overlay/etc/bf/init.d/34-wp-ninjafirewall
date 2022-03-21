@@ -16,15 +16,21 @@ export BF_E=`basename ${0}`
 #======================================================================================================================
 
 USER_INI=${WP_SRC}/.user.ini
-rm -f ${USER_INI}
+FIREWALL=${WP_SRC}/firewall.php
+rm -f ${USER_INI} ${FIREWALL}
 
 if [ "${WP_INSTALL_NINJAFIREWALL-}" = "1" ] ; then
 
     ${WP_LIB}/install-ninjafirewall
 
-    if [ -f "${WP_CONTENT_SRC}/nfwlog/ninjafirewall.php" ] ; then
+    if [ -f "${WP_WAF_FIREWALL}" ] ; then
+
         bf-esh ${BF_TEMPLATES}/user.ini.esh ${USER_INI}
         bf-ch -o www:www ${USER_INI}
+
+        bf-esh ${BF_TEMPLATES}/firewall.php.esh ${FIREWALL}
+        bf-ch -o www:www ${FIREWALL}
+
     fi
 
 fi

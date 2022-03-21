@@ -8,7 +8,7 @@ set -euo pipefail
 #======================================================================================================================
 
 if [ -d "${WP_CONTENT_SRC}/plugins/ninjafirewall" ] ; then
-    bf-debug "NinjaFirewall is installed." "wp/install-ninjafirewall"
+    bf-echo "NinjaFirewall is installed." "wp/install-ninjafirewall"
     exit 0
 fi
 
