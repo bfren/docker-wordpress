@@ -16,4 +16,5 @@ WP_CONTENT="/wp-content"
 bf-env "WP_CONTENT" ${WP_CONTENT}
 bf-env "WP_CONTENT_SRC" "${WP_SRC}${WP_CONTENT}"
 bf-env "WP_CONTENT_DEFAULT" "${BF_SRC}${WP_CONTENT}-default"
+bf-env "WP_FIREWALL" "${WP_SRC}/firewall.php"
 bf-env "WP_WAF_FIREWALL" "${WP_CONTENT}/nfwlog/ninjafirewall.php"
