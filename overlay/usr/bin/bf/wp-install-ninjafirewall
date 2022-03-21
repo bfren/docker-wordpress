@@ -5,9 +5,7 @@ export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Set correct permissions on /wp-content.
+# Install NinjaFirewall.
 #======================================================================================================================
 
-bf-echo "Setting permissions on ${WP_CONTENT}..."
-bf-ch-apply "${BF_CH_D}/30-wp"
-bf-done
+${WP_LIB}/install-ninjafirewall

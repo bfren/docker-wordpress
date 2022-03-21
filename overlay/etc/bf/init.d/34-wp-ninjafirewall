@@ -1,0 +1,38 @@
+#!/command/with-contenv bash
+
+set -euo pipefail
+export BF_E=`basename ${0}`
+
+
+#======================================================================================================================
+# If WP_CONTENT_SRC is not linked to WP_CONTENT, the setup has gone wrong.
+#======================================================================================================================
+
+[[ ! -L ${WP_CONTENT_SRC} ]] && bf-error "${WP_CONTENT_SRC} is not linked to ${WP_CONTENT}."
+
+
+#======================================================================================================================
+# Run install NinjaFirewall executable, and activate full WAF mode
+#======================================================================================================================
+
+USER_INI=${WP_SRC}/.user.ini
+FIREWALL=${WP_SRC}/firewall.php
+rm -f ${USER_INI} ${FIREWALL}
+
+if [ "${WP_INSTALL_NINJAFIREWALL-}" = "1" ] ; then
+
+    ${WP_LIB}/install-ninjafirewall
+
+    if [ -f "${WP_WAF_FIREWALL}" ] ; then
+
+        bf-esh ${BF_TEMPLATES}/user.ini.esh ${USER_INI}
+        bf-ch -o www:www ${USER_INI}
+
+        bf-esh ${BF_TEMPLATES}/firewall.php.esh ${FIREWALL}
+        bf-ch -o www:www ${FIREWALL}
+
+    fi
+
+fi
+
+wp-setup-complete

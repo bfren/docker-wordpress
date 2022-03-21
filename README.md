@@ -55,7 +55,6 @@ See the [Nginx + PHP](https://github.com/bfren/docker-nginx-php) image for detai
 | --------------------- | ---------------------------------------------------------------------------------------------- | --------------------- |
 | `wp-cron`             | Runs the WordPress cron - if `WP_USE_SYSTEM_CRON` is 1, will be run automatically.             | `wp-cron`             |
 | `wp-content-recreate` | **Warning**: deletes everything in `/wp-content` volume and recreates using WordPress default. | `wp-content-recreate` |
-| `wp-content-setperms` | Sets the correct permissions on `/wp-content` volume.                                          | `wp-content-setperms` |
 
 ## Nginx Configuration Helpers
 
