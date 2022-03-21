@@ -24,6 +24,7 @@ if [ "${WP_INSTALL_NINJAFIREWALL-}" = "1" ] ; then
 
     if [ -f "${WP_CONTENT_SRC}/nfwlog/ninjafirewall.php" ] ; then
         bf-esh ${BF_TEMPLATES}/user.ini.esh ${USER_INI}
+        bf-ch -o www:www ${USER_INI}
     fi
 
 fi
