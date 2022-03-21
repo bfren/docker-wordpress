@@ -65,8 +65,6 @@ mv ${WP} ${SRC}
     || bf-error "WordPress not installed."
 
 source "/usr/lib/bf/wp/install-ninjafirewall"
-ls ${WP_CONTENT_SRC}/plugins
-ls ${WP_CONTENT_SRC}/plugins/ninjafirewall
 
 
 #======================================================================================================================

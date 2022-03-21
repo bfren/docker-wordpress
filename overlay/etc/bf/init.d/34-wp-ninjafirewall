@@ -5,14 +5,25 @@ export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
-# If WP_CONFIG doesn't exist, the setup has gone wrong.
+# If WP_CONTENT_SRC is not linked to WP_CONTENT, the setup has gone wrong.
 #======================================================================================================================
 
-[[ ! -f ${WP_CONFIG} ]] && bf-error "${WP_CONFIG} does not exist."
+[[ ! -L ${WP_CONTENT_SRC} ]] && bf-error "${WP_CONTENT_SRC} is not linked to ${WP_CONTENT}."
 
 
 #======================================================================================================================
-# Run setup content executable.
+# Run install NinjaFirewall executable, and activate full WAF mode
 #======================================================================================================================
 
-${WP_LIB}/setup-content
+if [ "${WP_INSTALL_NINJAFIREWALL-}" = "1" ] ; then
+    ${WP_LIB}/install-ninjafirewall
+
+    USER_INI=${WP_SRC}/.user.ini
+    if [ -f "${WP_CONTENT_SRC}/nfwlog/ninjafirewall.php" ] ; then
+        bf-esh ${BF_TEMPLATES}/user.ini.esh ${USER_INI}
+    else
+        rm ${USER_INI}
+    fi
+fi
+
+wp-setup-complete
