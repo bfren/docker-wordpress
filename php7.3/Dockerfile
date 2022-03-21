@@ -39,8 +39,8 @@ ENV \
     # set to 1 to use system cron instead of WordPress cron (improves page performance)
     # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference
     WP_USE_SYSTEM_CRON=1 \
-    # set to 0 if you don't want the NinjaFirewall plugin installed automatically
-    # (you will still have to enable it in the WordPress backend)
+    # set to 0 if you don't want the NinjaFirewall plugin to be installed automatically and setup
+    # to run in full WAF mode (you will still have to enable it in the WordPress backend)
     WP_INSTALL_NINJAFIREWALL=1
 
 COPY ./overlay /
