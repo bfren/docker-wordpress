@@ -1,5 +1,7 @@
 FROM bfren/nginx-php:php<%= ${PHP_MINOR} %>-<%= ${BASE_REVISION} %>
 
+LABEL org.opencontainers.image.source="https://github.com/bfren/docker-wordpress"
+
 ARG BF_IMAGE
 ARG BF_VERSION
 
