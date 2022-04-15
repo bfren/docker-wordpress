@@ -1,7 +1,7 @@
 # Docker WordPress
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-wordpress) ![Docker Pulls](https://img.shields.io/docker/pulls/bfren/wordpress?label=pulls) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/bfren/wordpress/php8.0?label=size)<br/>
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php7_3?label=PHP+7.3) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php7_4?label=PHP+7.4) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php8_0?label=PHP+8.0)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php7_3?label=PHP+7.3) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php7_4?label=PHP+7.4) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php8_0?label=PHP+8.0) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php8_1?label=PHP+8.1)
 
 [Docker Repository](https://hub.docker.com/r/bfren/wordpress) - [bfren ecosystem](https://github.com/bfren/docker)
 
