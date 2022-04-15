@@ -7,7 +7,7 @@ docker pull bfren/alpine
 BASE_REVISION="4.2.11"
 echo "Base: ${BASE_REVISION}"
 
-PHP_VERSIONS="7.3 7.4 8.0 8.1"
+PHP_VERSIONS="7.3 7.4 8.0 8.1-edge"
 for V in ${PHP_VERSIONS} ; do
 
     echo "FreeScout for PHP ${V}"
