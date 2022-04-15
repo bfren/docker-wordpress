@@ -60,7 +60,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./php8.1/Dockerfile
+          file: ./php8.1-edge/Dockerfile
           build-args: |
             BF_IMAGE=${{ env.REPOSITORY_NAME }}
             BF_VERSION=${{ steps.version.outputs.contents }}
