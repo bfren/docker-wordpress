@@ -7,27 +7,52 @@ set -euo pipefail
 # Install PHP8 dependencies.
 #======================================================================================================================
 
+# apk add --no-cache \
+#     php81-cgi=${1} \
+#     php81-ctype=${1} \
+#     php81-curl=${1} \
+#     php81-dom=${1} \
+#     php81-exif=${1} \
+#     php81-fileinfo=${1} \
+#     php81-ftp=${1} \
+#     php81-gd=${1} \
+#     php81-gettext=${1} \
+#     php81-iconv=${1} \
+#     php81-imap=${1} \
+#     php81-intl=${1} \
+#     php81-mbstring=${1} \
+#     php81-mysqli=${1} \
+#     php81-mysqlnd=${1} \
+#     php81-openssl=${1} \
+#     php81-simplexml=${1} \
+#     php81-soap=${1} \
+#     php81-sockets=${1} \
+#     php81-sodium=${1} \
+#     php81-xml=${1} \
+#     php81-xmlreader=${1} \
+#     php81-zip=${1}
+
 apk add --no-cache \
-    php81-cgi=${1} \
-    php81-ctype=${1} \
-    php81-curl=${1} \
-    php81-dom=${1} \
-    php81-exif=${1} \
-    php81-fileinfo=${1} \
-    php81-ftp=${1} \
-    php81-gd=${1} \
-    php81-gettext=${1} \
-    php81-iconv=${1} \
-    php81-imap=${1} \
-    php81-intl=${1} \
-    php81-mbstring=${1} \
-    php81-mysqli=${1} \
-    php81-mysqlnd=${1} \
-    php81-openssl=${1} \
-    php81-simplexml=${1} \
-    php81-soap=${1} \
-    php81-sockets=${1} \
-    php81-sodium=${1} \
-    php81-xml=${1} \
-    php81-xmlreader=${1} \
-    php81-zip=${1}
+    php81-cgi \
+    php81-ctype \
+    php81-curl \
+    php81-dom \
+    php81-exif \
+    php81-fileinfo \
+    php81-ftp \
+    php81-gd \
+    php81-gettext \
+    php81-iconv \
+    php81-imap \
+    php81-intl \
+    php81-mbstring \
+    php81-mysqli \
+    php81-mysqlnd \
+    php81-openssl \
+    php81-simplexml \
+    php81-soap \
+    php81-sockets \
+    php81-sodium \
+    php81-xml \
+    php81-xmlreader \
+    php81-zip
