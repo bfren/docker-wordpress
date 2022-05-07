@@ -15,4 +15,4 @@ if [ "${SETUP_COMPLETE-}" = "1" ] ; then
 fi
 
 bf-notok "WordPress setup did not complete successfully, terminating container."
-bf-svc-terminate
+bf-cont-terminate
