@@ -7,6 +7,9 @@ set -euo pipefail
 # Install PHP7 dependencies.
 #======================================================================================================================
 
+apk fix
+apk verify
+
 apk add --no-cache \
     php7-cgi@prevcomm=${1} \
     php7-ctype@prevcomm=${1} \
