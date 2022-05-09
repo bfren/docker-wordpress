@@ -7,29 +7,32 @@ set -euo pipefail
 # Install PHP7 dependencies.
 #======================================================================================================================
 
+apk fix
+apk verify
+
 apk add --no-cache \
-    php7-cgi=${1} \
-    php7-ctype=${1} \
-    php7-curl=${1} \
-    php7-dom=${1} \
-    php7-exif=${1} \
-    php7-fileinfo=${1} \
-    php7-ftp=${1} \
-    php7-gd=${1} \
-    php7-gettext=${1} \
-    php7-iconv=${1} \
-    php7-imap=${1} \
-    php7-intl=${1} \
-    php7-json=${1} \
-    php7-mbstring=${1} \
-    php7-mysqli=${1} \
-    php7-mysqlnd=${1} \
-    php7-openssl=${1} \
-    php7-simplexml=${1} \
-    php7-soap=${1} \
-    php7-sockets=${1} \
-    php7-sodium=${1} \
-    php7-xml=${1} \
-    php7-xmlrpc=${1} \
-    php7-xmlreader=${1} \
-    php7-zip=${1}
+    php7-cgi@prevcomm=${1} \
+    php7-ctype@prevcomm=${1} \
+    php7-curl@prevcomm=${1} \
+    php7-dom@prevcomm=${1} \
+    php7-exif@prevcomm=${1} \
+    php7-fileinfo@prevcomm=${1} \
+    php7-ftp@prevcomm=${1} \
+    php7-gd@prevcomm=${1} \
+    php7-gettext@prevcomm=${1} \
+    php7-iconv@prevcomm=${1} \
+    php7-imap@prevcomm=${1} \
+    php7-intl@prevcomm=${1} \
+    php7-json@prevcomm=${1} \
+    php7-mbstring@prevcomm=${1} \
+    php7-mysqli@prevcomm=${1} \
+    php7-mysqlnd@prevcomm=${1} \
+    php7-openssl@prevcomm=${1} \
+    php7-simplexml@prevcomm=${1} \
+    php7-soap@prevcomm=${1} \
+    php7-sockets@prevcomm=${1} \
+    php7-sodium@prevcomm=${1} \
+    php7-xml@prevcomm=${1} \
+    php7-xmlrpc@prevcomm=${1} \
+    php7-xmlreader@prevcomm=${1} \
+    php7-zip@prevcomm=${1}
