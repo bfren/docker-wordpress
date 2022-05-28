@@ -46,7 +46,7 @@ bf-debug "WordPress default wp-content directory: ${WP_CONTENT_DEFAULT}."
 bf-echo "Installing WordPress ${WP_VERSION} (${WP_LOCALE})."
 
 cd /tmp
-URL="https://${WP_LOCALE}.wordpress.org/wordpress-${WP_VERSION}-${WP_LOCALE}.zip"
+URL="https://${WP_LOCALE/_/-}.wordpress.org/wordpress-${WP_VERSION}-${WP_LOCALE}.zip"
 
 WP_LOCALE_SHA1=$(wget -O - "${URL}.sha1")
 bf-debug "SHA1 for WordPress ${WP_VERSION} (${WP_LOCALE}): ${WP_LOCALE_SHA1}."
