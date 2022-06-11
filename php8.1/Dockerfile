@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php8.1-edge-5.0.1
+FROM bfren/nginx-php:php8.1-5.1.1
 
 LABEL org.opencontainers.image.source="https://github.com/bfren/docker-wordpress"
 
@@ -46,7 +46,7 @@ ENV \
     WP_INSTALL_NINJAFIREWALL=1
 
 COPY ./overlay /
-COPY ./php8.1-edge/overlay /
+COPY ./php8.1/overlay /
 
 RUN bf-install
 
