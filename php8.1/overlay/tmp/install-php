@@ -1,0 +1,33 @@
+#!/bin/sh
+
+set -euo pipefail
+
+
+#======================================================================================================================
+# Install PHP8 dependencies.
+#======================================================================================================================
+
+apk add --no-cache \
+    php81-cgi=${1} \
+    php81-ctype=${1} \
+    php81-curl=${1} \
+    php81-dom=${1} \
+    php81-exif=${1} \
+    php81-fileinfo=${1} \
+    php81-ftp=${1} \
+    php81-gd=${1} \
+    php81-gettext=${1} \
+    php81-iconv=${1} \
+    php81-imap=${1} \
+    php81-intl=${1} \
+    php81-mbstring=${1} \
+    php81-mysqli=${1} \
+    php81-mysqlnd=${1} \
+    php81-openssl=${1} \
+    php81-simplexml=${1} \
+    php81-soap=${1} \
+    php81-sockets=${1} \
+    php81-sodium=${1} \
+    php81-xml=${1} \
+    php81-xmlreader=${1} \
+    php81-zip=${1}
