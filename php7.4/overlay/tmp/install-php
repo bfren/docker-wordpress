@@ -32,4 +32,5 @@ apk add --no-cache \
     php7-xml@edgetest=${1} \
     php7-xmlrpc@edgetest=${1} \
     php7-xmlreader@edgetest=${1} \
-    php7-zip@edgetest=${1}
+    php7-zip@edgetest=${1} \
+    icu-data-en-71.1-r2@edgemain
