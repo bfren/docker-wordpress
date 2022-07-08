@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php7.3-5.1.7
+FROM bfren/nginx-php:php7.3-5.1.8
 
 LABEL org.opencontainers.image.source="https://github.com/bfren/docker-wordpress"
 
