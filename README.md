@@ -5,7 +5,7 @@
 
 [Docker Repository](https://hub.docker.com/r/bfren/wordpress) - [bfren ecosystem](https://github.com/bfren/docker)
 
-Comes with [WordPress](https://en-gb.wordpress.org) en_GB preinstalled - if you want a different locale, use the Dockerfiles and set the `WP_LOCALE` argument.
+Comes with [WordPress](https://en-gb.wordpress.org) en_GB preinstalled - if you want a different locale, use the Dockerfiles and set the `WP_LOCALE` argument.  [Ninja Firewall](https://wordpress.org/plugins/ninjafirewall/) is also preinstalled and setup to work in [Full WAF mode](https://blog.nintechnet.com/full_waf-vs-wordpress_waf/).
 
 The required and recommended PHP modules are all installed.
 
