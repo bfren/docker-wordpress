@@ -14,6 +14,8 @@ ARG \
     WP_LOCALE=""
 
 ENV \
+    # disable debug output by default
+    BF_DEBUG=0 \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
     WP_CLEAN_INSTALL=0 \
     # additional directives to be added to wp-config.php
