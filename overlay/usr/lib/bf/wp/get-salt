@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -euo pipefail
+
+
+#======================================================================================================================
+# If there is no existing salt, generate it.
+#======================================================================================================================
+
+if [ ! -f ${WP_SALT} ] ; then
+
+    # get fresh authentication values and save to salt file
+    URL="https://api.wordpress.org/secret-key/1.1/salt/"
+    bf-debug "Getting authentication secrets from ${URL}." "wp/get-salt"
+    wget --quiet -O - ${URL} > ${WP_SALT}
+
+fi
+
+
+#======================================================================================================================
+# Read salt file and return values.
+#======================================================================================================================
+
+cat ${WP_SALT}
