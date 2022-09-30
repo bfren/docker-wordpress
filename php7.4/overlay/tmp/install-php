@@ -33,4 +33,4 @@ apk add --no-cache \
     php7-xmlrpc=${1} \
     php7-xmlreader=${1} \
     php7-zip=${1} \
-    icu-libs@edgemain
+    icu-libs
