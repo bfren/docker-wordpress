@@ -8,29 +8,29 @@ set -euo pipefail
 #======================================================================================================================
 
 apk add --no-cache \
-    php7-cgi@edgetest=${1} \
-    php7-ctype@edgetest=${1} \
-    php7-curl@edgetest=${1} \
-    php7-dom@edgetest=${1} \
-    php7-exif@edgetest=${1} \
-    php7-fileinfo@edgetest=${1} \
-    php7-ftp@edgetest=${1} \
-    php7-gd@edgetest=${1} \
-    php7-gettext@edgetest=${1} \
-    php7-iconv@edgetest=${1} \
-    php7-imap@edgetest=${1} \
-    php7-intl@edgetest=${1} \
-    php7-json@edgetest=${1} \
-    php7-mbstring@edgetest=${1} \
-    php7-mysqli@edgetest=${1} \
-    php7-mysqlnd@edgetest=${1} \
-    php7-openssl@edgetest=${1} \
-    php7-simplexml@edgetest=${1} \
-    php7-soap@edgetest=${1} \
-    php7-sockets@edgetest=${1} \
-    php7-sodium@edgetest=${1} \
-    php7-xml@edgetest=${1} \
-    php7-xmlrpc@edgetest=${1} \
-    php7-xmlreader@edgetest=${1} \
-    php7-zip@edgetest=${1} \
-    icu-libs@edgemain
+    php7-cgi=${1} \
+    php7-ctype=${1} \
+    php7-curl=${1} \
+    php7-dom=${1} \
+    php7-exif=${1} \
+    php7-fileinfo=${1} \
+    php7-ftp=${1} \
+    php7-gd=${1} \
+    php7-gettext=${1} \
+    php7-iconv=${1} \
+    php7-imap=${1} \
+    php7-intl=${1} \
+    php7-json=${1} \
+    php7-mbstring=${1} \
+    php7-mysqli=${1} \
+    php7-mysqlnd=${1} \
+    php7-openssl=${1} \
+    php7-simplexml=${1} \
+    php7-soap=${1} \
+    php7-sockets=${1} \
+    php7-sodium=${1} \
+    php7-xml=${1} \
+    php7-xmlrpc=${1} \
+    php7-xmlreader=${1} \
+    php7-zip=${1} \
+    icu-libs
