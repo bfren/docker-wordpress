@@ -7,10 +7,10 @@ ARG BF_VERSION
 
 ARG \
     # set to a valid WordPress version or the installation will fail
-    # if empty, will use value in text file WP_VERSION
+    # if empty, will use value in /overlay/tmp/WP_VERSION
     WP_VERSION="" \
     # set to a valid WordPress locale or the installation will fail
-    # if empty, will use value in text file WP_LOCALE
+    # if empty, will use value in /overlay/tmp/WP_LOCALE
     WP_LOCALE=""
 
 ENV \
