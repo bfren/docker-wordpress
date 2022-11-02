@@ -25,13 +25,13 @@ jobs:
         shell: bash
       -
         name: Read WP version
-        uses: bfren/read-file@v1
+        uses: bfren/read-file@v2
         with:
           file: ./overlay/tmp/WP_VERSION
         id: wp_version
       -
         name: Read image version
-        uses: bfren/read-file@v1
+        uses: bfren/read-file@v2
         with:
           file: ./VERSION
         id: version
