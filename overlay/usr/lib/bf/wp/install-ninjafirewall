@@ -7,7 +7,7 @@ set -euo pipefail
 # Check for existing installation of NinjaFirewall.
 #======================================================================================================================
 
-if [ -d "${WP_CONTENT_SRC}/plugins/ninjafirewall" ] ; then
+if [ -d "${WP_CONTENT}/plugins/ninjafirewall" ] ; then
     bf-echo "NinjaFirewall is installed." "wp/install-ninjafirewall"
 
 
@@ -21,7 +21,7 @@ else
     NINJAFIREWALL="ninjafirewall"
     NINJAFIREWALL_VERSION=`cat /NINJAFIREWALL_VERSION`
     NINJAFIREWALL_URL="https://downloads.wordpress.org/plugin/ninjafirewall.${NINJAFIREWALL_VERSION}.zip"
-    NINJAFIREWALL_PLUGIN=${WP_CONTENT_SRC}/plugins/${NINJAFIREWALL}
+    NINJAFIREWALL_PLUGIN=${WP_CONTENT}/plugins/${NINJAFIREWALL}
 
     bf-echo "Downloading ${NINJAFIREWALL_URL} to /tmp..." "wp/install-ninjafirewall"
     wget -O ${NINJAFIREWALL}.zip ${NINJAFIREWALL_URL} \
@@ -35,5 +35,10 @@ else
     mv /tmp/${NINJAFIREWALL}/* ${NINJAFIREWALL_PLUGIN}
     [[ -d ${NINJAFIREWALL_PLUGIN} ]] && bf-done "wp/install-ninjafirewall" \
         || bf-error "NinjaFirewall not installed." "wp/install-ninjafirewall"
+
+    bf-echo "Making NinjaFirewall cache directory..." "wp/install-ninjafirewall"
+    mkdir -p ${WP_CONTENT}/nfwlog/cache
+
+    bf-done "wp/install-ninjafirewall"
 
 fi
