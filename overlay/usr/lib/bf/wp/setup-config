@@ -15,8 +15,9 @@ bf-echo "Generating wp-config.php..." "wp/setup-config"
 [[ -z "${WP_DB_PASS-}" ]] && bf-error "WP_DB_PASS must be set." "wp/setup-config"
 [[ -z "${WP_DB_HOST-}" ]] && bf-error "WP_DB_HOST must be set." "wp/setup-config"
 
-# get salt
-export AUTH=$(${WP_LIB}/get-salt)
+# generate and read salt
+${WP_LIB}/generate-salt
+export AUTH=`cat ${WP_SALT}`
 
 # generate config from the template
 bf-debug "Generating ${WP_CONFIG}." "wp/setup-config"

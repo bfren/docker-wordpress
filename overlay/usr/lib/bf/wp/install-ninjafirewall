@@ -9,27 +9,36 @@ set -euo pipefail
 
 if [ -d "${WP_CONTENT_SRC}/plugins/ninjafirewall" ] ; then
     bf-echo "NinjaFirewall is installed." "wp/install-ninjafirewall"
-    exit 0
-fi
 
 
 #======================================================================================================================
 # Install NinjaFirewall plugin.
 #======================================================================================================================
 
-cd /tmp
-NINJAFIREWALL="ninjafirewall"
-NINJAFIREWALL_VERSION=`cat /NINJAFIREWALL_VERSION`
-NINJAFIREWALL_URL="https://downloads.wordpress.org/plugin/ninjafirewall.${NINJAFIREWALL_VERSION}.zip"
+else
 
-bf-echo "Downloading ${NINJAFIREWALL_URL} to /tmp..." "wp/install-ninjafirewall"
-wget -O ${NINJAFIREWALL}.zip ${NINJAFIREWALL_URL} \
-    && unzip -oq ${NINJAFIREWALL}.zip \
-    && rm ${NINJAFIREWALL}.zip
-[[ -d ${NINJAFIREWALL} ]] && bf-done "wp/install-ninjafirewall" \
-    || bf-error "NinjaFirewall not downloaded." "wp/install-ninjafirewall"
+    cd /tmp
+    NINJAFIREWALL="ninjafirewall"
+    NINJAFIREWALL_VERSION=`cat /NINJAFIREWALL_VERSION`
+    NINJAFIREWALL_URL="https://downloads.wordpress.org/plugin/ninjafirewall.${NINJAFIREWALL_VERSION}.zip"
+    NINJAFIREWALL_PLUGIN=${WP_CONTENT_SRC}/plugins/${NINJAFIREWALL}
 
-bf-echo "Moving /tmp/${NINJAFIREWALL} to ${WP_CONTENT_SRC}/plugins..." "wp/install-ninjafirewall"
-mv ${NINJAFIREWALL} ${WP_CONTENT_SRC}/plugins
-[[ -d ${WP_CONTENT_SRC}/plugins/${NINJAFIREWALL} ]] && bf-done "wp/install-ninjafirewall" \
-    || bf-error "NinjaFirewall not installed." "wp/install-ninjafirewall"
+    bf-echo "Downloading ${NINJAFIREWALL_URL} to /tmp..." "wp/install-ninjafirewall"
+    wget -O ${NINJAFIREWALL}.zip ${NINJAFIREWALL_URL} \
+        && unzip -oq ${NINJAFIREWALL}.zip \
+        && rm ${NINJAFIREWALL}.zip
+    [[ -d ${NINJAFIREWALL} ]] && bf-done "wp/install-ninjafirewall" \
+        || bf-error "NinjaFirewall not downloaded." "wp/install-ninjafirewall"
+
+    bf-echo "Moving /tmp/${NINJAFIREWALL} to ${NINJAFIREWALL_PLUGIN}..." "wp/install-ninjafirewall"
+    mkdir -p ${NINJAFIREWALL_PLUGIN}
+    mv /tmp/${NINJAFIREWALL}/* ${NINJAFIREWALL_PLUGIN}
+    [[ -d ${NINJAFIREWALL_PLUGIN} ]] && bf-done "wp/install-ninjafirewall" \
+        || bf-error "NinjaFirewall not installed." "wp/install-ninjafirewall"
+
+    bf-echo "Making NinjaFirewall cache directory..." "wp/install-ninjafirewall"
+    mkdir -p ${WP_CONTENT_SRC}/nfwlog/cache
+
+    bf-done "wp/install-ninjafirewall"
+
+fi

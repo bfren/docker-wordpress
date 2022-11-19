@@ -5,10 +5,10 @@ export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
-# If WP_CONTENT_SRC is not linked to WP_CONTENT, the setup has gone wrong.
+# If WP_CONFIG doesn't exist, the setup has gone wrong.
 #======================================================================================================================
 
-[[ ! -L ${WP_CONTENT_SRC} ]] && bf-error "${WP_CONTENT_SRC} is not linked to ${WP_CONTENT}."
+[[ ! -f ${WP_CONFIG} ]] && bf-error "${WP_CONFIG} does not exist."
 
 
 #======================================================================================================================
@@ -23,15 +23,16 @@ if [ "${WP_INSTALL_NINJAFIREWALL-}" = "1" ] ; then
 
     ${WP_LIB}/install-ninjafirewall
 
-    if [ -f "${WP_WAF_FIREWALL}" ] ; then
+    bf-debug "Generating files to support full WAF mode."
 
-        bf-esh ${BF_TEMPLATES}/user.ini.esh ${USER_INI}
-        bf-ch -o www:www ${USER_INI}
+    bf-esh ${BF_TEMPLATES}/ninjafirewall.php.esh ${WP_WAF_FIREWALL}
+    bf-ch -o www:www ${WP_WAF_FIREWALL}
 
-        bf-esh ${BF_TEMPLATES}/firewall.php.esh ${FIREWALL}
-        bf-ch -o www:www ${FIREWALL}
+    bf-esh ${BF_TEMPLATES}/user.ini.esh ${USER_INI}
+    bf-ch -o www:www ${USER_INI}
 
-    fi
+    bf-esh ${BF_TEMPLATES}/firewall.php.esh ${FIREWALL}
+    bf-ch -o www:www ${FIREWALL}
 
 fi
 
