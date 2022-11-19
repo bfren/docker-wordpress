@@ -33,6 +33,10 @@ if [ "${WP_INSTALL_NINJAFIREWALL-}" = "1" ] ; then
         bf-esh ${BF_TEMPLATES}/firewall.php.esh ${FIREWALL}
         bf-ch -o www:www ${FIREWALL}
 
+    else
+
+        bf-error "Unable to find WAF firewall file ${WP_WAF_FIREWALL}."
+
     fi
 
 fi
