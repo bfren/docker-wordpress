@@ -5,10 +5,10 @@ export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
-# If WP_CONFIG doesn't exist, the setup has gone wrong.
+# If WP_SRC doesn't exist, the source files have not been downloaded correctly.
 #======================================================================================================================
 
-[[ ! -f ${WP_CONFIG} ]] && bf-error "${WP_CONFIG} does not exist."
+[[ ! -d ${WP_SRC} ]] && bf-error "WordPress source files cannot be found."
 
 
 #======================================================================================================================

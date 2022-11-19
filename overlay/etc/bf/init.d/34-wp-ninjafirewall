@@ -5,10 +5,10 @@ export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
-# If WP_CONTENT_SRC is not linked to WP_CONTENT, the setup has gone wrong.
+# If WP_CONFIG doesn't exist, the setup has gone wrong.
 #======================================================================================================================
 
-[[ ! -L ${WP_CONTENT_SRC} ]] && bf-error "${WP_CONTENT_SRC} is not linked to ${WP_CONTENT}."
+[[ ! -f ${WP_CONFIG} ]] && bf-error "${WP_CONFIG} does not exist."
 
 
 #======================================================================================================================

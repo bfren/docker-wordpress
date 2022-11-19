@@ -5,10 +5,10 @@ export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
-# If WP_SRC doesn't exist, the source files have not been downloaded correctly.
+# If WP_CONTENT_SRC is not linked to WP_CONTENT, the setup has gone wrong.
 #======================================================================================================================
 
-[[ ! -d ${WP_SRC} ]] && bf-error "WordPress source files cannot be found."
+[[ ! -L ${WP_CONTENT_SRC} ]] && bf-error "${WP_CONTENT_SRC} is not linked to ${WP_CONTENT}."
 
 
 #======================================================================================================================
