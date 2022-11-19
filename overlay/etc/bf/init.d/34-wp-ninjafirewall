@@ -25,6 +25,8 @@ if [ "${WP_INSTALL_NINJAFIREWALL-}" = "1" ] ; then
 
     if [ -f "${WP_WAF_FIREWALL}" ] ; then
 
+        bf-debug "Generating files to support full WAF mode."
+
         bf-esh ${BF_TEMPLATES}/user.ini.esh ${USER_INI}
         bf-ch -o www:www ${USER_INI}
 
