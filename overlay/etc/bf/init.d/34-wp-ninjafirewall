@@ -23,21 +23,16 @@ if [ "${WP_INSTALL_NINJAFIREWALL-}" = "1" ] ; then
 
     ${WP_LIB}/install-ninjafirewall
 
-    if [ -f "${WP_WAF_FIREWALL}" ] ; then
+    bf-debug "Generating files to support full WAF mode."
 
-        bf-debug "Generating files to support full WAF mode."
+    bf-esh ${BF_TEMPLATES}/ninjafirewall.php.esh ${WP_WAF_FIREWALL}
+    bf-ch -o www:www ${WP_WAF_FIREWALL}
 
-        bf-esh ${BF_TEMPLATES}/user.ini.esh ${USER_INI}
-        bf-ch -o www:www ${USER_INI}
+    bf-esh ${BF_TEMPLATES}/user.ini.esh ${USER_INI}
+    bf-ch -o www:www ${USER_INI}
 
-        bf-esh ${BF_TEMPLATES}/firewall.php.esh ${FIREWALL}
-        bf-ch -o www:www ${FIREWALL}
-
-    else
-
-        bf-error "Unable to find WAF firewall file ${WP_WAF_FIREWALL}."
-
-    fi
+    bf-esh ${BF_TEMPLATES}/firewall.php.esh ${FIREWALL}
+    bf-ch -o www:www ${FIREWALL
 
 fi
 
