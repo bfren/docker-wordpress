@@ -9,18 +9,7 @@ set -euo pipefail
 
 if [ "$(ls -A ${WP_CONTENT})" ] ; then
 
-    bf-debug "${WP_CONTENT} is not empty." "wp/setup-content"
-
-    # if source wp-content is not a link, delete it (it will be recreated as a symlink later)
-    if [ ! -L ${WP_CONTENT_SRC} ] ; then
-
-        bf-echo "Deleting ${WP_CONTENT_SRC} so it can be turned into a symlink." "wp/setup-content"
-        rm -rf ${WP_CONTENT_SRC}
-        bf-done "wp/setup-content"
-
-        ${WP_LIB}/set-perms
-
-    fi
+    bf-echo "${WP_CONTENT} is not empty - doing nothing." "wp/setup-content"
 
 
 #======================================================================================================================
@@ -28,6 +17,8 @@ if [ "$(ls -A ${WP_CONTENT})" ] ; then
 #======================================================================================================================
 
 else
+
+    bf-echo "Setting up default wp-content directory." "wp/setup-content"
 
     # /wp-content is empty - if source wp-content is already a link, recreate /wp-content using the default copy
     if [ -L ${WP_CONTENT_SRC} ] ; then
@@ -67,9 +58,14 @@ fi
 
 if [ ! -L ${WP_CONTENT_SRC} ] ; then
 
+    bf-echo "Deleting ${WP_CONTENT_SRC} so it can be turned into a symlink." "wp/setup-content"
+    rm -rf ${WP_CONTENT_SRC}
+
     bf-echo "Linking ${WP_CONTENT_SRC} to ${WP_CONTENT}..." "wp/setup-content"
     ln -s ${WP_CONTENT} ${WP_CONTENT_SRC} \
         && bf-ch -o www:www ${WP_CONTENT_SRC}
     bf-done "wp/setup-content"
 
 fi
+
+${WP_LIB}/set-perms
