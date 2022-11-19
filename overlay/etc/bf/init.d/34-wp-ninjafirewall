@@ -32,7 +32,7 @@ if [ "${WP_INSTALL_NINJAFIREWALL-}" = "1" ] ; then
     bf-ch -o www:www ${USER_INI}
 
     bf-esh ${BF_TEMPLATES}/firewall.php.esh ${FIREWALL}
-    bf-ch -o www:www ${FIREWALL
+    bf-ch -o www:www ${FIREWALL}
 
 fi
 
