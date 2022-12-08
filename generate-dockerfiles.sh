@@ -4,10 +4,10 @@ set -euo pipefail
 
 docker pull bfren/alpine
 
-BASE_REVISION="5.3.9"
+BASE_REVISION="5.3.10"
 echo "Base: ${BASE_REVISION}"
 
-PHP_VERSIONS="7.4 8.0 8.1"
+PHP_VERSIONS="7.4 8.0 8.1 8.2"
 for V in ${PHP_VERSIONS} ; do
 
     echo "FreeScout for PHP ${V}"
