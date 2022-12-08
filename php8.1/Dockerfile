@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php8.1-5.3.10
+FROM bfren/nginx-php:php8.1-5.3.11
 
 LABEL org.opencontainers.image.source="https://github.com/bfren/docker-wordpress"
 
@@ -45,7 +45,11 @@ ENV \
     WP_USE_SYSTEM_CRON=1 \
     # set to 0 if you don't want the NinjaFirewall plugin to be installed automatically and setup
     # to run in full WAF mode (you will still have to enable it in the WordPress backend)
-    WP_INSTALL_NINJAFIREWALL=1
+    WP_INSTALL_NINJAFIREWALL=1 \
+    # Redis host (e.g. 'redis')
+    WP_REDIS_HOST= \
+    # Redis port (e.g. 6379)
+    WP_REDIS_HOST=
 
 COPY ./overlay /
 COPY ./php8.1/overlay /

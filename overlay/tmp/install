@@ -16,6 +16,9 @@ bf-echo "PHP version ${PHP_VERSION}."
 IMAGICK_VERSION=$(cat IMAGICK_BUILD)
 bf-echo "Imagick version ${IMAGICK_VERSION}."
 
+REDIS_VERSION=$(cat REDIS_BUILD)
+bf-echo "Redis version ${REDIS_VERSION}."
+
 
 #======================================================================================================================
 # Install PHP and Imagick dependencies and packages.
@@ -27,6 +30,10 @@ bf-done
 
 bf-echo "Installing Imagick v${IMAGICK_VERSION}..."
 chmod +x ./install-php-imagick && ./install-php-imagick ${IMAGICK_VERSION}
+bf-done
+
+bf-echo "Installing Redis v${REDIS_VERSION}..."
+chmod +x ./install-php-redis && ./install-php-redis ${REDIS_VERSION}
 bf-done
 
 

@@ -113,6 +113,24 @@ define( 'WP_AUTO_UPDATE_CORE', 'minor' );
 <%= ${WP_CONFIG_ADDITIONAL} %>
 <% fi %>
 
+<% if [ -n "${WP_REDIS_HOST-}" ] ; then %>
+/**
+ * bfren/wordpress
+ *
+ * Override the default Redis host.
+ */
+define( 'WP_REDIS_HOST', '<%= "${WP_REDIS_HOST}" %>' );
+<% fi %>
+
+<% if [ -n "${WP_REDIS_PORT-}" ] ; then %>
+/**
+ * bfren/wordpress
+ *
+ * Override the default Redis port.
+ */
+define( 'WP_REDIS_PORT', '<%= "${WP_REDIS_PORT}" %>' );
+<% fi %>
+
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */
