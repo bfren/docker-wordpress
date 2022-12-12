@@ -1,4 +1,4 @@
-name: dev-php8_0
+name: dev
 
 on:
   push:
@@ -7,13 +7,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-php8_0:
+  test:
     runs-on: ubuntu-latest
     steps:
       -
         name: Checkout code
         uses: actions/checkout@v3
-  build-php8_0:
+  build:
+    strategy:
+      matrix:
+        php: [ "7.4", "8.0", "8.1", "8.2" ]
     runs-on: ubuntu-latest
     steps:
       -
@@ -60,19 +63,19 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./php8.0/Dockerfile
+          file: ./php${{ matrix.php }}/Dockerfile
           build-args: |
             BF_IMAGE=${{ env.REPOSITORY_NAME }}
             BF_VERSION=${{ steps.version.outputs.contents }}
           push: ${{ startsWith(github.ref, 'refs/heads/') }}
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bfren/wordpress:php8.0-dev
-            bfren/wordpress:php8.0-${{ steps.version.outputs.contents }}-beta
-            bfren/wordpress:php8.0-wp${{ steps.wp_version.outputs.contents }}-dev
-            ghcr.io/bfren/wordpress:php8.0-dev
-            ghcr.io/bfren/wordpress:php8.0-${{ steps.version.outputs.contents }}-beta
-            ghcr.io/bfren/wordpress:php8.0-wp${{ steps.wp_version.outputs.contents }}-dev
+            bfren/wordpress:php${{ matrix.php }}-dev
+            bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}-beta
+            bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-dev
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-dev
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}-beta
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-dev
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

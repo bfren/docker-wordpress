@@ -1,4 +1,4 @@
-name: publish-php8_1
+name: publish
 
 on:
   release:
@@ -6,7 +6,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish-php8_1:
+  publish:
+    strategy:
+      matrix:
+        php: [ "7.4", "8.0", "8.1", "8.2" ]
     runs-on: ubuntu-latest
     steps:
       -
@@ -20,7 +23,7 @@ jobs:
         name: Read PHP version - revision
         uses: bfren/read-file@v2
         with:
-          file: ./php8.1/overlay/tmp/PHP_REVISION
+          file: ./php${{ matrix.php }}/overlay/tmp/PHP_REVISION
         id: php_revision
       -
         name: Read WP minor version
@@ -77,30 +80,30 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./php8.1/Dockerfile
+          file: ./php${{ matrix.php }}/Dockerfile
           build-args: |
             BF_IMAGE=${{ env.REPOSITORY_NAME }}
             BF_VERSION=${{ steps.version.outputs.contents }}
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
-            bfren/wordpress:php8.1
-            bfren/wordpress:php8.1-${{ steps.version_major.outputs.contents }}
-            bfren/wordpress:php8.1-${{ steps.version_minor.outputs.contents }}
-            bfren/wordpress:php8.1-${{ steps.version.outputs.contents }}
-            bfren/wordpress:php8.1-wp${{ steps.wp_minor.outputs.contents }}
-            bfren/wordpress:php8.1-wp${{ steps.wp_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
-            bfren/wordpress:php8.1-wp${{ steps.wp_version.outputs.contents }}
-            bfren/wordpress:php8.1-wp${{ steps.wp_version.outputs.contents }}-${{ steps.version.outputs.contents }}
+            bfren/wordpress:php${{ matrix.php }}
+            bfren/wordpress:php${{ matrix.php }}-${{ steps.version_major.outputs.contents }}
+            bfren/wordpress:php${{ matrix.php }}-${{ steps.version_minor.outputs.contents }}
+            bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}
+            bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_minor.outputs.contents }}
+            bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
+            bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}
+            bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-${{ steps.version.outputs.contents }}
             bfren/wordpress:php${{ steps.php_revision.outputs.contents }}
-            ghcr.io/bfren/wordpress:php8.1
-            ghcr.io/bfren/wordpress:php8.1-${{ steps.version_major.outputs.contents }}
-            ghcr.io/bfren/wordpress:php8.1-${{ steps.version_minor.outputs.contents }}
-            ghcr.io/bfren/wordpress:php8.1-${{ steps.version.outputs.contents }}
-            ghcr.io/bfren/wordpress:php8.1-wp${{ steps.wp_minor.outputs.contents }}
-            ghcr.io/bfren/wordpress:php8.1-wp${{ steps.wp_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
-            ghcr.io/bfren/wordpress:php8.1-wp${{ steps.wp_version.outputs.contents }}
-            ghcr.io/bfren/wordpress:php8.1-wp${{ steps.wp_version.outputs.contents }}-${{ steps.version.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version_major.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version_minor.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_minor.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-${{ steps.version.outputs.contents }}
             ghcr.io/bfren/wordpress:php${{ steps.php_revision.outputs.contents }}
       -
         name: Image digest
