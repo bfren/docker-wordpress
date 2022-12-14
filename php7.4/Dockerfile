@@ -14,12 +14,12 @@ ARG \
     WP_LOCALE=""
 
 ENV \
-    # disable debug output by default
-    BF_DEBUG=0 \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
     WP_CLEAN_INSTALL=0 \
     # additional directives to be added to wp-config.php
     WP_CONFIG_ADDITIONAL="" \
+    # if set to 1, wp-config.php will be made readonly to the web server user
+    WP_CONFIG_HARDEN=1 \
     # database name
     WP_DB_NAME="" \
     # database user
@@ -36,20 +36,20 @@ ENV \
     WP_DB_PREFIX="wp" \
     # whether or not to enable debug mode
     WP_DEBUG="false" \
-    # whether or not to enable HTTPS behind a proxy server
-    WP_ENABLE_HTTPS_BEHIND_PROXY=1 \
     # set to 0 to re-enable WordPress core updates - otherwise they will be handled by the image
     WP_DISABLE_MAJOR_UPDATES=1 \
-    # set to 1 to use system cron instead of WordPress cron (improves page performance)
-    # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference
-    WP_USE_SYSTEM_CRON=1 \
+    # whether or not to enable HTTPS behind a proxy server
+    WP_ENABLE_HTTPS_BEHIND_PROXY=1 \
     # set to 0 if you don't want the NinjaFirewall plugin to be installed automatically and setup
     # to run in full WAF mode (you will still have to enable it in the WordPress backend)
     WP_INSTALL_NINJAFIREWALL=1 \
     # Redis host (e.g. 'redis')
     WP_REDIS_HOST= \
     # Redis port (e.g. 6379)
-    WP_REDIS_HOST=
+    WP_REDIS_PORT= \
+    # set to 1 to use system cron instead of WordPress cron (improves page performance)
+    # you must add define('DISABLE_WP_CRON', true); to wp-config.php to make a difference
+    WP_USE_SYSTEM_CRON=1
 
 COPY ./overlay /
 COPY ./php7.4/overlay /
