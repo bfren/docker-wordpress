@@ -1,7 +1,6 @@
 # Docker WordPress
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-wordpress) ![Docker Pulls](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fpulls%2Fwordpress) ![Docker Image Size](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fsize%2Fwordpress)<br/>
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php7_3?label=PHP+7.3) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php7_4?label=PHP+7.4) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php8_0?label=PHP+8.0) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev-php8_1?label=PHP+8.1)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-wordpress) ![Docker Pulls](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fpulls%2Fwordpress) ![Docker Image Size](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fsize%2Fwordpress) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bfren/docker-wordpress/dev)
 
 [Docker Repository](https://hub.docker.com/r/bfren/wordpress) - [bfren ecosystem](https://github.com/bfren/docker)
 
@@ -36,6 +35,9 @@ See the [Nginx + PHP](https://github.com/bfren/docker-nginx-php) image for detai
 
 | Variable                       | Values        | Description                                                                                       | Default                                        |
 | ------------------------------ | ------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `WP_CLEAN_INSTALL`             | 0 or 1        | Set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!).            | 0                                              |
+| `WP_CONFIG_ADDITIONAL`         | string        | Additional configuration settings to add to the end of config.php.                                | *None*                                         |
+| `WP_CONFIG_HARDEN`             | 0 or 1        | Set to 1 to make `wp-config.php` read-only to the web server user.                                | 0                                              |
 | `WP_DB_NAME`                   | string        | Database name.                                                                                    | *None* - required if `WP_GENERATE_CONFIG` is 1 |
 | `WP_DB_USER`                   | string        | Database username.                                                                                | *None* - required if `WP_GENERATE_CONFIG` is 1 |
 | `WP_DB_PASS`                   | string        | Database password.                                                                                | *None* - required if `WP_GENERATE_CONFIG` is 1 |
@@ -43,10 +45,12 @@ See the [Nginx + PHP](https://github.com/bfren/docker-nginx-php) image for detai
 | `WP_DB_CHARSET`                | string        | Database character set (leave as default if not sure).                                            | utf8mb4                                        |
 | `WP_DB_COLLATE`                | string        | Database collation (leave blank if not sure).                                                     | *None*                                         |
 | `WP_DB_PREFIX`                 | string        | Database table prefix - an underscore will be added automatically.                                | wp                                             |
-| `WP_CONFIG_HARDEN`             | 0 or 1        | Set to 1 to make `wp-config.php` read-only to the web server user.                                | 0                                              |
 | `WP_DEBUG`                     | true or false | Whether or not to enable debug mode.                                                              | false                                          |
-| `WP_ENABLE_HTTPS_BEHIND_PROXY` | 0 or 1        | Whether or not to enable HTTPS behind a proxy server.                                             | 1                                              |
 | `WP_DISABLE_MAJOR_UPDATES`     | 0 or 1        | Set to 0 to enable WordPress core major system updates (otherwise they are handled by the image). | 1                                              |
+| `WP_ENABLE_HTTPS_BEHIND_PROXY` | 0 or 1        | Whether or not to enable HTTPS behind a proxy server.                                             | 1                                              |
+| `WP_INSTALL_NINJAFIREWALL`     | 0 or 1        | Whether or not to install the NinjaFirewall plugin.                                               | 1                                              |
+| `WP_REDIS_HOST`                | string        | Set to enable redis on the specified host.                                                        | *None*                                         |
+| `WP_REDIS_PORT`                | integer       | Set to override the default redis port (6379).                                                    | *None*                                         |
 | `WP_USE_SYSTEM_CRON`           | 0 or 1        | Set to 0 to use WordPress cron instead of system cron (reduces page performance).                 | 1                                              |
 
 ## Helper Functions
