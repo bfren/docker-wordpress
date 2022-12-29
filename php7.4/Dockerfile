@@ -16,10 +16,12 @@ ARG \
 ENV \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
     WP_CLEAN_INSTALL=0 \
-    # additional directives to be added to wp-config.php
+    # additional directives to be added to wp-config.php (use in conjunction with WP_CONFIG_GENERATE=harden)
     WP_CONFIG_ADDITIONAL="" \
-    # if set to 1, wp-config.php will be made readonly to the web server user
-    WP_CONFIG_HARDEN=1 \
+    # options for generating config file:
+    #  - harden (default: generate and make readonly to web server user)
+    #  - custom (generate if not exists, writeable by web server user)
+    WP_CONFIG_GENERATE=harden \
     # database name
     WP_DB_NAME="" \
     # database user
