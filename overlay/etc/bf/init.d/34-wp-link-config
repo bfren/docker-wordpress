@@ -13,6 +13,9 @@ export BF_E=`basename ${0}`
 
 #======================================================================================================================
 # Create link to wp-config.php.
+# Arguments:
+#   -f  Force - remove existing destination files
+#   -s  Symbolic - create a symbolic link instead of hard link (required when using mounted volumes)
 #======================================================================================================================
 
-ln --force --symbolic ${WP_CONFIG} ${WP_CONFIG_SRC}
+ln -fs ${WP_CONFIG} ${WP_CONFIG_SRC}
