@@ -104,15 +104,6 @@ define( 'DISABLE_WP_CRON', true );
 define( 'WP_AUTO_UPDATE_CORE', 'minor' );
 <% fi %>
 
-<% if [ -n "${WP_CONFIG_ADDITIONAL-}" ] ; then %>
-/**
- * bfren/wordpress
- *
- * These additional configuration directives are defined by the WP_CONFIG_OVERRIDE environment variable.
- */
-<%= ${WP_CONFIG_ADDITIONAL} %>
-<% fi %>
-
 <% if [ -n "${WP_REDIS_HOST-}" ] ; then %>
 /**
  * bfren/wordpress
@@ -129,6 +120,15 @@ define( 'WP_REDIS_HOST', '<%= "${WP_REDIS_HOST}" %>' );
  * Override the default Redis port.
  */
 define( 'WP_REDIS_PORT', '<%= "${WP_REDIS_PORT}" %>' );
+<% fi %>
+
+<% if [ -n "${WP_CONFIG_ADDITIONAL-}" ] ; then %>
+/**
+ * bfren/wordpress
+ *
+ * These additional configuration directives are defined by the WP_CONFIG_ADDITIONAL environment variable.
+ */
+<%= ${WP_CONFIG_ADDITIONAL} %>
 <% fi %>
 
 /* That's all, stop editing! Happy publishing. */
