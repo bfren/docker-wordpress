@@ -8,30 +8,32 @@ ARG BF_VERSION
 ARG \
     # set to a valid WordPress version or the installation will fail
     # if empty, will use value in /overlay/tmp/WP_VERSION
-    WP_VERSION="" \
+    WP_VERSION= \
     # set to a valid WordPress locale or the installation will fail
     # if empty, will use value in /overlay/tmp/WP_LOCALE
-    WP_LOCALE=""
+    WP_LOCALE=
 
 ENV \
     # set to 1 to wipe WordPress files and start again (WARNING: YOU WILL LOSE EVERYTHING!)
     WP_CLEAN_INSTALL=0 \
-    # additional directives to be added to wp-config.php
-    WP_CONFIG_ADDITIONAL="" \
-    # if set to 1, wp-config.php will be made readonly to the web server user
-    WP_CONFIG_HARDEN=1 \
+    # additional directives to be added to wp-config.php (use in conjunction with WP_CONFIG_GENERATE=harden)
+    WP_CONFIG_ADDITIONAL= \
+    # options for generating config file:
+    #  - harden (default: generate and make readonly to web server user)
+    #  - custom (generate if not exists, writeable by web server user)
+    WP_CONFIG_GENERATE=harden \
     # database name
-    WP_DB_NAME="" \
+    WP_DB_NAME= \
     # database user
-    WP_DB_USER="" \
+    WP_DB_USER= \
     # database password
-    WP_DB_PASS="" \
+    WP_DB_PASS= \
     # database host
-    WP_DB_HOST="" \
+    WP_DB_HOST= \
     # database character set
     WP_DB_CHARSET="utf8mb4" \
     # database collation
-    WP_DB_COLLATE="" \
+    WP_DB_COLLATE= \
     # database prefix
     WP_DB_PREFIX="wp" \
     # whether or not to enable debug mode
