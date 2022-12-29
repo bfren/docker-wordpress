@@ -10,11 +10,12 @@ export BF_E=`basename ${0}`
 
 bf-env "WP_LIB" "${BF_LIB}/wp"
 
-bf-env "WP_CONFIG" "${WP_SRC}/wp-config.php"
+bf-env "WP_CONFIG_SRC" "${WP_SRC}/wp-config.php"
 bf-env "WP_FIREWALL" "${WP_SRC}/firewall.php"
 
 WP_CONTENT="/wp-content"
 bf-env "WP_CONTENT" "${WP_CONTENT}"
+bf-env "WP_CONFIG" "${WP_CONTENT}/wp-config.php"
 bf-env "WP_SALT" "${WP_CONTENT}/salt"
 
 WP_CONTENT_SRC="${WP_SRC}${WP_CONTENT}"
