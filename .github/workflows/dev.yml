@@ -74,9 +74,6 @@ jobs:
             bfren/wordpress:php${{ matrix.php }}-dev
             bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}-beta
             bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-dev
-            ghcr.io/bfren/wordpress:php${{ matrix.php }}-dev
-            ghcr.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}-beta
-            ghcr.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-dev
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
