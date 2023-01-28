@@ -140,3 +140,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
+
+/**
+ * bfren/wordpress
+ *
+ * Disable the background updates check - it will fail and updates are handled by the container image.
+ */
+
+// remove background updates test - handled by the hosting platform
+function bfren_remove_background_updates_test( $tests ) {
+    unset( $tests['async']['background_updates'] );
+    return $tests;
+}
+add_filter( 'site_status_tests', 'bfren_remove_background_updates_test' );
