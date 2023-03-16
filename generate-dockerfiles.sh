@@ -4,13 +4,13 @@ set -euo pipefail
 
 docker pull bfren/alpine
 
-BASE_REVISION="5.3.27"
+BASE_REVISION="5.3.28"
 echo "Base: ${BASE_REVISION}"
 
 PHP_VERSIONS="7.4 8.0 8.1 8.2"
 for V in ${PHP_VERSIONS} ; do
 
-    echo "FreeScout for PHP ${V}"
+    echo "WordPress for PHP ${V}"
 
     DOCKERFILE=$(docker run \
         -v ${PWD}:/ws \
