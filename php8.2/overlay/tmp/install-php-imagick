@@ -7,4 +7,5 @@ set -euo pipefail
 # Install imagick.
 #======================================================================================================================
 
-# PHP 8.2 imagick extension is not yet available
+apk add --no-cache \
+    php82-pecl-imagick=${1}
