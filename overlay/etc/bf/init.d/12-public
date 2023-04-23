@@ -16,11 +16,12 @@ fi
 
 
 #======================================================================================================================
-# If nothing exists in /www/public, there is nothing to do.
+# If nothing exists in /www, simply create /www/public.
 #======================================================================================================================
 
-if [ `ls ${PUBLIC}` = "" ] ; then
-    bf-echo "${PUBLIC} is empty."
+if [ `ls /www` = "" ] ; then
+    bf-echo "Creating ${PUBLIC}."
+    mkdir ${PUBLIC}
     exit 0
 fi
 
