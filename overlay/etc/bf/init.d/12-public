@@ -19,7 +19,7 @@ fi
 # If nothing exists in /www, simply create /www/public.
 #======================================================================================================================
 
-if [ `ls /www` = "" ] ; then
+if [ "$(ls /www)" = "" ] ; then
     bf-echo "Creating ${PUBLIC}."
     mkdir ${PUBLIC}
     exit 0
