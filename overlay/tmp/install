@@ -13,12 +13,6 @@ cd /tmp
 PHP_VERSION=$(cat PHP_BUILD)
 bf-echo "PHP version ${PHP_VERSION}."
 
-IMAGICK_VERSION=$(cat IMAGICK_BUILD)
-bf-echo "Imagick version ${IMAGICK_VERSION}."
-
-REDIS_VERSION=$(cat REDIS_BUILD)
-bf-echo "Redis version ${REDIS_VERSION}."
-
 
 #======================================================================================================================
 # Install PHP and Imagick dependencies and packages.
@@ -28,12 +22,12 @@ bf-echo "Installing PHP v${PHP_VERSION}..."
 chmod +x ./install-php && ./install-php ${PHP_VERSION}
 bf-done
 
-bf-echo "Installing Imagick v${IMAGICK_VERSION}..."
-chmod +x ./install-php-imagick && ./install-php-imagick ${IMAGICK_VERSION}
+bf-echo "Installing Imagick..."
+chmod +x ./install-php-imagick && ./install-php-imagick
 bf-done
 
-bf-echo "Installing Redis v${REDIS_VERSION}..."
-chmod +x ./install-php-redis && ./install-php-redis ${REDIS_VERSION}
+bf-echo "Installing Redis..."
+chmod +x ./install-php-redis && ./install-php-redis
 bf-done
 
 
@@ -57,5 +51,5 @@ mkdir /wp-content
 # Cleanup.
 #======================================================================================================================
 
-bf-echo "Removing /www files."
-rm -f /www/*
+bf-echo "Removing /www files and directories."
+rm -rf /www/*
