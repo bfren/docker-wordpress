@@ -57,5 +57,5 @@ mkdir /wp-content
 # Cleanup.
 #======================================================================================================================
 
-bf-echo "Removing /www files."
-rm -f /www/*
+bf-echo "Removing /www files and directories."
+rm -rf /www/*
