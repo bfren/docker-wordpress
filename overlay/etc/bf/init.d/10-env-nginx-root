@@ -10,4 +10,4 @@ export BF_E=`basename ${0}`
 
 WP_SRC=${BF_SRC}/wordpress
 bf-env "WP_SRC" "${WP_SRC}"
-bf-env "NGINX_ROOT" "${WP_SRC}"
+bf-env "NGINX_PUBLIC" "${WP_SRC}"
