@@ -20,22 +20,22 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', '<%= "${WP_DB_NAME}" %>' );
+define( 'DB_NAME', '<% bf-env WP_DB_NAME %>' );
 
 /** MySQL database username */
-define( 'DB_USER', '<%= "${WP_DB_USER}" %>' );
+define( 'DB_USER', '<% bf-env WP_DB_USER %>' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', '<%= "${WP_DB_PASS}" %>' );
+define( 'DB_PASSWORD', '<% bf-env WP_DB_PASS %>' );
 
 /** MySQL hostname */
-define( 'DB_HOST', '<%= "${WP_DB_HOST}" %>' );
+define( 'DB_HOST', '<% bf-env WP_DB_HOST %>' );
 
 /** Database Charset to use in creating database tables. */
-define( 'DB_CHARSET', '<%= "${WP_DB_CHARSET}" %>' );
+define( 'DB_CHARSET', '<% bf-env WP_DB_CHARSET utf8mb4 %>' );
 
 /** The Database Collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', '<%= "${WP_DB_COLLATE-}" %>' );
+define( 'DB_COLLATE', '<% bf-env -s WP_DB_COLLATE %>' );
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -46,7 +46,7 @@ define( 'DB_COLLATE', '<%= "${WP_DB_COLLATE-}" %>' );
  *
  * @since 2.6.0
  */
-<%= "${AUTH}" %>
+<% bf-env -P SALT %>
 
 /**#@-*/
 
@@ -56,7 +56,7 @@ define( 'DB_COLLATE', '<%= "${WP_DB_COLLATE-}" %>' );
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = '<%= "${WP_DB_PREFIX}" %>_';
+$table_prefix = '<% bf-env WP_DB_PREFIX wp %>_';
 
 /**
  * For developers: WordPress debugging mode.
@@ -70,9 +70,9 @@ $table_prefix = '<%= "${WP_DB_PREFIX}" %>_';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', <%= "${WP_DEBUG}" %> );
+define( 'WP_DEBUG', <% bf-env WP_DEBUG "false" %> );
 
-<% if [ "${WP_ENABLE_HTTPS_BEHIND_PROXY}" = "1" ] ; then %>
+<% if bf-env-check WP_ENABLE_HTTPS_BEHIND_PROXY ; then -%>
 /**
  * bfren/wordpress
  *
@@ -84,52 +84,52 @@ if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
         $_SERVER['HTTPS']='on';
     }
 }
-<% fi %>
+<% fi -%>
 
-<% if [ "${WP_USE_SYSTEM_CRON}" = "1" ] ; then %>
+<% if bf-env-check WP_USE_SYSTEM_CRON ; then -%>
 /**
  * bfren/wordpress
  *
  * Disable WordPress in-build cron - will be handled by the system cron instead
  */
 define( 'DISABLE_WP_CRON', true );
-<% fi %>
+<% fi -%>
 
-<% if [ "${WP_DISABLE_MAJOR_UPDATES-}" = "1" ] ; then %>
+<% if bf-env-check WP_DISABLE_MAJOR_UPDATES ; then -%>
 /**
  * bfren/wordpress
  *
  * Disable WordPress core major update - they will be downloaded as part of the Docker image
  */
 define( 'WP_AUTO_UPDATE_CORE', 'minor' );
-<% fi %>
+<% fi -%>
 
-<% if [ -n "${WP_CONFIG_ADDITIONAL-}" ] ; then %>
+<% if bf-env-not-empty WP_CONFIG_ADDITIONAL ; then -%>
 /**
  * bfren/wordpress
  *
  * These additional configuration directives are defined by the WP_CONFIG_OVERRIDE environment variable.
  */
-<%= ${WP_CONFIG_ADDITIONAL} %>
-<% fi %>
+<% bf-env WP_CONFIG_ADDITIONAL %>
+<% fi -%>
 
-<% if [ -n "${WP_REDIS_HOST-}" ] ; then %>
+<% if bf-env-not-empty WP_REDIS_HOST ; then -%>
 /**
  * bfren/wordpress
  *
  * Override the default Redis host.
  */
-define( 'WP_REDIS_HOST', '<%= "${WP_REDIS_HOST}" %>' );
-<% fi %>
+define( 'WP_REDIS_HOST', '<% bf-env WP_REDIS_HOST %>' );
+<% fi -%>
 
-<% if [ -n "${WP_REDIS_PORT-}" ] ; then %>
+<% if bf-env-not-empty WP_REDIS_PORT ; then -%>
 /**
  * bfren/wordpress
  *
  * Override the default Redis port.
  */
-define( 'WP_REDIS_PORT', '<%= "${WP_REDIS_PORT}" %>' );
-<% fi %>
+define( 'WP_REDIS_PORT', '<% bf-env WP_REDIS_PORT %>' );
+<% fi -%>
 
 /* That's all, stop editing! Happy publishing. */
 

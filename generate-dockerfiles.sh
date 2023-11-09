@@ -4,8 +4,8 @@ set -euo pipefail
 
 docker pull bfren/alpine
 
-BASE_REVISION="6.0.21"
-echo "Base: ${BASE_REVISION}"
+BASE_VERSION="7.0.0-dev"
+echo "Base: ${BASE_VERSION}"
 
 PHP_VERSIONS="7.4 8.0 8.1 8.2"
 for V in ${PHP_VERSIONS} ; do
@@ -17,7 +17,7 @@ for V in ${PHP_VERSIONS} ; do
         -e BF_DEBUG=0 \
         bfren/alpine esh \
         "/ws/Dockerfile.esh" \
-        BASE_REVISION=${BASE_REVISION} \
+        BASE_VERSION=${BASE_VERSION} \
         PHP_MINOR=${V}
     )
 
