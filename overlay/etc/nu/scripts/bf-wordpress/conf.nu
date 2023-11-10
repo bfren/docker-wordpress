@@ -14,7 +14,7 @@ export def generate [] {
 
     # generate configuration file
     let wp_config = bf env WP_CONFIG
-    bf write debug $"Generating ($wp_config)." conf/generate
+    bf write $"Generating ($wp_config)." conf/generate
     bf esh template $wp_config
 
     # set permissions
@@ -42,8 +42,10 @@ export def get_salt [
     # if the salt file does not exist, use WP api to download fresh salt values
     if ($file | bf fs is_not_file) {
         let url = "https://api.wordpress.org/secret-key/1.1/salt/"
-        bf write $"Downloading authentication secrets from ($url)." conf/get_salt
-        http get --raw $url | save $file
+        bf write $"Downloading fresh authentication secrets from ($url)." conf/get_salt
+        http get --raw $url | save --force $file
+    } else {
+        bf write $"Reading authentication secrets from ($file)." conf/get_salt
     }
 
     # read salt file contents and return
