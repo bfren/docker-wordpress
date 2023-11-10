@@ -15,7 +15,7 @@ def main [] {
         setup_default
     } else {
         bf write $"($wp_content) has content."
-        if (bf env debug) { ls $wp_content | print }
+        if (bf env debug) { ls $wp_content | bf dump -t $wp_content  }
     }
 
     # link source wp-content to /wp-content
