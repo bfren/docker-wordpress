@@ -11,7 +11,7 @@ def main [] {
     if ($wp_content_src | bf fs is_not_symlink) { bf write error $"($wp_content_src) is not linked to ($wp_content)." }
 
     # if using a custom wp-config.php file and it already exists, do nothing
-    if (bf env test WP_CONFIG_GENERATE "custom") and (bf env WP_CONFIG | path exists) {
+    if (bf env test WP_CONFIG_REGENERATE 0) and (bf env WP_CONFIG | path exists) {
         bf write "Using custom wp-config.php."
         return
     }

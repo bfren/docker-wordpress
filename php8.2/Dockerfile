@@ -20,9 +20,13 @@ ENV \
     # load the WordPress login page for healthcheck
     BF_NGINX_HEALTHCHECK_URI=http://localhost/wp-login.php \
     # options for config file permissions:
-    #  - 0 (generate if it does not exist, and make it writeable by web server user)
-    #  - 1 (default: generate if it does not exist, and make it readonly to web server user)
+    #  - 0 (make it writeable by web server user)
+    #  - 1 (make it readonly to web server user)
     BF_WP_CONFIG_HARDEN=1 \
+    # options for config file generation:
+    #  - 0 (generate on container startup if it does not exist)
+    #  - 1 (always regenerate on container startup)
+    BF_WP_CONFIG_REGENERATE=1 \
     # set to 0 to re-enable WordPress core updates - otherwise they will be handled by the image
     BF_WP_DISABLE_MAJOR_UPDATES=1 \
     # whether or not to enable HTTPS behind a proxy server
