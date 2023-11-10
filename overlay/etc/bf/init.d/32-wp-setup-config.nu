@@ -8,7 +8,7 @@ def main [] {
     let wp_content_src = bf env WP_CONTENT_SRC
 
     # if the wp-content src directory is not linked to /wp-content, the setup has gone wrong
-    if ($wp_content_src | path type) != "symlink" { bf write error $"($wp_content_src) is not linked to ($wp_content)." }
+    if ($wp_content_src | bf fs is_not_symlink) { bf write error $"($wp_content_src) is not linked to ($wp_content)." }
 
     # if using a custom wp-config.php file and it already exists, do nothing
     if (bf env test WP_CONFIG_GENERATE "custom") and (bf env WP_CONFIG | path exists) {

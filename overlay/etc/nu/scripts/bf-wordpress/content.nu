@@ -15,5 +15,5 @@ export def recreate [] {
     cp -r $"($default)/*" $content
 
     # set correct permissions
-    perms set
+    perms set_content
 }

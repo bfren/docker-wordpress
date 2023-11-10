@@ -33,7 +33,7 @@ def main [] {
     bf write debug $"WordPress source directory: ($src)."
     install_source
     install_content
-    install_plugins
+    store_plugin_versions
 
     # add bf-wordpress module to config
     bf config use bf-wordpress
@@ -108,63 +108,14 @@ def install_content [] {
     cp -r $wp_content_src $wp_content_default
 }
 
-# Install default plugins
-def install_plugins [] {
-    # get path to plugins directory
-    let plugins_dir = $"($src)/wp-content/plugins"
-
-    # closure that checks whether or not a plugin exists before attempting to install it
-    let check = {|x|
-        # get path to plugin directory
-        let plugin_dir = $"($plugins_dir)/($x)"
-
-        # if the plugin directory exists, return empty string
-        if ($plugin_dir | path exists) {
-            bf write $"Plugin ($x) is already installed." install_plugins
-            return ""
-        }
-
-        # otherwise, create and then return the path to the plugin directory
-        mkdir $plugin_dir
-        $plugin_dir
+# Store plugin versions
+def store_plugin_versions [] {
+    # read version file and store as an environment variable
+    let store = {|x|
+        let file = $"($x)_VERSION"
+        bf fs read $file | bf env set $"WP_PLUGIN_($file)" $in
     }
 
-    # install plugins
-    do $check "ninjafirewall" | install_plugin_ninja_firewall
-}
-
-# Install Ninja Firewall plugin
-def install_plugin_ninja_firewall [] {
-    # get plugin directory from piped input - if nothing is passed, do nothing
-    let plugin_dir = $in
-    if ($plugin_dir | bf fs is_not_dir) { return }
-
-    # get plugin version and dowload url
-    let version = bf fs read NINJAFIREWALL_VERSION
-    let url = $"https://downloads.wordpress.org/plugin/ninjafirewall.($version).zip"
-    bf write debug $"NinjaFirewall download url: ($url)." install_plugin_ninja_firewall
-
-    # download plugin
-    cd /tmp
-    let name = $plugin_dir | path split | last
-    let tmp = $"/tmp/($name)"
-    let zip = $"($name).zip"
-    bf write $"Downloading NinjaFirewall ($version)." install_plugin_ninja_firewall
-    http get --raw $url | save $zip
-
-    # unzip files
-    bf write $"Unzipping source download files to ($tmp)."
-    ^unzip -oq $zip
-    rm $zip
-    if ($tmp | bf fs is_not_dir) { bf write error "NinjaFirewall not downloaded." install_plugin_ninja_firewall }
-
-    # move files to plugin directory
-    bf write $"Moving source files to ($plugin_dir)."
-    rm -r $plugin_dir
-    mv $tmp $plugin_dir
-    if ($plugin_dir | bf fs is_not_dir) { bf write error "NinjaFirewall not installed." install_plugin_ninja_firewall }
-
-    # create cache directory
-    bf write "Creating NinjaFirewall cache directory."
-    mkdir $"($src)/wp-content/nfwlog/cache"
+    # Ninja Firewall
+    do $store NINJAFIREWALL
 }

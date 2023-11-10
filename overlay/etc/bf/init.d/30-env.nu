@@ -6,6 +6,7 @@ def main [] {
     let wp_src = bf env WP_SRC
     bf env set WP_CONFIG_SRC $"($wp_src)/wp-config.php"
     bf env set WP_FIREWALL $"($wp_src)/firewall.php"
+    bf env set WP_USER_INI $"($wp_src)/.user.ini"
 
     let wp_content = "/wp-content"
     bf env set WP_CONTENT $wp_content

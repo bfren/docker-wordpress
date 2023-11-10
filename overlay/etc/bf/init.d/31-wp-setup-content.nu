@@ -11,10 +11,11 @@ def main [] {
     if (bf env WP_SRC | bf fs is_not_dir) { bf write error "WordPress source files cannot be found." }
 
     # if content directory is empty, setup default content
-    if ($wp_content | ls | length) == 0 {
+    if (ls $wp_content | length) == 0 {
         setup_default
     } else {
         bf write $"($wp_content) has content."
+        if (bf env debug) { ls $wp_content | print }
     }
 
     # link source wp-content to /wp-content
@@ -23,9 +24,6 @@ def main [] {
     } else {
         bf write $"($wp_content_src) is already linked to ($wp_content)."
     }
-
-    # set correct permissions
-    bf-wordpress perms set
 }
 
 # Set up wp-content directory with default contents
@@ -45,13 +43,13 @@ def setup_default [] {
 
     # otherwise, move source wp-content to mapped directory
     bf write $"Moving ($wp_content_src) files and directories." setup_default
-    ls $wp_content_src | each {|x|
+    ls --full-paths $wp_content_src | get name | each {|x|
         # get file name
-        let name = $x | path basename
-        bf write $" .. ($name)" setup_default
+        let filename = $x | path basename
+        bf write $" .. ($filename)" setup_default
 
         # define new content variable
-        let in_wp = $"($wp_content)/($name)"
+        let in_wp = $"($wp_content)/($filename)"
         bf write debug $"    moving ($x) to ($in_wp)" setup_default
 
         # move content

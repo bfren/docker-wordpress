@@ -1,4 +1,5 @@
 use bf
+use perms.nu
 
 # Generate wp-config.php file
 export def generate [] {
@@ -16,9 +17,8 @@ export def generate [] {
     bf write debug $"Generating ($wp_config)." conf/generate
     bf esh template $wp_config
 
-    # set permissions (write access is required by some plugins, e.g. caching / optimise plugins)
-    let mode = if (bf env check WP_CONFIG_HARDEN) { 0400 } else { 0600 }
-    bf ch --owner "www:www" --mode $mode $wp_config
+    # set permissions
+    perms set_config
 }
 
 # Check that a required environment variable exists and is not empty

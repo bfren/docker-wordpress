@@ -1,3 +1,0 @@
-; BEGIN NinjaFirewall
-auto_prepend_file = <%= "${WP_FIREWALL}" %>
-; END NinjaFirewall
