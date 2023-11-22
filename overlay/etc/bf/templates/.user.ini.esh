@@ -1,0 +1,3 @@
+; BEGIN NinjaFirewall
+auto_prepend_file = <% bf-env WP_FIREWALL %>
+; END NinjaFirewall

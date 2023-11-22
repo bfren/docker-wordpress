@@ -65,7 +65,7 @@ jobs:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: |
             bfren/wordpress:php${{ matrix.php }}-dev
-            bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}-beta
+            bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}-dev
             bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-dev
       -
         name: Image digest
