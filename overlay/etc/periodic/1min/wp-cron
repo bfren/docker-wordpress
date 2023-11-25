@@ -1,4 +1,4 @@
-#!/command/with-contenv bash
+#!/bin/withenv sh
 
 set -euo pipefail
 export BF_E=`basename ${0}`
@@ -8,4 +8,4 @@ export BF_E=`basename ${0}`
 # Call wp-cron executable
 #======================================================================================================================
 
-[[ "${WP_USE_SYSTEM_CRON-}" = "1" ]] && wp-cron
+bf-env-check WP_USE_SYSTEM_CRON && wp-cron
