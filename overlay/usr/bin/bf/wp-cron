@@ -9,6 +9,7 @@ export BF_E=`basename ${0}`
 # See https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/
 #======================================================================================================================
 
+bf-write-debug "Executing WordPress cron." wp-cron
 CODE=$(bf-test-url --return-status "http://localhost/wp-cron.php")
 [[ "${CODE}" = "200" ]] && exit 0 \
-    || bf-write-error "Error executing cron: HTTP ${CODE}."
+    || bf-write-error "Error executing cron: HTTP ${CODE}." wp-cron
