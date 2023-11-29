@@ -1,5 +1,0 @@
-<?php
-    $wp_config="<% bf-env WP_CONFIG %>";
-    if (file_exists("<% bf-env WP_PLUGIN_NINJAFIREWALL %>")) {
-        require_once "<% bf-env WP_PLUGIN_NINJAFIREWALL %>";
-    }

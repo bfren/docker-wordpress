@@ -5,7 +5,6 @@ bf env load
 def main [] {
     let wp_src = bf env WP_SRC
     bf env set WP_CONFIG_SRC $"($wp_src)/wp-config.php"
-    bf env set WP_FIREWALL $"($wp_src)/firewall.php"
     bf env set WP_USER_INI $"($wp_src)/.user.ini"
 
     let wp_content = "/wp-content"
@@ -22,7 +21,6 @@ def main [] {
 
     let wp_content_plugins = $"($wp_content)/plugins"
     bf env set WP_PLUGINS $wp_content_plugins
-    bf env set WP_PLUGIN_NINJAFIREWALL $"($wp_content_plugins)/ninjafirewall/lib/firewall.php"
 
     let wp_content_themes = $"($wp_content)/themes"
     bf env set WP_THEMES $wp_content_themes

@@ -47,12 +47,3 @@ def install [
     mv $tmp $plugin_dir
     if ($plugin_dir | bf fs is_not_dir) { bf write error $" .. not installed" plugin/install }
 }
-
-# Install Ninja Firewall
-export def install_ninjafirewall [] {
-    # install plugin
-    install "Ninja Firewall" "ninjafirewall"
-
-    # create cache directory
-    mkdir $"(bf env WP_CONTENT)/nfwlog/cache"
-}

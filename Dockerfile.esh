@@ -31,9 +31,6 @@ ENV \
     BF_WP_DISABLE_MAJOR_UPDATES=1 \
     # whether or not to enable HTTPS behind a proxy server
     BF_WP_ENABLE_HTTPS_BEHIND_PROXY=1 \
-    # set to 0 if you don't want the NinjaFirewall plugin to be installed automatically and setup
-    # to run in full WAF mode (you will still have to enable it in the WordPress backend)
-    BF_WP_INSTALL_NINJAFIREWALL=1 \
     # set to 0 to use WordPress cron instead of system cron (will reduce performance)
     # you must remove define('DISABLE_WP_CRON', true); to wp-config.php to make a difference
     BF_WP_USE_SYSTEM_CRON=1

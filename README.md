@@ -4,7 +4,7 @@
 
 [Docker Repository](https://hub.docker.com/r/bfren/wordpress) - [bfren ecosystem](https://github.com/bfren/docker)
 
-Comes with [WordPress](https://en-gb.wordpress.org) en_GB preinstalled - if you want a different locale, use the Dockerfiles and set the `WP_LOCALE` argument.  [Ninja Firewall](https://wordpress.org/plugins/ninjafirewall/) is also preinstalled and setup to work in [Full WAF mode](https://blog.nintechnet.com/full_waf-vs-wordpress_waf/).
+Comes with [WordPress](https://en-gb.wordpress.org) en_GB preinstalled - if you want a different locale, use the Dockerfiles and set the `WP_LOCALE` argument.
 
 The required and recommended PHP modules are all installed.
 
@@ -48,7 +48,6 @@ See the [Nginx + PHP](https://github.com/bfren/docker-nginx-php) image for detai
 | `WP_DEBUG`                     | true or false    | Whether or not to enable debug mode.                                                                                                                                                          | false                                                 |
 | `WP_DISABLE_MAJOR_UPDATES`     | 0 or 1           | Set to 0 to enable WordPress core major system updates (otherwise they are handled by the image).                                                                                             | 1                                                     |
 | `WP_ENABLE_HTTPS_BEHIND_PROXY` | 0 or 1           | Whether or not to enable HTTPS behind a proxy server.                                                                                                                                         | 1                                                     |
-| `WP_INSTALL_NINJAFIREWALL`     | 0 or 1           | Whether or not to install the NinjaFirewall plugin.                                                                                                                                           | 1                                                     |
 | `WP_REDIS_HOST`                | string           | Set to enable redis on the specified host.                                                                                                                                                    | *None*                                                |
 | `WP_REDIS_PORT`                | integer          | Set to override the default redis port (6379).                                                                                                                                                | *None*                                                |
 | `WP_USE_SYSTEM_CRON`           | 0 or 1           | Set to 0 to use WordPress cron instead of system cron (reduces page performance).                                                                                                             | 1                                                     |
