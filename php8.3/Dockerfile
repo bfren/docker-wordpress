@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php8.1-7.1.0
+FROM bfren/nginx-php:php8.3-7.1.0
 
 LABEL org.opencontainers.image.source="https://github.com/bfren/docker-wordpress"
 
@@ -14,7 +14,7 @@ ARG \
     WP_LOCALE=
 
 COPY ./overlay /
-COPY ./php8.1/overlay /
+COPY ./php8.3/overlay /
 
 ENV \
     # load the WordPress login page for healthcheck

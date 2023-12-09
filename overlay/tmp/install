@@ -24,7 +24,7 @@ def main [] {
 
     # install PECL extensions
     let pecl_extensions = [
-        $"($prefix)-pecl-imagick"
+        #$"($prefix)-pecl-imagick"
         $"($prefix)-pecl-redis"
     ]
     bf pkg install $pecl_extensions
