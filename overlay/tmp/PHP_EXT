@@ -21,3 +21,5 @@
 -xml
 -xmlreader
 -zip
+-pecl-imagick
+-pecl-redis
