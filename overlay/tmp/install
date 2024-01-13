@@ -1,33 +1,16 @@
 #!/usr/bin/nu
 
 use bf
+use bf-php
 
 # Absolute path to WordPress source directory
 const src = "/etc/bf/src/wordpress"
 
 def main [] {
-    # get PHP prefix and version
+    # installed required and recommended extensions
     cd /tmp
-    let prefix = bf env PHP_PREFIX
-    let version = bf fs read PHP_BUILD
-    bf write $"Installing PHP v($version) extensions."
-
-    # load versions from ext file and install
-    let php_extensions = bf fs read PHP_EXT | lines | each {|x|
-        if ($x | str starts-with "-" ) {
-            $"($prefix)($x)=($version)"
-        } else {
-            $x
-        }
-    }
-    bf pkg install $php_extensions
-
-    # install PECL extensions
-    let pecl_extensions = [
-        #$"($prefix)-pecl-imagick"
-        $"($prefix)-pecl-redis"
-    ]
-    bf pkg install $pecl_extensions
+    bf write $"Installing PHP extensions."
+    bf-php ext install_from_file
 
     # install WordPress source files, content directory and default plugins
     bf write debug $"WordPress source directory: ($src)."
