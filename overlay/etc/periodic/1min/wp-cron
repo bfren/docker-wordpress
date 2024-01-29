@@ -1,11 +1,10 @@
 #!/bin/withenv sh
 
 set -euo pipefail
-export BF_E=`basename ${0}`
 
 
 #======================================================================================================================
-# Call wp-cron executable
+# Call wp-cron executable if system cron is enabled
 #======================================================================================================================
 
 bf-env-check WP_USE_SYSTEM_CRON && wp-cron
