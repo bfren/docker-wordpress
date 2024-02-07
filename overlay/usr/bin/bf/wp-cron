@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/withenv sh
 
 set -euo pipefail
+export BF_X=`basename ${0}`
 
 
 #======================================================================================================================
@@ -8,7 +9,7 @@ set -euo pipefail
 # See https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/
 #======================================================================================================================
 
-bf-write-debug "Executing WordPress cron." wp-cron
+bf-write-debug "Executing WordPress cron."
 CODE=$(bf-test-url --return-status "http://localhost/wp-cron.php")
 [[ "${CODE}" = "200" ]] && exit 0 \
-    || bf-write-error "Error executing cron: HTTP ${CODE}." wp-cron
+    || bf-write-error "Error executing cron: HTTP ${CODE}."
