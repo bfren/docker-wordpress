@@ -64,7 +64,7 @@ def link_directories [] {
     let wp_content_src = bf env WP_CONTENT_SRC
 
     bf write $"Deleting ($wp_content_src) so it can be turned into a symlink." link_directories
-    rm -rf $wp_content_src
+    bf del force $wp_content_src
 
     bf write $"Linking ($wp_content_src) to ($wp_content)." link_directories
     ^ln -s $wp_content $wp_content_src
