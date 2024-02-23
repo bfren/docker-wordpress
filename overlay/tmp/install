@@ -30,7 +30,7 @@ def main [] {
 def install_source [] {
     # add dependencies
     bf write "Adding installation dependencies." install_source
-    bf pkg install ["--virtual .install" "unzip"]
+    bf pkg install ["--virtual" ".install" "unzip"]
 
     # get version and locale
     let wp_version = bf fs read WP_VERSION
