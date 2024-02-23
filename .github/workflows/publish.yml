@@ -69,6 +69,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      -
         name: Build and push
         id: docker_build
         uses: docker/build-push-action@v5
@@ -77,6 +84,7 @@ jobs:
           file: ./php${{ matrix.php }}/Dockerfile
           build-args: |
             BF_IMAGE=${{ env.REPOSITORY_NAME }}
+            BF_PUBLISHING=1
             BF_VERSION=${{ steps.version.outputs.contents }}
           push: true
           platforms: linux/amd64,linux/arm/v7,linux/arm64
@@ -90,6 +98,15 @@ jobs:
             bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}
             bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-${{ steps.version.outputs.contents }}
             bfren/wordpress:php${{ steps.php_revision.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version_major.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version_minor.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_minor.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_minor.outputs.contents }}-${{ steps.version.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-${{ steps.version.outputs.contents }}
+            ghcr.io/bfren/wordpress:php${{ steps.php_revision.outputs.contents }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

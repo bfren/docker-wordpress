@@ -37,7 +37,7 @@ export def get_salt [
     let file = bf env WP_SALT
 
     # if force flag is enabled, remove the salt file first
-    if $force { rm -f $file }
+    if $force { bf del force $file }
 
     # if the salt file does not exist, use WP api to download fresh salt values
     if ($file | bf fs is_not_file) {

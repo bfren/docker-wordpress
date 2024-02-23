@@ -43,7 +43,7 @@ def install [
 
     # move files to plugin directory
     bf write debug $" .. moving source files to ($plugin_dir)" plugin/install
-    rm -r $plugin_dir
+    bf del force $plugin_dir
     mv $tmp $plugin_dir
     if ($plugin_dir | bf fs is_not_dir) { bf write error $" .. not installed" plugin/install }
 }

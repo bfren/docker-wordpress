@@ -8,11 +8,11 @@ export def recreate [] {
     let default = bf env WP_CONTENT_DEFAULT
 
     # delete contents first
-    if (ls $content | length) > 0 { rm -rf $"($content)/*" }
+    if (ls $content | length) > 0 { bf del force $"($content)/*" }
 
     # copy default wp-content
     bf write $"Copying default wp-content to ($default)." content/recreate
-    cp -r $"($default)/*" $content
+    echo $"($default)/*" | cp -r $in $content
 
     # set correct permissions
     perms set_content
