@@ -6,13 +6,10 @@ on:
     tags-ignore: ['**']
   workflow_dispatch:
 
+env:
+  TEST_TAG: wordpress:test
+
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Checkout code
-        uses: actions/checkout@v4
   build:
     strategy:
       fail-fast: false
@@ -52,6 +49,29 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      -
+        name: Build and export
+        id: docker_export
+        uses: docker/build-push-action@v5
+        with:
+          file: ./php${{ matrix.php }}/Dockerfile
+          build-args: |
+            BF_IMAGE=${{ env.REPOSITORY_NAME }}
+            BF_VERSION=${{ steps.version.outputs.contents }}
+          load: true
+          tags: ${{ env.TEST_TAG }}
+      -
+        name: Run tests
+        id: docker_test
+        run: |
+          docker run --entrypoint "/usr/bin/env" ${{ env.TEST_TAG }} -i nu -c "use bf test ; test"
+      -
         name: Build and push
         id: docker_build
         uses: docker/build-push-action@v5
@@ -67,6 +87,9 @@ jobs:
             bfren/wordpress:php${{ matrix.php }}-dev
             bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}-dev
             bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-dev
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-dev
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}-dev
+            ghcr.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-dev
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
