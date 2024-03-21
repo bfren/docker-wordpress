@@ -12,7 +12,7 @@ export def recreate [] {
 
     # copy default wp-content
     bf write $"Copying default wp-content to ($default)." content/recreate
-    echo $"($default)/*" | cp -r $in $content
+    echo $"($default)/*" | into glob | cp -r $in $content
 
     # set correct permissions
     perms set_content
