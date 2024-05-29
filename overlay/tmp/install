@@ -101,4 +101,7 @@ def store_plugin_versions [] {
 
     # Ninja Firewall
     do $store NINJAFIREWALL
+
+    # WebAuthn
+    do $store WP-WEBAUTHN
 }

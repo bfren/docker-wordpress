@@ -56,3 +56,9 @@ export def install_ninjafirewall [] {
     # create cache directory
     mkdir $"(bf env WP_CONTENT)/nfwlog/cache"
 }
+
+# Install Web Authn
+export def install_webauthn [] {
+    # install plugin
+    install "WP-WebAuthn" "wp-webauthn"
+}
