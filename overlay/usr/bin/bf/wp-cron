@@ -10,6 +10,6 @@ export BF_X=`basename ${0}`
 #======================================================================================================================
 
 bf-write-debug "Executing WordPress cron."
-CODE=$(bf-test-url --return-status "http://localhost/wp-cron.php")
-[[ "${CODE}" = "200" ]] && exit 0 \
-    || bf-write-error "Error executing cron: HTTP ${CODE}."
+STATUS=$(bf-http-status "http://localhost/wp-cron.php")
+[[ "${STATUS}" = "200" ]] && exit 0 \
+    || bf-write-error "Error executing cron: HTTP ${STATUS}."
