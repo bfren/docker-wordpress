@@ -1,4 +1,4 @@
-FROM bfren/nginx-php:php<%= ${PHP_REVISION} %>-<%= ${BASE_VERSION} %>
+FROM ghcr.io/bfren/nginx-php:php<%= ${PHP_REVISION} %>-<%= ${BASE_VERSION} %>
 
 LABEL org.opencontainers.image.source="https://github.com/bfren/docker-wordpress"
 
