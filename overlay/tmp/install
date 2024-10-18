@@ -23,7 +23,7 @@ def main [] {
 
     # cleanup
     bf write "Removing /www files and directories."
-    bf del force /www/*
+    rm --force --recursive /www/*
 }
 
 # Download and install WordPress source files

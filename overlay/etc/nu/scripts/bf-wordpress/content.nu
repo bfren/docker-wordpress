@@ -8,7 +8,7 @@ export def recreate [] {
     let default = bf env WP_CONTENT_DEFAULT
 
     # delete contents first
-    if (ls $content | length) > 0 { bf del force $"($content)/*" }
+    if (ls $content | length) > 0 { $"($content)/*" | into glob | rm --force --recursive }
 
     # copy default wp-content
     bf write $"Copying default wp-content to ($default)." content/recreate
