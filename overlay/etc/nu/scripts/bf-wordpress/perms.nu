@@ -7,7 +7,7 @@ const user = "www:www"
 export def set_content [] {
     # set permissions for directory
     bf write $"Setting wp-content permissions." perms/content
-    [(bf env WP_CONTENT) $user 0644 0755] | bf ch apply
+    [(bf env WP_CONTENT) $user "0644" "0755"] | bf ch apply
 
     # wp-config.php has more restrictive permissions
     set_config
