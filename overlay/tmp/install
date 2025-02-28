@@ -72,7 +72,7 @@ def install_source [] {
 
     # set permissions
     bf write $"Setting permissions on ($src)." install_source
-    [$src "www:www" 0400 0500] | bf ch apply
+    [$src "www:www" "0400" "0500"] | bf ch apply
 
     # remove installation dependencies
     bf pkg remove [".install"]
