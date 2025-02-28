@@ -17,6 +17,6 @@ export def set_content [] {
 export def set_config [] {
     # set permissions (write access is required by some plugins, e.g. caching / optimise plugins)
     bf write $"Setting wp-config.php permissions." perms/config
-    let mode = if (bf env check WP_CONFIG_HARDEN) { 0400 } else { 0600 }
+    let mode = if (bf env check WP_CONFIG_HARDEN) { "0400" } else { "0600" }
     [(bf env WP_CONFIG) $user $mode] | bf ch apply
 }
