@@ -32,9 +32,10 @@ ENV \
     BF_WP_DISABLE_MAJOR_UPDATES=1 \
     # whether or not to enable HTTPS behind a proxy server
     BF_WP_ENABLE_HTTPS_BEHIND_PROXY=1 \
-    # set to 0 if you don't want the NinjaFirewall plugin to be installed automatically and setup
-    # to run in full WAF mode (you will still have to enable it in the WordPress backend)
-    BF_WP_INSTALL_NINJAFIREWALL=1 \
+    # set to 1 if you want the NinjaFirewall plugin to be setup to run in full WAF mode
+    # (you will still have to enable it in the WordPress backend)
+    # NB: this must be 0 until you have installed WordPress or you will not be able to access the site
+    BF_WP_INSTALL_NINJAFIREWALL=0 \
     # set to 0 if you don't want the WebAuthn plugin to be installed automatically
     BF_WP_INSTALL_WEBAUTHN=1 \
     # set to 0 to use WordPress cron instead of system cron (will reduce performance)
