@@ -87,7 +87,7 @@ jobs:
             BF_PUBLISHING=1
             BF_VERSION=${{ steps.version.outputs.contents }}
           push: true
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm64
           tags: |
             bfren/wordpress:php${{ matrix.php }}
             bfren/wordpress:php${{ matrix.php }}-${{ steps.version_major.outputs.contents }}

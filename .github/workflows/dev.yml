@@ -82,7 +82,7 @@ jobs:
             BF_IMAGE=${{ env.REPOSITORY_NAME }}
             BF_VERSION=${{ steps.version.outputs.contents }}
           push: ${{ startsWith(github.ref, 'refs/heads/') }}
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm64
           tags: |
             bfren/wordpress:php${{ matrix.php }}-dev
             bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}-dev
