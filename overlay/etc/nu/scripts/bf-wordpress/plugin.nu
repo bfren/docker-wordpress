@@ -33,7 +33,7 @@ def install [
     let name = $plugin_dir | path split | last
     let tmp = $"/tmp/($name)"
     let zip = $"($name).zip"
-    http get --raw $url | save $zip
+    bf http download $url $zip
 
     # unzip files
     bf write debug $" .. unzipping source download files to ($tmp)" plugin/install

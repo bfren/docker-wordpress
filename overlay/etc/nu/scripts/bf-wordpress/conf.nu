@@ -43,7 +43,7 @@ export def get_salt [
     if ($file | bf fs is_not_file) {
         let url = "https://api.wordpress.org/secret-key/1.1/salt/"
         bf write $"Downloading fresh authentication secrets from ($url)." conf/get_salt
-        http get --raw $url | save --force $file
+        bf http download $url $file
     } else {
         bf write $"Reading authentication secrets from ($file)." conf/get_salt
     }

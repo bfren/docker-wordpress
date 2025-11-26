@@ -49,13 +49,13 @@ def install_source [] {
     bf write debug $"WordPress download url: ($url)." install_source
 
     # get source download hash
-    let hash = http get --raw $"($url).sha1"
+    let hash = bf http download $"($url).sha1"
     bf write debug $"SHA1 hash for WordPress ($wp_version) [($wp_locale)]:(char newline)($hash)" install_source
 
     # download source files to /tmp and verify checksum
     bf write $"Downloading WordPress ($wp_version) [($wp_locale)]." install_source
     let zip = "wp.zip"
-    http get --raw $url | save --progress $zip
+    bf http download $url $zip
     $"($hash)  ($zip)" | ^sha1sum -c -
 
     # unzip files
