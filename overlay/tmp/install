@@ -19,7 +19,7 @@ def main [] {
     store_plugin_versions
 
     # add bf-wordpress module to config
-    bf config use bf-wordpress
+    bf config use_mod bf-wordpress
 
     # cleanup
     bf write "Removing /www files and directories."
