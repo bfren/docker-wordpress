@@ -6,7 +6,7 @@ def install [
     ref: string
 ] {
     # get version
-    let version = bf env $"WP_PLUGIN_($ref | str upcase)_VERSION"
+    let version = bf env $"WP_PLUGIN_($ref | str uppercase)_VERSION"
 
     # get path to plugins directory
     let wp_src = bf env WP_SRC
