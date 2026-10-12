@@ -1,5 +1,6 @@
 use bf
 use perms.nu
+use bf-s6
 
 # Generate wp-config.php file
 export def generate [] {
@@ -15,7 +16,7 @@ export def generate [] {
     # generate configuration file
     let wp_config = bf env WP_CONFIG
     bf write $"Generating ($wp_config)." conf/generate
-    bf esh template $wp_config
+    bf-s6 esh template $wp_config
 
     # set permissions
     perms set_config
