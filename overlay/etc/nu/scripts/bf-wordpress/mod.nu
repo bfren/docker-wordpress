@@ -1,4 +1,4 @@
-export module conf.nu
-export module content.nu
-export module perms.nu
-export module plugin.nu
+export use conf.nu
+export use content.nu
+export use perms.nu
+export use plugin.nu
