@@ -153,7 +153,7 @@ The version must be a released WordPress version, and the locale one that WordPr
 ./test.sh        # builds the image and runs /test
 ```
 
-This image has no tests of its own. `/test` runs the tests inherited from the base images, and fails if tests don't execute.
+`/test` runs this image's tests alongside the base images' tests, and fails if tests don't execute. They generate `wp-config.php` from its template and check it is valid PHP - including with quotes and backslashes in the database password - and that each optional setting appears only when enabled. They also check the build arguments, `wp-config.php` permissions, that existing secret keys are kept, recreating the default content, the installed WordPress version, plugin versions and PHP extensions, and that nginx accepts the configuration.
 
 ## Troubleshooting
 
