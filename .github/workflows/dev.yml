@@ -37,6 +37,30 @@ jobs:
           file: ./VERSION
         id: version
       -
+        name: Read PHP version - revision
+        uses: bfren/read-file@v2
+        with:
+          file: ./php${{ matrix.php }}/PHP_REVISION
+        id: php_revision
+      -
+        name: Read WP minor version
+        uses: bfren/read-file@v2
+        with:
+          file: ./overlay/tmp/WP_MINOR
+        id: wp_minor
+      -
+        name: Read image version
+        uses: bfren/read-file@v2
+        with:
+          file: ./VERSION_MAJOR
+        id: version_major
+      -
+        name: Read image version
+        uses: bfren/read-file@v2
+        with:
+          file: ./VERSION_MINOR
+        id: version_minor
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v4
       -
@@ -85,11 +109,23 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: |
             bfren/wordpress:php${{ matrix.php }}-dev
+            bfren/wordpress:php${{ matrix.php }}-${{ steps.version_major.outputs.contents }}-dev
+            bfren/wordpress:php${{ matrix.php }}-${{ steps.version_minor.outputs.contents }}-dev
             bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}-dev
+            bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_minor.outputs.contents }}-dev
+            bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_minor.outputs.contents }}-${{ steps.version.outputs.contents }}-dev
             bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-dev
+            bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-${{ steps.version.outputs.contents }}-dev
+            bfren/wordpress:php${{ steps.php_revision.outputs.contents }}-dev
             quay.io/bfren/wordpress:php${{ matrix.php }}-dev
+            quay.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version_major.outputs.contents }}-dev
+            quay.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version_minor.outputs.contents }}-dev
             quay.io/bfren/wordpress:php${{ matrix.php }}-${{ steps.version.outputs.contents }}-dev
+            quay.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_minor.outputs.contents }}-dev
+            quay.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_minor.outputs.contents }}-${{ steps.version.outputs.contents }}-dev
             quay.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-dev
+            quay.io/bfren/wordpress:php${{ matrix.php }}-wp${{ steps.wp_version.outputs.contents }}-${{ steps.version.outputs.contents }}-dev
+            quay.io/bfren/wordpress:php${{ steps.php_revision.outputs.contents }}-dev
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
