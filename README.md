@@ -137,6 +137,16 @@ With `BF_WP_INSTALL_NINJAFIREWALL=1`, the plugin is installed and two files are 
 
 The site blocks hidden files (e.g. `.htaccess`) and PHP files in `uploads` (`helpers/wp-restrictions.conf`), and routes "pretty" permalinks to `index.php`. `helpers/wp-subdirectory.conf` is an example for running WordPress in a `/wordpress` sub-folder - copy it and change the name.
 
+## Building another version or language
+
+The WordPress version and language come from `overlay/tmp/WP_VERSION` and `overlay/tmp/WP_LOCALE`. To build a different one without changing the files, pass build arguments:
+
+```sh
+docker buildx build --build-arg WP_LOCALE=de_DE --build-arg WP_VERSION=7.1.3 -f php8.4/Dockerfile -t my-wordpress .
+```
+
+The version must be a released WordPress version, and the locale one that WordPress.org publishes downloads for, or the build fails. Published images always use the files.
+
 ## Testing
 
 ```sh

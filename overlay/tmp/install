@@ -32,9 +32,9 @@ def install_source [] {
     bf write "Adding installation dependencies." install_source
     bf pkg install ["--virtual" ".install" "unzip"]
 
-    # get version and locale
-    let wp_version = bf fs read WP_VERSION
-    let wp_locale = bf fs read WP_LOCALE
+    # get version and locale - from the WP_VERSION / WP_LOCALE build arguments if set, otherwise from the files in /tmp
+    let wp_version = build_arg WP_VERSION
+    let wp_locale = build_arg WP_LOCALE
 
     # save WordPress version to build log
     bf build add WordPress $wp_version
@@ -77,6 +77,18 @@ def install_source [] {
 
     # remove installation dependencies
     bf pkg remove [".install"]
+}
+
+# Get a value from the build argument $name if it is set (Docker makes build arguments available as environment variables
+# while the image is built), otherwise read it from the file of the same name in the current directory (/tmp)
+def build_arg [
+    name: string    # The build argument / file name, e.g. WP_VERSION
+]: nothing -> string {
+    let value = $env | get --optional $name | default "" | str trim
+    if ($value | is-empty) { return (bf fs read $name) }
+
+    bf write $"Using ($name) build argument: ($value)." build_arg
+    $value
 }
 
 # Install WordPress content
