@@ -1,5 +1,6 @@
 use bf
 use perms.nu
+use bf-s6
 
 # Generate wp-config.php file
 export def generate [] {
@@ -12,13 +13,24 @@ export def generate [] {
     # get authentication salt values
     $env.SALT = (get_salt)
 
-    # generate configuration file
+    # generate configuration file - the database values are escaped while the template is generated, because they are
+    # put inside single-quoted PHP strings, so a quote or backslash in (e.g.) a password would otherwise break the file
     let wp_config = bf env WP_CONFIG
     bf write $"Generating ($wp_config)." conf/generate
-    bf esh template $wp_config
+    let escaped = [WP_DB_NAME WP_DB_USER WP_DB_PASS WP_DB_HOST]
+        | reduce --fold {} {|x, acc| $acc | insert $"BF_($x)" (bf env $x | php_escape) }
+    with-env $escaped { bf-s6 esh template $wp_config }
 
     # set permissions
     perms set_config
+}
+
+# Escape a value so it can be used inside a single-quoted PHP string - backslashes and single quotes are the only
+# characters with special meaning there
+export def php_escape []: string -> string {
+    $in
+        | str replace --all '\' '\\'
+        | str replace --all "'" "\\'"
 }
 
 # Check that a required environment variable exists and is not empty

@@ -1,5 +1,6 @@
 use bf
 use bf-wordpress
+use bf-s6
 bf env load
 
 def main [] {
@@ -28,8 +29,8 @@ def install_ninjafirewall [] {
         bf-wordpress plugin install_ninjafirewall
 
         # generate files for full WAF mode
-        bf esh template $firewall
-        bf esh template $user_ini
+        bf-s6 esh template $firewall
+        bf-s6 esh template $user_ini
     }
 }
 

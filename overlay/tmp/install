@@ -2,6 +2,7 @@
 
 use bf
 use bf-php
+use bf-wordpress
 
 # Absolute path to WordPress source directory
 const src = "/etc/bf/src/wordpress"
@@ -32,9 +33,9 @@ def install_source [] {
     bf write "Adding installation dependencies." install_source
     bf pkg install ["--virtual" ".install" "unzip"]
 
-    # get version and locale
-    let wp_version = bf fs read WP_VERSION
-    let wp_locale = bf fs read WP_LOCALE
+    # get version and locale - from the WP_VERSION / WP_LOCALE build arguments if set, otherwise from the files in /tmp
+    let wp_version = bf-wordpress build arg WP_VERSION
+    let wp_locale = bf-wordpress build arg WP_LOCALE
 
     # save WordPress version to build log
     bf build add WordPress $wp_version
@@ -78,6 +79,7 @@ def install_source [] {
     # remove installation dependencies
     bf pkg remove [".install"]
 }
+
 
 # Install WordPress content
 def install_content [] {
