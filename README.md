@@ -150,7 +150,8 @@ The version must be a released WordPress version, and the locale one that WordPr
 ## Testing
 
 ```sh
-./test.sh        # builds the image and runs /test
+./test.nu        # builds the image and runs /test
+./test.nu --all  # every version, in parallel
 ```
 
 `/test` runs this image's tests alongside the base images' tests, and fails if tests don't execute. They generate `wp-config.php` from its template and check it is valid PHP - including with quotes and backslashes in the database password - and that each optional setting appears only when enabled. They also check the build arguments, `wp-config.php` permissions, that existing secret keys are kept, recreating the default content, the installed WordPress version, plugin versions and PHP extensions, and that nginx accepts the configuration.
@@ -176,6 +177,16 @@ Check the proxy sends `X-Forwarded-Proto: https`, and that `BF_WP_ENABLE_HTTPS_B
 ### WordPress says an update is available but won't install it
 
 Core updates come with the image - pull the latest tag and recreate the container.
+
+## FAQs
+
+### Why is WordPress read-only?
+
+So nothing - a plugin, or an attacker - can change WordPress's own files. Themes, plugins and uploads are in `/wp-content` as normal; only the core files come from the image.
+
+### Can I use Redis for caching?
+
+Yes - set `BF_WP_REDIS_HOST` (and `BF_WP_REDIS_PORT` if it isn't 6379) and install a Redis object cache plugin. The Redis extension is included in PHP 8 builds.
 
 ## Licence
 
