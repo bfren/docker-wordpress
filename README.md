@@ -26,7 +26,7 @@ With a MariaDB database (e.g. [bfren/mariadb](https://github.com/bfren/docker-ma
 ```yaml
 services:
   wordpress:
-    image: quay.io/bfren/wordpress:php8.4-7.1
+    image: quay.io/bfren/wordpress:php8.4-7.2
     environment:
       - BF_WP_DB_HOST=db
       - BF_WP_DB_NAME=wordpress
@@ -50,22 +50,21 @@ Open the site and follow WordPress's installation (site title and admin user).
 * 🐘 PHP 7.4 to 8.5 - choose with the image tag
 * 🗜️ Everything from [Nginx + PHP](https://github.com/bfren/docker-nginx-php#features): PHP-FPM, OPcache, compression and logs
 * 🩺 Health check that loads the login page
-* 🖥️ Built for `linux/amd64`, `linux/arm64` and `linux/arm/v7`
 
 ## Tags
 
-Images are published to Docker Hub (`bfren/wordpress`) and Quay.io (`quay.io/bfren/wordpress`). Tags start with the PHP version, and can include the WordPress version.
+Images are published to Docker Hub (`bfren/wordpress`) and Quay.io (`quay.io/bfren/wordpress`) for `linux/amd64` and `linux/arm64`. Tags start with the PHP version, and can include the WordPress version.
 
-| Tag                          | Example                 | Use when                                    |
-| ---------------------------- | ----------------------- | ------------------------------------------- |
-| `phpX.Y`                     | `php8.4`                | You want the latest image for a PHP version |
-| `phpX.Y-MAJOR`               | `php8.4-7`              | You want updates, but not breaking changes  |
-| `phpX.Y-MINOR`               | `php8.4-7.1`            | You want fixes only - **recommended**       |
-| `phpX.Y-VERSION`             | `php8.4-7.1.34`         | You want to pin this image exactly          |
-| `phpX.Y-wpA.B`               | `php8.4-wp7.1`          | You want to stay on a WordPress version     |
-| `phpX.Y-wpA.B.C`             | `php8.4-wp7.1.3`        | You want an exact WordPress release         |
-| `…-VERSION` versions of both | `php8.4-wp7.1.3-7.1.34` | You want to pin both                        |
-| `phpX.Y.Z`                   | `php8.4.26`             | You want an exact PHP release               |
+| Tag                          | Example                | Use when                                    |
+| ---------------------------- | ---------------------- | ------------------------------------------- |
+| `phpX.Y`                     | `php8.4`               | You want the latest image for a PHP version |
+| `phpX.Y-MAJOR`               | `php8.4-7`             | You want updates, but not breaking changes  |
+| `phpX.Y-MINOR`               | `php8.4-7.2`           | You want fixes only - **recommended**       |
+| `phpX.Y-VERSION`             | `php8.4-7.2.0`         | You want to pin this image exactly          |
+| `phpX.Y-wpA.B`               | `php8.4-wp7.1`         | You want to stay on a WordPress version     |
+| `phpX.Y-wpA.B.C`             | `php8.4-wp7.1.3`       | You want an exact WordPress release         |
+| `…-VERSION` versions of both | `php8.4-wp7.1.3-7.2.0` | You want to pin both                        |
+| `phpX.Y.Z`                   | `php8.4.26`            | You want an exact PHP release               |
 
 There is no `latest` tag. PHP 8.1 and older no longer receive security fixes - see [Nginx + PHP](https://github.com/bfren/docker-nginx-php#tags) for support dates.
 
