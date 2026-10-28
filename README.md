@@ -47,7 +47,7 @@ Open the site and follow WordPress's installation (site title and admin user).
 * ⏰ System cron for WordPress's scheduled tasks
 * 🛡️ Optional NinjaFirewall in full web application firewall mode, and WebAuthn passkey logins
 * ⚡ Redis object cache settings, for use with a Redis plugin
-* 🐘 PHP 7.4 to 8.5 - choose with the image tag
+* 🐘 PHP 8.2 to 8.5 - choose with the image tag
 * 🗜️ Everything from [Nginx + PHP](https://github.com/bfren/docker-nginx-php#features): PHP-FPM, OPcache, compression and logs
 * 🩺 Health check that loads the login page
 
