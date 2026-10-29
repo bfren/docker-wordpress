@@ -4,7 +4,7 @@ set -euo pipefail
 
 docker pull bfren/alpine
 
-BASE_VERSION="9.1.0"
+BASE_VERSION="9.1.1"
 echo "Base: ${BASE_VERSION}"
 
 PHP_VERSIONS="8.2 8.3 8.4 8.5"
