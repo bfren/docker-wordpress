@@ -53,7 +53,7 @@ Open the site and follow WordPress's installation (site title and admin user).
 
 ## Tags
 
-Images are published to Docker Hub (`bfren/wordpress`) and Quay.io (`quay.io/bfren/wordpress`) for `linux/amd64` and `linux/arm64`. Tags start with the PHP version, and can include the WordPress version.
+Images are published to Docker Hub (`bfren/wordpress`) and Quay.io (`quay.io/bfren/wordpress`) for `linux/amd64`, `linux/arm/v7` and `linux/arm64`. Tags start with the PHP version, and can include the WordPress version.
 
 | Tag                          | Example                | Use when                                    |
 | ---------------------------- | ---------------------- | ------------------------------------------- |

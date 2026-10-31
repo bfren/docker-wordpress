@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.0.0] - Unreleased
 
+### Added
+
+- Images for `linux/arm/v7` are built again.
+
 ### Changed
 
 - **Breaking:** base image updated to `bfren/nginx-php` 10.0.0 - see the
