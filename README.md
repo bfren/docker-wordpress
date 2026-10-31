@@ -1,6 +1,6 @@
 # WordPress
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-wordpress) ![Docker Pulls](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fpulls%2Fwordpress) ![Docker Image Size](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fsize%2Fwordpress) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bfren/docker-wordpress/dev.yml?branch=main)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-wordpress) ![Docker Pulls](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fpulls%2Fwordpress) ![Docker Image Size](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fsize%2Fwordpress) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bfren/docker-wordpress/build.yml?branch=main)
 
 [Docker Hub](https://hub.docker.com/r/bfren/wordpress) - [Quay.io](https://quay.io/repository/bfren/wordpress) - [bfren ecosystem](https://github.com/bfren/docker)
 
