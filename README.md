@@ -1,6 +1,6 @@
 # WordPress
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-wordpress) ![Docker Pulls](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fpulls%2Fwordpress) ![Docker Image Size](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fsize%2Fwordpress) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bfren/docker-wordpress/dev.yml?branch=main)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/bfren/docker-wordpress) ![Docker Pulls](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fpulls%2Fwordpress) ![Docker Image Size](https://img.shields.io/endpoint?url=https%3A%2F%2Fbfren.dev%2Fdocker%2Fsize%2Fwordpress) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bfren/docker-wordpress/build.yml?branch=main)
 
 [Docker Hub](https://hub.docker.com/r/bfren/wordpress) - [Quay.io](https://quay.io/repository/bfren/wordpress) - [bfren ecosystem](https://github.com/bfren/docker)
 
@@ -10,7 +10,7 @@
 
 It is [Nginx + PHP](https://github.com/bfren/docker-nginx-php) with:
 
-* WordPress 7.1.3 (British English) installed read-only, so core updates come from pulling a new image and can't be changed by plugins or attackers
+* WordPress 7.1.4 (British English) installed read-only, so core updates come from pulling a new image and can't be changed by plugins or attackers
 * the PHP extensions WordPress requires and recommends, including Imagick and Redis (PHP 8 builds)
 * `wp-config.php` generated from environment variables, with secret keys downloaded once and kept
 * WordPress's scheduled tasks run every minute by the system's cron, instead of on page loads
@@ -26,7 +26,7 @@ With a MariaDB database (e.g. [bfren/mariadb](https://github.com/bfren/docker-ma
 ```yaml
 services:
   wordpress:
-    image: quay.io/bfren/wordpress:php8.4-7.2
+    image: quay.io/bfren/wordpress:php8.4-8.0
     environment:
       - BF_WP_DB_HOST=db
       - BF_WP_DB_NAME=wordpress
@@ -53,18 +53,18 @@ Open the site and follow WordPress's installation (site title and admin user).
 
 ## Tags
 
-Images are published to Docker Hub (`bfren/wordpress`) and Quay.io (`quay.io/bfren/wordpress`) for `linux/amd64` and `linux/arm64`. Tags start with the PHP version, and can include the WordPress version.
+Images are published to Docker Hub (`bfren/wordpress`) and Quay.io (`quay.io/bfren/wordpress`) for `linux/amd64`, `linux/arm/v7` and `linux/arm64`. Tags start with the PHP version, and can include the WordPress version.
 
 | Tag                          | Example                | Use when                                    |
 | ---------------------------- | ---------------------- | ------------------------------------------- |
 | `phpX.Y`                     | `php8.4`               | You want the latest image for a PHP version |
-| `phpX.Y-MAJOR`               | `php8.4-7`             | You want updates, but not breaking changes  |
-| `phpX.Y-MINOR`               | `php8.4-7.2`           | You want fixes only - **recommended**       |
-| `phpX.Y-VERSION`             | `php8.4-7.2.0`         | You want to pin this image exactly          |
+| `phpX.Y-MAJOR`               | `php8.4-8`             | You want updates, but not breaking changes  |
+| `phpX.Y-MINOR`               | `php8.4-8.0`           | You want fixes only - **recommended**       |
+| `phpX.Y-VERSION`             | `php8.4-8.0.0`         | You want to pin this image exactly          |
 | `phpX.Y-wpA.B`               | `php8.4-wp7.1`         | You want to stay on a WordPress version     |
-| `phpX.Y-wpA.B.C`             | `php8.4-wp7.1.3`       | You want an exact WordPress release         |
-| `…-VERSION` versions of both | `php8.4-wp7.1.3-7.2.0` | You want to pin both                        |
-| `phpX.Y.Z`                   | `php8.4.26`            | You want an exact PHP release               |
+| `phpX.Y-wpA.B.C`             | `php8.4-wp7.1.4`       | You want an exact WordPress release         |
+| `…-VERSION` versions of both | `php8.4-wp7.1.4-8.0.0` | You want to pin both                        |
+| `phpX.Y.Z`                   | `php8.4.27`            | You want an exact PHP release               |
 
 There is no `latest` tag. PHP 8.1 and older no longer receive security fixes - see [Nginx + PHP](https://github.com/bfren/docker-nginx-php#tags) for support dates.
 
@@ -141,7 +141,7 @@ The site blocks hidden files (e.g. `.htaccess`) and PHP files in `uploads` (`hel
 The WordPress version and language come from `overlay/tmp/WP_VERSION` and `overlay/tmp/WP_LOCALE`. To build a different one without changing the files, pass build arguments:
 
 ```sh
-docker buildx build --build-arg WP_LOCALE=de_DE --build-arg WP_VERSION=7.1.3 -f php8.4/Dockerfile -t my-wordpress .
+docker buildx build --build-arg WP_LOCALE=de_DE --build-arg WP_VERSION=7.1.4 -f php8.4/Dockerfile -t my-wordpress .
 ```
 
 The version must be a released WordPress version, and the locale one that WordPress.org publishes downloads for, or the build fails. Published images always use the files.

@@ -1,4 +1,4 @@
-FROM quay.io/bfren/nginx-php:php8.4.27-9.1.1
+FROM quay.io/bfren/nginx-php:php8.4.27-10.0.0-dev
 
 LABEL org.opencontainers.image.source="https://github.com/bfren/docker-wordpress"
 
