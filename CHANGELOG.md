@@ -19,4 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Images are built and published by the shared `bfren/docker` build workflow (`build.yml`), replacing the separate
   `dev.yml` and `publish.yml` workflows.
 
+### Removed
+
+- **Breaking:** the PHP `imap` extension - WordPress does not use it, and Alpine no longer packages it for PHP 8.4 and 8.5. Install
+  it in your own image if a plugin needs it.
+
 [8.0.0]: https://github.com/bfren/docker-wordpress/compare/v7.3.2...v8.0.0
