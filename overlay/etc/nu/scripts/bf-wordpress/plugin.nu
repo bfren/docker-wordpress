@@ -15,14 +15,12 @@ def install [
     # get path to plugin directory
     let plugin_dir = $"($plugins_dir)/($ref)"
 
-    # if the plugin directory exists, return - otherwise, make it
-    if ($plugin_dir | path exists) {
+    # if the plugin is installed, return - the directory is only created by moving the downloaded files into place
+    if ($plugin_dir | is_installed) {
         bf write $"Plugin ($name) is already installed." plugin/install
         return
-    } else {
-        bf write $"Installing plugin ($name)." plugin/install
-        mkdir $plugin_dir
     }
+    bf write $"Installing plugin ($name)." plugin/install
 
     # get URL to download plugin
     let url = $"https://downloads.wordpress.org/plugin/($ref).($version).zip"
@@ -46,6 +44,13 @@ def install [
     rm --force --recursive $plugin_dir
     mv $tmp $plugin_dir
     if ($plugin_dir | bf fs is_not_dir) { bf write error $" .. not installed" plugin/install }
+}
+
+# Returns true if the plugin directory exists and has files - earlier versions left an empty one after a failed
+# download, which must not count as installed
+export def is_installed []: string -> bool {
+    let dir = $in
+    ($dir | path exists) and (ls $dir | is-not-empty)
 }
 
 # Install Ninja Firewall
