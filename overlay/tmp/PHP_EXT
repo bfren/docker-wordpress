@@ -9,7 +9,6 @@
 -gettext
 -gmp
 -iconv
--imap
 -intl
 -mbstring
 -mysqli
