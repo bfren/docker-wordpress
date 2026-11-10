@@ -60,10 +60,10 @@ Images are published to Docker Hub (`bfren/wordpress`) and Quay.io (`quay.io/bfr
 | `phpX.Y`                     | `php8.4`               | You want the latest image for a PHP version |
 | `phpX.Y-MAJOR`               | `php8.4-8`             | You want updates, but not breaking changes  |
 | `phpX.Y-MINOR`               | `php8.4-8.0`           | You want fixes only - **recommended**       |
-| `phpX.Y-VERSION`             | `php8.4-8.0.1`         | You want to pin this image exactly          |
+| `phpX.Y-VERSION`             | `php8.4-8.0.2`         | You want to pin this image exactly          |
 | `phpX.Y-wpA.B`               | `php8.4-wp7.1`         | You want to stay on a WordPress version     |
 | `phpX.Y-wpA.B.C`             | `php8.4-wp7.1.4`       | You want an exact WordPress release         |
-| `…-VERSION` versions of both | `php8.4-wp7.1.4-8.0.1` | You want to pin both                        |
+| `…-VERSION` versions of both | `php8.4-wp7.1.4-8.0.2` | You want to pin both                        |
 | `phpX.Y.Z`                   | `php8.4.27`            | You want an exact PHP release               |
 
 There is no `latest` tag. PHP 8.1 and older no longer receive security fixes - see [Nginx + PHP](https://github.com/bfren/docker-nginx-php#tags) for support dates.
