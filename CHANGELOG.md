@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.4] - 2026-11-20
+
+### Changed
+
+- Base image updated to `bfren/nginx-php` 10.0.4, which updates PHP to 8.3.37, 8.4.28 and 8.5.13 - see the
+  [Nginx + PHP changelog](https://github.com/bfren/docker-nginx-php/blob/main/CHANGELOG.md).
+- NinjaFirewall (installed with `BF_WP_INSTALL_NINJAFIREWALL=1`) updated to 4.10.1.
+
 ## [8.0.3] - 2026-11-18
 
 ### Changed
@@ -54,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A failed plugin download no longer leaves an empty plugin directory that later starts treat as installed - which
   meant Ninja Firewall could be silently missing. An empty directory left by an earlier version is now reinstalled.
 
+[8.0.4]: https://github.com/bfren/docker-wordpress/compare/v8.0.3...v8.0.4
 [8.0.3]: https://github.com/bfren/docker-wordpress/compare/v8.0.2...v8.0.3
 [8.0.2]: https://github.com/bfren/docker-wordpress/compare/v8.0.1...v8.0.2
 [8.0.1]: https://github.com/bfren/docker-wordpress/compare/v8.0.0...v8.0.1
