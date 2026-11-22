@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.5] - Unreleased
+
+### Fixed
+
+- README: the Quickstart is now numbered steps, and its example now includes the MariaDB database it connects to.
+- README: turning on NinjaFirewall is now a list of steps.
+
 ## [8.0.4] - 2026-11-20
 
 ### Changed
@@ -62,6 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A failed plugin download no longer leaves an empty plugin directory that later starts treat as installed - which
   meant Ninja Firewall could be silently missing. An empty directory left by an earlier version is now reinstalled.
 
+[8.0.5]: https://github.com/bfren/docker-wordpress/compare/v8.0.4...v8.0.5
 [8.0.4]: https://github.com/bfren/docker-wordpress/compare/v8.0.3...v8.0.4
 [8.0.3]: https://github.com/bfren/docker-wordpress/compare/v8.0.2...v8.0.3
 [8.0.2]: https://github.com/bfren/docker-wordpress/compare/v8.0.1...v8.0.2
