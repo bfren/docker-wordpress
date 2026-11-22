@@ -86,6 +86,8 @@ Images are published to Docker Hub (`bfren/wordpress`) and Quay.io (`quay.io/bfr
 | `…-VERSION` versions of both | `php8.4-wp7.1.5-8.0.5` | You want to pin both                        |
 | `phpX.Y.Z`                   | `php8.4.28`            | You want an exact PHP release               |
 
+A new `MAJOR` version means a breaking change. Before moving to one, read the [changelog](CHANGELOG.md), where each breaking change is marked **Breaking**.
+
 There is no `latest` tag. PHP 8.1 and older no longer receive security fixes - see [Nginx + PHP](https://github.com/bfren/docker-nginx-php#tags) for support dates.
 
 ## Configuration
