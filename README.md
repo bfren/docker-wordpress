@@ -31,7 +31,7 @@ services:
       - BF_WP_DB_HOST=db
       - BF_WP_DB_NAME=wordpress
       - BF_WP_DB_USER=wordpress
-      - BF_WP_DB_PASS=change-me
+      - BF_WP_DB_PASS=${DB_PASSWORD}
     ports:
       - "8080:80"
     volumes:
@@ -40,14 +40,23 @@ services:
   db:
     image: quay.io/bfren/mariadb:mariadb11.8-10.0
     environment:
-      - BF_DB_ROOT_PASSWORD=change-me-root
+      - BF_DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
       - BF_DB_APPLICATION=wordpress
-      - BF_DB_PASSWORD=change-me
+      - BF_DB_PASSWORD=${DB_PASSWORD}
     volumes:
       - ./v/db:/data
 ```
 
-1. Change the passwords. `BF_WP_DB_PASS` and `BF_DB_PASSWORD` must match.
+This example is also in [`docker-compose.yml`](docker-compose.yml).
+
+`.env` (keep it out of version control):
+
+```sh
+DB_ROOT_PASSWORD=change-me-root
+DB_PASSWORD=change-me
+```
+
+1. Change the passwords in `.env`. WordPress and MariaDB both read `DB_PASSWORD`, so the database password only needs setting once.
 2. Run `docker compose up -d`, then open `http://localhost:8080`.
 3. Follow WordPress's installation - choose a site title and admin user.
 

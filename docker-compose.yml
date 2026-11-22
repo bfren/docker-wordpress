@@ -1,0 +1,21 @@
+services:
+  wordpress:
+    image: quay.io/bfren/wordpress:php8.4-8.0
+    environment:
+      - BF_WP_DB_HOST=db
+      - BF_WP_DB_NAME=wordpress
+      - BF_WP_DB_USER=wordpress
+      - BF_WP_DB_PASS=${DB_PASSWORD}
+    ports:
+      - "8080:80"
+    volumes:
+      - ./v/wp-content:/wp-content
+
+  db:
+    image: quay.io/bfren/mariadb:mariadb11.8-10.0
+    environment:
+      - BF_DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - BF_DB_APPLICATION=wordpress
+      - BF_DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./v/db:/data
