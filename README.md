@@ -21,7 +21,7 @@ It is designed to run behind a reverse proxy that handles SSL, such as [Caddy Pr
 
 ## Quickstart
 
-With a MariaDB database (e.g. [bfren/mariadb](https://github.com/bfren/docker-mariadb)):
+`docker-compose.yml`, with a [MariaDB](https://github.com/bfren/docker-mariadb) database:
 
 ```yaml
 services:
@@ -31,14 +31,34 @@ services:
       - BF_WP_DB_HOST=db
       - BF_WP_DB_NAME=wordpress
       - BF_WP_DB_USER=wordpress
-      - BF_WP_DB_PASS=change-me
+      - BF_WP_DB_PASS=${DB_PASSWORD}
     ports:
       - "8080:80"
     volumes:
       - ./v/wp-content:/wp-content
+
+  db:
+    image: quay.io/bfren/mariadb:mariadb11.8-10.1
+    environment:
+      - BF_DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - BF_DB_APPLICATION=wordpress
+      - BF_DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./v/db:/data
 ```
 
-Open the site and follow WordPress's installation (site title and admin user).
+This example is also in [`docker-compose.yml`](docker-compose.yml).
+
+`.env` (keep it out of version control):
+
+```sh
+DB_ROOT_PASSWORD=change-me-root
+DB_PASSWORD=change-me
+```
+
+1. Change the passwords in `.env`. WordPress and MariaDB both read `DB_PASSWORD`, so the database password only needs setting once.
+2. Run `docker compose up -d`, then open `http://localhost:8080`.
+3. Follow WordPress's installation - choose a site title and admin user.
 
 ## Features
 
@@ -60,11 +80,13 @@ Images are published to Docker Hub (`bfren/wordpress`) and Quay.io (`quay.io/bfr
 | `phpX.Y`                     | `php8.4`               | You want the latest image for a PHP version |
 | `phpX.Y-MAJOR`               | `php8.4-8`             | You want updates, but not breaking changes  |
 | `phpX.Y-MINOR`               | `php8.4-8.0`           | You want fixes only - **recommended**       |
-| `phpX.Y-VERSION`             | `php8.4-8.0.4`         | You want to pin this image exactly          |
+| `phpX.Y-VERSION`             | `php8.4-8.0.5`         | You want to pin this image exactly          |
 | `phpX.Y-wpA.B`               | `php8.4-wp7.1`         | You want to stay on a WordPress version     |
 | `phpX.Y-wpA.B.C`             | `php8.4-wp7.1.5`       | You want an exact WordPress release         |
-| `…-VERSION` versions of both | `php8.4-wp7.1.5-8.0.4` | You want to pin both                        |
+| `…-VERSION` versions of both | `php8.4-wp7.1.5-8.0.5` | You want to pin both                        |
 | `phpX.Y.Z`                   | `php8.4.28`            | You want an exact PHP release               |
+
+A new `MAJOR` version means a breaking change. Before moving to one, read the [changelog](CHANGELOG.md), where each breaking change is marked **Breaking**.
 
 There is no `latest` tag. PHP 8.1 and older no longer receive security fixes - see [Nginx + PHP](https://github.com/bfren/docker-nginx-php#tags) for support dates.
 
@@ -130,7 +152,11 @@ With `BF_WP_USE_SYSTEM_CRON=1`, WordPress's own cron is turned off in `wp-config
 
 ### NinjaFirewall
 
-With `BF_WP_INSTALL_NINJAFIREWALL=1`, the plugin is installed and two files are generated so it runs in full web application firewall mode (before WordPress loads). Turn this on **only after** WordPress has been installed - otherwise the firewall blocks the installation. Then activate and set up the plugin in WordPress.
+NinjaFirewall can run in full web application firewall mode, checking every request before WordPress loads. To turn it on:
+
+1. Install WordPress first - the firewall blocks the installation if it is turned on before.
+2. Set `BF_WP_INSTALL_NINJAFIREWALL=1` and recreate the container. The plugin is installed, and the two files it needs for full mode are generated.
+3. In WordPress, activate NinjaFirewall and follow its set-up.
 
 ### nginx
 
