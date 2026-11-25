@@ -38,7 +38,7 @@ services:
       - ./v/wp-content:/wp-content
 
   db:
-    image: quay.io/bfren/mariadb:mariadb11.8-10.0
+    image: quay.io/bfren/mariadb:mariadb11.8-10.1
     environment:
       - BF_DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
       - BF_DB_APPLICATION=wordpress
